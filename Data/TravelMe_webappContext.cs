@@ -25,5 +25,16 @@ namespace TravelMe_webapp.Models
         public DbSet<TravelMe_webapp.Models.Comments> Comments { get; set; }
 
         public DbSet<TravelMe_webapp.Models.PlaceCatagory> PlaceCatagory { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelbuilder)
+        {
+            foreach (var relationship in modelbuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
+            base.OnModelCreating(modelbuilder);
+        }
+
     }
 }

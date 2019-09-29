@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelMe_webapp.Models;
 
 namespace TravelMe_webapp.Migrations
 {
     [DbContext(typeof(TravelMe_webappContext))]
-    partial class TravelMe_webappContextModelSnapshot : ModelSnapshot
+    [Migration("20190929112019_migration2")]
+    partial class migration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,7 +162,7 @@ namespace TravelMe_webapp.Migrations
                     b.HasOne("TravelMe_webapp.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("TravelMe_webapp.Models.PlaceCatagory", b =>

@@ -113,13 +113,13 @@ namespace TravelMe_webapp.Migrations
                         column: x => x.PostID,
                         principalTable: "Post",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Comments_User_UserID",
                         column: x => x.UserID,
                         principalTable: "User",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
