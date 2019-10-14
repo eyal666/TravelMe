@@ -22,3 +22,17 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#map {
+    height: 300px;
+}
+/* Optional: Makes the sample page fill the window. */
+.google-map {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.post-button {
+    margin: 10px;
+}
