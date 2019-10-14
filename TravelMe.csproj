@@ -335,7 +335,7 @@
     <Content Include="Views\Shared\_IndividualButtonPartial.cshtml" />
     <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
     <Content Include="Views\Shared\_AdminMenuPartial.cshtml" />
-    <Content Include="Views\Shared\_TabelButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_TableButtonPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

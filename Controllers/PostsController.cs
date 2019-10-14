@@ -63,7 +63,14 @@ namespace TravelMe.Controllers
                 Rating = postVM.Post.Rating,
                 NumOfViews = 0,
                 DateAdded = DateTime.Now,
-                Place = postVM.Post.Place
+                Place = new Place
+                {
+                    Name = "Place",
+                    Altitude = 0,
+                    Latitude = 0,
+                    AvgRating = 0,
+                    NumOfPosts = 0
+                }
             };
 
             if (ModelState.IsValid)
@@ -72,8 +79,10 @@ namespace TravelMe.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(postVM);
+            db.Posts.Add(post);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+            //return View(postVM);
         }
 
         // GET: Posts/Edit/5

@@ -10,11 +10,7 @@
            ButtonType = "btn-primary",
            Glyph = "pencil",
            Text = "Edit",
-           GenreId = Model.GenreId,
-           BookId = Model.BookId,
-           CustomerId = Model.CustomerId,
-           MembershipTypeId = Model.MembershipTypeId,
-           userId = Model.userId
+           PostId = Model.PostId,
         })
         @Html.Partial("_IndividualButtonPartial",
         new IndividualButtonPartial
@@ -23,11 +19,7 @@
            ButtonType = "btn-success",
            Glyph = "list",
            Text = "Details",
-           GenreId = Model.GenreId,
-           BookId = Model.BookId,
-           CustomerId = Model.CustomerId,
-           MembershipTypeId = Model.MembershipTypeId,
-           userId = Model.userId
+           PostId = Model.PostId,
         })
         @Html.Partial("_IndividualButtonPartial",
         new IndividualButtonPartial
@@ -36,11 +28,7 @@
            ButtonType = "btn-danger",
            Glyph = "trash",
            Text = "Delete",
-           GenreId = Model.GenreId,
-           BookId = Model.BookId,
-           CustomerId = Model.CustomerId,
-           MembershipTypeId = Model.MembershipTypeId,
-           userId = Model.userId
+           PostId = Model.PostId,
         })
     </div>
 </td>
