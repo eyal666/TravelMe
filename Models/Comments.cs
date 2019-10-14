@@ -17,8 +17,6 @@ namespace TravelMe_webapp.Models
         [Required]
         public string Content { get; set; }
         [Required]
-        public User User { get; set; }
-        [Required]
         public Post Post { get; set; }
     }
 }

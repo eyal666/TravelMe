@@ -13,9 +13,12 @@ namespace TravelMe_webapp.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public string Location { get; set; } //Coordinates //convert to double long, double lat
+        public double Altitude { get; set; }
+        [Required]
+        public double Latitude { get; set; }
         public float? AvgRating { get; set; }
         [Required]
         public int NumOfPosts { get; set; }
+
     }
 }
