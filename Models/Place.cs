@@ -13,7 +13,7 @@ namespace TravelMe_webapp.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public double Altitude { get; set; }
+        public double Longtitude { get; set; }
         [Required]
         public double Latitude { get; set; }
         public float? AvgRating { get; set; }

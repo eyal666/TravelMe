@@ -202,29 +202,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910140809321_InitialCreate.cs" />
-    <Compile Include="Migrations\201910140809321_InitialCreate.Designer.cs">
-      <DependentUpon>201910140809321_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910140812556_ChangedLocationToCoords.cs" />
-    <Compile Include="Migrations\201910140812556_ChangedLocationToCoords.Designer.cs">
-      <DependentUpon>201910140812556_ChangedLocationToCoords.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910140836031_Delete_User_table.cs" />
-    <Compile Include="Migrations\201910140836031_Delete_User_table.Designer.cs">
-      <DependentUpon>201910140836031_Delete_User_table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910141040524_AddBodyToPost.cs" />
-    <Compile Include="Migrations\201910141040524_AddBodyToPost.Designer.cs">
-      <DependentUpon>201910141040524_AddBodyToPost.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910141058167_AddImageToPost.cs" />
-    <Compile Include="Migrations\201910141058167_AddImageToPost.Designer.cs">
-      <DependentUpon>201910141058167_AddImageToPost.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910141132043_UpdateGUIDToString.cs" />
-    <Compile Include="Migrations\201910141132043_UpdateGUIDToString.Designer.cs">
-      <DependentUpon>201910141132043_UpdateGUIDToString.cs</DependentUpon>
+    <Compile Include="Migrations\201910141206305_change_altitude_to_longtitude.cs" />
+    <Compile Include="Migrations\201910141206305_change_altitude_to_longtitude.Designer.cs">
+      <DependentUpon>201910141206305_change_altitude_to_longtitude.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -354,23 +334,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910140809321_InitialCreate.resx">
-      <DependentUpon>201910140809321_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910140812556_ChangedLocationToCoords.resx">
-      <DependentUpon>201910140812556_ChangedLocationToCoords.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910140836031_Delete_User_table.resx">
-      <DependentUpon>201910140836031_Delete_User_table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910141040524_AddBodyToPost.resx">
-      <DependentUpon>201910141040524_AddBodyToPost.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910141058167_AddImageToPost.resx">
-      <DependentUpon>201910141058167_AddImageToPost.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910141132043_UpdateGUIDToString.resx">
-      <DependentUpon>201910141132043_UpdateGUIDToString.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910141206305_change_altitude_to_longtitude.resx">
+      <DependentUpon>201910141206305_change_altitude_to_longtitude.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
