@@ -24,8 +24,6 @@ namespace TravelMe_webapp.Models
         [DisplayFormat(DataFormatString = "{0: dd mm yyyy}")]
         public DateTime DateAdded { get; set; }
         [Required]
-        public User User { get; set; }
-        [Required]
         public Place Place { get; set; }
     }
 }

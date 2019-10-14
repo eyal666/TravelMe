@@ -29,5 +29,15 @@ namespace TravelMe.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<TravelMe_webapp.Models.Place> Places { get; set; }
+
+        public System.Data.Entity.DbSet<TravelMe_webapp.Models.Category> Categories { get; set; }
+
+        public System.Data.Entity.DbSet<TravelMe_webapp.Models.Comments> Comments { get; set; }
+
+        public System.Data.Entity.DbSet<TravelMe_webapp.Models.Post> Posts { get; set; }
+
+        public System.Data.Entity.DbSet<TravelMe_webapp.Models.PlaceCatagory> PlaceCatagories { get; set; }
     }
 }
