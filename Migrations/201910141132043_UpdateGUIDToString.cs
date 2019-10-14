@@ -1,0 +1,18 @@
+namespace TravelMe.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class UpdateGUIDToString : DbMigration
+    {
+        public override void Up()
+        {
+            AlterColumn("dbo.Posts", "UserID", c => c.String(nullable: false));
+        }
+        
+        public override void Down()
+        {
+            AlterColumn("dbo.Posts", "UserID", c => c.Int(nullable: false));
+        }
+    }
+}

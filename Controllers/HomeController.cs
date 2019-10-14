@@ -15,7 +15,8 @@ namespace TravelMe.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Subtitle = "Our story";
+            ViewBag.Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum magna ultricies eros tincidunt scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed elit lacus. Etiam egestas consectetur lectus ut malesuada. Nam ut lacus nec mi imperdiet ultrices. Ut rhoncus vitae diam ut consequat.";
 
             return View();
         }

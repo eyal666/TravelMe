@@ -13,7 +13,10 @@ namespace TravelMe_webapp.Models
         [Required]
         public string Title { get; set; }
         [Required]
-        public int UserID { get; set; }
+        public string Body { get; set; }
+        public string ImageUrl { get; set; }
+        [Required]
+        public string UserID { get; set; }
         [Required]
         public int PlaceID { get; set; }
         [Required]

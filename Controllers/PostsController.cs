@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TravelMe.Models;
+using TravelMe.ViewModel;
 using TravelMe_webapp.Models;
 
 namespace TravelMe.Controllers
@@ -49,8 +50,22 @@ namespace TravelMe.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,UserID,PlaceID,Rating,NumOfViews,DateAdded")] Post post)
+        public ActionResult Create(PostViewModel postVM)
         {
+            var post = new Post
+            {
+                ID = postVM.Post.ID,
+                Title = postVM.Post.Title,
+                Body = postVM.Post.Body,
+                ImageUrl = postVM.Post.ImageUrl,
+                UserID = "test",
+                PlaceID = postVM.Post.ID,
+                Rating = postVM.Post.Rating,
+                NumOfViews = 0,
+                DateAdded = DateTime.Now,
+                Place = postVM.Post.Place
+            };
+
             if (ModelState.IsValid)
             {
                 db.Posts.Add(post);
@@ -58,8 +73,7 @@ namespace TravelMe.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Name", post.PlaceID);
-            return View(post);
+            return View(postVM);
         }
 
         // GET: Posts/Edit/5
@@ -83,7 +97,7 @@ namespace TravelMe.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Title,UserID,PlaceID,Rating,NumOfViews,DateAdded")] Post post)
+        public ActionResult Edit(Post post)
         {
             if (ModelState.IsValid)
             {

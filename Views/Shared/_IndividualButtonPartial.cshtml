@@ -1,0 +1,5 @@
+﻿@model TravelMe4.Models.IndividualButtonPartial
+
+<a type="button" class="btn @Model.ButtonType btn-sm" href="@Url.Action(Model.Action)@Model.ActionParameter">
+    <span class="glyphicon glyphicon-@Model.Glyph"></span>
+</a>

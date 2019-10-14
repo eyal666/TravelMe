@@ -214,23 +214,48 @@
     <Compile Include="Migrations\201910140836031_Delete_User_table.Designer.cs">
       <DependentUpon>201910140836031_Delete_User_table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910141040524_AddBodyToPost.cs" />
+    <Compile Include="Migrations\201910141040524_AddBodyToPost.Designer.cs">
+      <DependentUpon>201910141040524_AddBodyToPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910141058167_AddImageToPost.cs" />
+    <Compile Include="Migrations\201910141058167_AddImageToPost.Designer.cs">
+      <DependentUpon>201910141058167_AddImageToPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910141132043_UpdateGUIDToString.cs" />
+    <Compile Include="Migrations\201910141132043_UpdateGUIDToString.Designer.cs">
+      <DependentUpon>201910141132043_UpdateGUIDToString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IndividualButtonPartial.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Place.cs" />
     <Compile Include="Models\PlaceCatagory.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="System\Date.cs" />
+    <Compile Include="ViewModel\PostViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Media\video.mp4" />
+    <Content Include="Content\Photos\america.jpg" />
+    <Content Include="Content\Photos\arrows.jpg" />
+    <Content Include="Content\Photos\jaffa.jpg" />
+    <Content Include="Content\Photos\maldives.jpg" />
+    <Content Include="Content\Photos\morroco.jpg" />
+    <Content Include="Content\Photos\paris.jpg" />
+    <Content Include="Content\Photos\peru.jpg" />
+    <Content Include="Content\Photos\russia.jpg" />
+    <Content Include="Content\social.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -304,10 +329,13 @@
     <Content Include="Views\PlaceCatagories\Edit.cshtml" />
     <Content Include="Views\PlaceCatagories\Index.cshtml" />
     <Content Include="Views\Posts\Create.cshtml" />
-    <Content Include="Views\Posts\Delete.cshtml" />
-    <Content Include="Views\Posts\Details.cshtml" />
-    <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Shared\_CreateButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_EditButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_IndividualButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_AdminMenuPartial.cshtml" />
+    <Content Include="Views\Shared\_TabelButtonPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -334,6 +362,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910140836031_Delete_User_table.resx">
       <DependentUpon>201910140836031_Delete_User_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910141040524_AddBodyToPost.resx">
+      <DependentUpon>201910141040524_AddBodyToPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910141058167_AddImageToPost.resx">
+      <DependentUpon>201910141058167_AddImageToPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910141132043_UpdateGUIDToString.resx">
+      <DependentUpon>201910141132043_UpdateGUIDToString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
