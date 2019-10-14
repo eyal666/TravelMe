@@ -54,15 +54,15 @@ namespace TravelMe
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1276248875878404",
+               appSecret: "de580a19aedb83c78ded0d098046498c");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "944619714367-38vnuj8ara6m1j510otkl9kk041fbqt3.apps.googleusercontent.com",
+                ClientSecret = "wck0-583YRoNFP8Q94_c9EjT"
+            });
         }
     }
 }
