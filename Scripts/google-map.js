@@ -1,19 +1,20 @@
 ﻿function initMap() {
+    const url = 'https://localhost:44393/Places/GetPlacesJson';
 
-    var map = new google.maps.Map(
-        document.getElementById('map'), { zoom: 4, center: locations[0] });
+    $.getJSON(url, (data, status) => {
+        const mapElement = $('#map')[0];
+        const center = { lat: data[0].Latitude, lng: data[0].Longtitude };
+        const map = new google.maps.Map(mapElement, { zoom: 4, center: center });
 
-    var url = 'https://localhost:44393/Places/GetPlacesJson'
-    $.getJSON(url, function (data, status) {
-        for (var i = 0; i < data.length; i++) {
-            var pos = { lat: data[i].Latitude, lng: data[i].Longtitude }
-            var marker = new google.maps.Marker(
+        data.forEach(place => {
+            const pos = { lat: place.Latitude, lng: place.Longtitude }
+            const marker = new google.maps.Marker(
                 {
                     position: pos,
                     map: map,
-                    title: data[i].Name
+                    title: place.Name
                 }
             );
-        }
+        });
     });
 }
