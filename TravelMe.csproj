@@ -232,6 +232,10 @@
     <Compile Include="Migrations\201910141247520_AddedThumbnailModel.Designer.cs">
       <DependentUpon>201910141247520_AddedThumbnailModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910151114592_test1.cs" />
+    <Compile Include="Migrations\201910151114592_test1.Designer.cs">
+      <DependentUpon>201910151114592_test1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -271,6 +275,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\AdminMenu.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -388,6 +393,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910141247520_AddedThumbnailModel.resx">
       <DependentUpon>201910141247520_AddedThumbnailModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910151114592_test1.resx">
+      <DependentUpon>201910151114592_test1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
