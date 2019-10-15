@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -12,6 +13,7 @@ using TravelMe_webapp.Models;
 
 namespace TravelMe.Controllers
 {
+    [Authorize]
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -35,7 +37,14 @@ namespace TravelMe.Controllers
             {
                 return HttpNotFound();
             }
-            return View(post);
+
+            var model = new PostViewModel
+            {
+                Post = post,
+                Categories = db.Categories.ToList()
+            };
+
+            return View(model);
         }
 
         // GET: Posts/Create
@@ -52,28 +61,50 @@ namespace TravelMe.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PostViewModel postVM)
         {
+            var userid = User.Identity.GetUserId();
+            var user = db.Users.FirstOrDefault(u => u.Id == userid);
+
+            // TODO: Get the coords based on the title of the blog post
+            var longtitude = 0;
+            var latitude = 0;
+            var place = db.Places.FirstOrDefault(p => p.Name == postVM.Post.Title);
+            //var place = db.Places.Find(postVM.Post.PlaceID);
+            if (place == null)
+            {
+                place = new Place
+                {
+                    Name = postVM.Post.Title,
+                    Longtitude = longtitude,
+                    Latitude = latitude,
+                    AvgRating = postVM.Post.Rating,
+                    NumOfPosts = 1
+                };
+            }
+            else
+            {
+                var avg = db.Posts
+                            .Where(p => p.ID == place.ID && p.Rating != 0)
+                            .Average(p => p.Rating);
+                place.NumOfPosts += 1;
+                place.AvgRating = (avg + postVM.Post.Rating) / place.NumOfPosts;
+            }
             var post = new Post
             {
                 ID = postVM.Post.ID,
                 Title = postVM.Post.Title,
                 Body = postVM.Post.Body,
                 ImageUrl = postVM.Post.ImageUrl,
-                UserID = "test",
+                UserID = user == null ? "Guest Account" : user.Id,
                 PlaceID = postVM.Post.ID,
                 Rating = postVM.Post.Rating,
                 NumOfViews = 0,
                 DateAdded = DateTime.Now,
-                Place = postVM.Post.Place
+                Place = place
             };
 
-            if (ModelState.IsValid)
-            {
-                db.Posts.Add(post);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(postVM);
+            db.Posts.Add(post);
+            db.SaveChanges();
+            return Redirect("/PostDetails/Index/" + post.ID);
         }
 
         // GET: Posts/Edit/5

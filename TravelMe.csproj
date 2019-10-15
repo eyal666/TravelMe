@@ -198,13 +198,27 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlaceCatagoriesController.cs" />
     <Compile Include="Controllers\PlacesController.cs" />
+    <Compile Include="Controllers\PostDetailsController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Extensions\ThumbnailExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201910141206305_change_altitude_to_longtitude.cs" />
     <Compile Include="Migrations\201910141206305_change_altitude_to_longtitude.Designer.cs">
       <DependentUpon>201910141206305_change_altitude_to_longtitude.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910141247520_AddedThumbnailModel.cs" />
+    <Compile Include="Migrations\201910141247520_AddedThumbnailModel.Designer.cs">
+      <DependentUpon>201910141247520_AddedThumbnailModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910151114592_test1.cs" />
+    <Compile Include="Migrations\201910151114592_test1.Designer.cs">
+      <DependentUpon>201910151114592_test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910151600250_Altitude_Longtitude_PostsController.cs" />
+    <Compile Include="Migrations\201910151600250_Altitude_Longtitude_PostsController.Designer.cs">
+      <DependentUpon>201910151600250_Altitude_Longtitude_PostsController.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -216,10 +230,13 @@
     <Compile Include="Models\Place.cs" />
     <Compile Include="Models\PlaceCatagory.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\ThumbnailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="System\Date.cs" />
+    <Compile Include="Utils\SD.cs" />
     <Compile Include="ViewModel\PostViewModel.cs" />
+    <Compile Include="ViewModel\ThumbnailBoxViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -235,11 +252,14 @@
     <Content Include="Content\Photos\paris.jpg" />
     <Content Include="Content\Photos\peru.jpg" />
     <Content Include="Content\Photos\russia.jpg" />
+    <Content Include="Content\postDetails.css" />
     <Content Include="Content\social.css" />
+    <Content Include="Content\thumbnail.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\AdminMenu.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -315,7 +335,10 @@
     <Content Include="Views\Shared\_IndividualButtonPartial.cshtml" />
     <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
     <Content Include="Views\Shared\_AdminMenuPartial.cshtml" />
-    <Content Include="Views\Shared\_TabelButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_TableButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_ThumbnailAreaPartial.cshtml" />
+    <Content Include="Views\Posts\Details.cshtml" />
+    <Content Include="Views\PostDetails\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -336,6 +359,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201910141206305_change_altitude_to_longtitude.resx">
       <DependentUpon>201910141206305_change_altitude_to_longtitude.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910141247520_AddedThumbnailModel.resx">
+      <DependentUpon>201910141247520_AddedThumbnailModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910151114592_test1.resx">
+      <DependentUpon>201910151114592_test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910151600250_Altitude_Longtitude_PostsController.resx">
+      <DependentUpon>201910151600250_Altitude_Longtitude_PostsController.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

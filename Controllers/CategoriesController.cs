@@ -5,12 +5,15 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Net;
 using System.Web.Mvc;
 using TravelMe.Models;
 using TravelMe_webapp.Models;
+using TravelMe.Utils;
 
 namespace TravelMe.Controllers
 {
+    [Authorize(Roles = SD.AdminUserRole)]
     public class CategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -47,7 +50,7 @@ namespace TravelMe.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name")] Category category)
+        public ActionResult Create(Category category)
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +59,7 @@ namespace TravelMe.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(category);
+            return View();
         }
 
         // GET: Categories/Edit/5
@@ -79,7 +82,7 @@ namespace TravelMe.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] Category category)
+        public ActionResult Edit(Category category)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +90,7 @@ namespace TravelMe.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(category);
+            return View();
         }
 
         // GET: Categories/Delete/5
@@ -106,9 +109,9 @@ namespace TravelMe.Controllers
         }
 
         // POST: Categories/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
             Category category = db.Categories.Find(id);
             db.Categories.Remove(category);
@@ -118,11 +121,7 @@ namespace TravelMe.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            db.Dispose();
         }
     }
 }

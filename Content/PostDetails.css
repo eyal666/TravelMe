@@ -1,0 +1,22 @@
+﻿.image-post {
+    padding-top: 50px;
+}
+
+.content-post-main {
+    padding-top: 30px;
+    text-align: justify;
+}
+
+.content-post-title-author {
+    border-bottom: 1px solid #b1b1b1;
+}
+
+.content-post-product-details {
+    border-left: 1px solid #b1b1b1;
+    padding-top: 50px;
+}
+
+.product-details-heading {
+    color: #0082ff;
+    padding-top: 40px;
+}

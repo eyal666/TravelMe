@@ -12,11 +12,9 @@ namespace TravelMe.Models
         public string Action { get; set; }
         public string Glyph { get; set; }
         public string Text { get; set; }
-        public int? GenreId { get; set; }
+        public int? CategoriesId { get; set; }
+        public int? PlaceId { get; set; }
         public int? PostId { get; set; }
-        public int? CustomerId { get; set; }
-        public int? MembershipTypeId { get; set; }
-        public string userId { get; set; }
         public string ActionParameter
         {
             get
@@ -26,21 +24,13 @@ namespace TravelMe.Models
                 {
                     param.Append(String.Format("{0}", PostId));
                 }
-                if (GenreId != null && GenreId > 0)
+                if (CategoriesId != null && CategoriesId > 0)
                 {
-                    param.Append(String.Format("{0}", GenreId));
+                    param.Append(String.Format("{0}", CategoriesId));
                 }
-                if (CustomerId != null && CustomerId > 0)
+                if (PlaceId != null && PlaceId > 0)
                 {
-                    param.Append(String.Format("{0}", CustomerId));
-                }
-                if (MembershipTypeId != null && MembershipTypeId > 0)
-                {
-                    param.Append(String.Format("{0}", MembershipTypeId));
-                }
-                if (userId != null && userId.Trim().Length > 0)
-                {
-                    param.Append(String.Format("{0}", userId));
+                    param.Append(String.Format("{0}", PlaceId));
                 }
 
                 return param.ToString();

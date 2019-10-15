@@ -1,33 +1,33 @@
 ﻿@model IEnumerable<TravelMe_webapp.Models.Category>
-
+@using TravelMe.Models
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Categories</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
+@Html.Partial("_CreateButtonPartial")
+
+<br />
+<br />
+<table class="table table-condensed table-hover">
+    <tr class="table-header">
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(m => m.Name)
         </th>
+        <th></th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.Name)
+            </td>
+            <td>
+                @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { CategoriesId = item.ID })
+            </td>
+        </tr>
+    }
 </table>
