@@ -80,8 +80,8 @@ namespace TravelMe.Controllers
                 var avg = db.Posts
                             .Where(p => p.ID == place.ID && p.Rating != 0)
                             .Average(p => p.Rating);
-                place.AvgRating = avg / place.NumOfPosts + 1;
                 place.NumOfPosts += 1;
+                place.AvgRating = avg / place.NumOfPosts;
             }
             var post = new Post
             {
@@ -97,16 +97,9 @@ namespace TravelMe.Controllers
                 Place = place
             };
 
-            if (ModelState.IsValid)
-            {
-                db.Posts.Add(post);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
             db.Posts.Add(post);
             db.SaveChanges();
-            return RedirectToAction("Index");
-            //return View(postVM);
+            return Redirect("/PostDetails/Index/" + post.ID);
         }
 
         // GET: Posts/Edit/5
