@@ -198,6 +198,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlaceCatagoriesController.cs" />
     <Compile Include="Controllers\PlacesController.cs" />
+    <Compile Include="Controllers\PostDetailsController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Extensions\ThumbnailExtension.cs" />
     <Compile Include="Global.asax.cs">
@@ -245,6 +246,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="System\Date.cs" />
+    <Compile Include="Utils\SD.cs" />
     <Compile Include="ViewModel\PostViewModel.cs" />
     <Compile Include="ViewModel\ThumbnailBoxViewModel.cs" />
   </ItemGroup>
@@ -262,6 +264,7 @@
     <Content Include="Content\Photos\paris.jpg" />
     <Content Include="Content\Photos\peru.jpg" />
     <Content Include="Content\Photos\russia.jpg" />
+    <Content Include="Content\postDetails.css" />
     <Content Include="Content\social.css" />
     <Content Include="Content\thumbnail.css" />
     <Content Include="favicon.ico" />
@@ -346,6 +349,7 @@
     <Content Include="Views\Shared\_TableButtonPartial.cshtml" />
     <Content Include="Views\Shared\_ThumbnailAreaPartial.cshtml" />
     <Content Include="Views\Posts\Details.cshtml" />
+    <Content Include="Views\PostDetails\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

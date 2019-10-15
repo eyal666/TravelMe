@@ -59,6 +59,30 @@ namespace TravelMe.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PostViewModel postVM)
         {
+            // TODO: Get the coords based on the title of the blog post
+            var longtitude = 0;
+            var latitude = 0;
+            var place = db.Places.FirstOrDefault(p => p.Name == postVM.Post.Title);
+            //var place = db.Places.Find(postVM.Post.PlaceID);
+            if (place == null)
+            {
+                place = new Place
+                {
+                    Name = postVM.Post.Title,
+                    Altitude = longtitude,
+                    Latitude = latitude,
+                    AvgRating = postVM.Post.Rating,
+                    NumOfPosts = 1
+                };
+            }
+            else
+            {
+                var avg = db.Posts
+                            .Where(p => p.ID == place.ID && p.Rating != 0)
+                            .Average(p => p.Rating);
+                place.AvgRating = avg / place.NumOfPosts + 1;
+                place.NumOfPosts += 1;
+            }
             var post = new Post
             {
                 ID = postVM.Post.ID,
@@ -70,14 +94,7 @@ namespace TravelMe.Controllers
                 Rating = postVM.Post.Rating,
                 NumOfViews = 0,
                 DateAdded = DateTime.Now,
-                Place = new Place
-                {
-                    Name = "Place",
-                    Altitude = 0,
-                    Latitude = 0,
-                    AvgRating = 0,
-                    NumOfPosts = 0
-                }
+                Place = place
             };
 
             if (ModelState.IsValid)
