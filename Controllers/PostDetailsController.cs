@@ -25,8 +25,8 @@ namespace TravelMe.Controllers
         {
             var userid = User.Identity.GetUserId();
             var user = db.Users.FirstOrDefault(u => u.Id == userid);
-
             var postModel = db.Posts.Include(p => p.Place).SingleOrDefault(p => p.ID == id);
+            var author = db.Users.FirstOrDefault(u => u.Id == postModel.UserID);
 
             Post model = new Post
             {
@@ -34,7 +34,7 @@ namespace TravelMe.Controllers
                 Title = postModel.Title,
                 Body = postModel.Body,
                 ImageUrl = postModel.ImageUrl,
-                UserID = postModel.UserID,
+                UserID = author == null ? "Guest Account" : author.Email,
                 PlaceID = postModel.PlaceID,
                 Rating = postModel.Rating,
                 NumOfViews = postModel.NumOfViews,

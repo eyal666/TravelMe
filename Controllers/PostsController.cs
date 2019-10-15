@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -59,6 +60,9 @@ namespace TravelMe.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PostViewModel postVM)
         {
+            var userid = User.Identity.GetUserId();
+            var user = db.Users.FirstOrDefault(u => u.Id == userid);
+
             // TODO: Get the coords based on the title of the blog post
             var longtitude = 0;
             var latitude = 0;
@@ -89,7 +93,7 @@ namespace TravelMe.Controllers
                 Title = postVM.Post.Title,
                 Body = postVM.Post.Body,
                 ImageUrl = postVM.Post.ImageUrl,
-                UserID = "test",
+                UserID = user == null ? "Guest Account" : user.Id,
                 PlaceID = postVM.Post.ID,
                 Rating = postVM.Post.Rating,
                 NumOfViews = 0,
