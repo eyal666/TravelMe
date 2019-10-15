@@ -9,9 +9,11 @@ using System.Net;
 using System.Web.Mvc;
 using TravelMe.Models;
 using TravelMe_webapp.Models;
+using TravelMe.Utils;
 
 namespace TravelMe.Controllers
 {
+    [Authorize(Roles = SD.AdminUserRole)]
     public class CategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

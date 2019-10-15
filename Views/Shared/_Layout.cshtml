@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using TravelMe.Utils;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,7 +22,13 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @Html.Partial("_AdminMenuPartial")
+                    @if (User.IsInRole(SD.AdminUserRole))
+                    {
+                        @Html.Partial("_AdminMenuPartial")
+                    }
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

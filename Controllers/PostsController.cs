@@ -13,6 +13,7 @@ using TravelMe_webapp.Models;
 
 namespace TravelMe.Controllers
 {
+    [Authorize]
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -85,7 +86,7 @@ namespace TravelMe.Controllers
                             .Where(p => p.ID == place.ID && p.Rating != 0)
                             .Average(p => p.Rating);
                 place.NumOfPosts += 1;
-                place.AvgRating = avg / place.NumOfPosts;
+                place.AvgRating = (avg + postVM.Post.Rating) / place.NumOfPosts;
             }
             var post = new Post
             {
