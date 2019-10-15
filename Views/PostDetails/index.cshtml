@@ -6,6 +6,10 @@
     ViewBag.Title = "Index";
 }
 
+<script src="~/Scripts/google-map.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>setCoordinates("@Model.Place.Latitude","@Model.Place.Longtitude")</script>
+
 <div class="row">
     <div class="col-sm-3 col-xs-4 image-post">
         <img class="thumbnail-img" src="@Model.ImageUrl" alt="" style="width:100%;height:auto;padding:10px;" />
@@ -69,4 +73,11 @@
         @Html.HiddenFor(m => m.PlaceID)
 
     </div>
+</div>
+
+<div>
+    <div id="map" class="google-map post-map"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApbYcXcY_Ork3UxwlQKRmbdQwsMxSFLO8&callback=initSingleMarkerMap"
+            async defer></script>
 </div>

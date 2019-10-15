@@ -1,8 +1,14 @@
-﻿function initMap() {
-    const url = 'https://localhost:44393/Places/GetPlacesJson';
+﻿var coordinates = {};
+
+function setCoordinates(lat, lng) {
+    coordinates.lat = parseFloat(lat);
+    coordinates.lng = parseFloat(lng);
+}
+
+function initMultiMarkerMap() {
+    const url = 'https://localhost:44393/Places/GetAllPlaces';
 
     $.getJSON(url, (data, status) => {
-        const mapElement = $('#map')[0];
         let avgLat = 0.0, avgLng = 0.0;
 
         //Calculate center
@@ -14,7 +20,7 @@
         avgLat /= data.length;
         avgLng /= data.length;
 
-        const map = new google.maps.Map(mapElement, { zoom: 2, center: { lat: avgLat, lng: avgLng }});
+        const map = makeMap(2, { lat: avgLat, lng: avgLng });
 
         data.forEach(place => {
             const pos = { lat: place.Latitude, lng: place.Longtitude }
@@ -27,4 +33,18 @@
             );
         });
     });
+}
+
+function initSingleMarkerMap() {
+    const map = makeMap(7, coordinates);
+    const marker = new google.maps.Marker(
+        {
+            position: coordinates,
+            map: map
+        }
+    );
+}
+
+function makeMap(zoom, center) {
+   return new google.maps.Map($('#map')[0], { zoom: zoom, center: center });
 }

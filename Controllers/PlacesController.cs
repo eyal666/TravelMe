@@ -117,7 +117,7 @@ namespace TravelMe.Controllers
             return RedirectToAction("Index");
         }
 
-        public JsonResult GetPlacesJson()
+        public JsonResult GetAllPlaces()
         {
             var places = db.Places.ToList();
             return Json(places, JsonRequestBehavior.AllowGet);
