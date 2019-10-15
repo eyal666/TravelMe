@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using TravelMe.Models;
 
-namespace TravelMe4.Extensions
+namespace TravelMe.Extensions
 {
     public static class ThumbnailExtension
     {
-        public static IEnumerable<ThumbnailModel> GetBookThumbnail(this List<ThumbnailModel> thumbnails, ApplicationDbContext db = null, string search = null)
+        public static IEnumerable<ThumbnailModel> GetPostThumbnail(this List<ThumbnailModel> thumbnails, ApplicationDbContext db = null, string search = null)
         {
             try
             {
