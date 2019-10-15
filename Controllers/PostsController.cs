@@ -35,7 +35,14 @@ namespace TravelMe.Controllers
             {
                 return HttpNotFound();
             }
-            return View(post);
+
+            var model = new PostViewModel
+            {
+                Post = post,
+                Categories = db.Categories.ToList()
+            };
+
+            return View(model);
         }
 
         // GET: Posts/Create

@@ -199,6 +199,7 @@
     <Compile Include="Controllers\PlaceCatagoriesController.cs" />
     <Compile Include="Controllers\PlacesController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Extensions\ThumbnailExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -226,6 +227,10 @@
     <Compile Include="Migrations\201910141132043_UpdateGUIDToString.Designer.cs">
       <DependentUpon>201910141132043_UpdateGUIDToString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910141247520_AddedThumbnailModel.cs" />
+    <Compile Include="Migrations\201910141247520_AddedThumbnailModel.Designer.cs">
+      <DependentUpon>201910141247520_AddedThumbnailModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -236,10 +241,12 @@
     <Compile Include="Models\Place.cs" />
     <Compile Include="Models\PlaceCatagory.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\ThumbnailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="System\Date.cs" />
     <Compile Include="ViewModel\PostViewModel.cs" />
+    <Compile Include="ViewModel\ThumbnailBoxViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -256,6 +263,7 @@
     <Content Include="Content\Photos\peru.jpg" />
     <Content Include="Content\Photos\russia.jpg" />
     <Content Include="Content\social.css" />
+    <Content Include="Content\thumbnail.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -336,6 +344,8 @@
     <Content Include="Views\Shared\_BackToListButtonPartial.cshtml" />
     <Content Include="Views\Shared\_AdminMenuPartial.cshtml" />
     <Content Include="Views\Shared\_TableButtonPartial.cshtml" />
+    <Content Include="Views\Shared\_ThumbnailAreaPartial.cshtml" />
+    <Content Include="Views\Posts\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -371,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910141132043_UpdateGUIDToString.resx">
       <DependentUpon>201910141132043_UpdateGUIDToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910141247520_AddedThumbnailModel.resx">
+      <DependentUpon>201910141247520_AddedThumbnailModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
