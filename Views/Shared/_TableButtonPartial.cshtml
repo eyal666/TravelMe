@@ -11,6 +11,8 @@
            Glyph = "pencil",
            Text = "Edit",
            PostId = Model.PostId,
+           CategoriesId = Model.CategoriesId,
+           PlaceId = Model.PlaceId
         })
         @Html.Partial("_IndividualButtonPartial",
         new IndividualButtonPartial
@@ -20,6 +22,8 @@
            Glyph = "list",
            Text = "Details",
            PostId = Model.PostId,
+           CategoriesId = Model.CategoriesId,
+           PlaceId = Model.PlaceId
         })
         @Html.Partial("_IndividualButtonPartial",
         new IndividualButtonPartial
@@ -29,6 +33,8 @@
            Glyph = "trash",
            Text = "Delete",
            PostId = Model.PostId,
+           CategoriesId = Model.CategoriesId,
+           PlaceId = Model.PlaceId
         })
     </div>
 </td>
