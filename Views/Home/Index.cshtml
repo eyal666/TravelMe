@@ -10,12 +10,16 @@
     <p class="lead">In ultricies elit ut elementum cursus. Fusce egestas porttitor felis. Fusce luctus a orci at dignissim. Donec at iaculis sapien, at elementum enim. Morbi gravida pellentesque eros, non lobortis sem finibus eget. Morbi vestibulum nisl ac urna faucibus bibendum. Nunc imperdiet iaculis tellus id dapibus. Maecenas consequat leo et bibendum lobortis.</p>
 </div>
 
-<div>
-    <div id="map" class="google-map"></div>
-    
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApbYcXcY_Ork3UxwlQKRmbdQwsMxSFLO8&callback=initMultiMarkerMap"
-            async defer></script>
+<div class="row">
+    <div>
+        <div id="map" class="google-map col-md-8"></div>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApbYcXcY_Ork3UxwlQKRmbdQwsMxSFLO8&callback=initMultiMarkerMap"
+                async defer></script>
+    </div>
+    <div class="fb-page col-md-4" data-href="https://www.facebook.com/TravelMe-108028913949644" data-tabs="messages" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/TravelMe-108028913949644" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/TravelMe-108028913949644">TravelMe</a></blockquote></div>
 </div>
+
 
 <div style="margin-top:30px">
     <a class="btn btn-primary btn-block" href="/Posts/Create" style="border-radius:100px">
@@ -26,6 +30,7 @@
 <div class="center-block">
     <h3>Check out these posts:</h3>
 </div>
+
 <div class="row form-border" style="margin-top:20px;">
 
     @foreach (var area in Model)
