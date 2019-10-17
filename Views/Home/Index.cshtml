@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
+@using TravelMe.Utils
 <script src="~/Scripts/google-map.js"></script>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
@@ -43,16 +43,37 @@
                 </button>
             </div>
 
-            <div class="pull-right" style="margin-bottom:15px;">
-                @Html.Editor("search", new { htmlAttributes = new { @class = "form-control input-sm" } })
+            <div class="pull-right" id="targetDiv" style="margin-bottom:15px;">
+                @Html.Editor("search", new { htmlattributes = new { @class = "form-control input-sm", @id = "target" } })
+            </div>
+            <div class="pull-right">
+                Rating:&nbsp;
+                1
+                @Html.CheckBox("r1")&nbsp;
+                2
+                @Html.CheckBox("r2")&nbsp;
+                3
+                @Html.CheckBox("r3")&nbsp;
+                4
+                @Html.CheckBox("r4")&nbsp;
+                5
+                @Html.CheckBox("r5")&nbsp;
+                Search By Title:&nbsp;
+                @Html.RadioButton("searchOpt", SD.byTitle)&nbsp;
+                By Publisher:&nbsp;
+                @Html.RadioButton("searchOpt", SD.byUser)&nbsp;
+                By Address:&nbsp;
+                @Html.RadioButton("searchOpt", SD.byPlaceName)&nbsp;
+
             </div>
 
-
         </div>
+
         @foreach (var area in Model)
         {
             @Html.Partial("_ThumbnailAreaPartial", area);
         }
+
     </div>
 }
 

@@ -11,9 +11,17 @@ namespace TravelMe.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index( string search = null)
+        public ActionResult Index( 
+            string search = null,
+            bool r1 = false,
+            bool r2 = false,
+            bool r3 = false,
+            bool r4 = false,
+            bool r5 = false,
+            string searchOpt = null
+            )
         {
-            var thumbnails = new List<ThumbnailModel>().GetPostThumbnail(ApplicationDbContext.Create(), search);
+            var thumbnails = new List<ThumbnailModel>().GetPostThumbnail(ApplicationDbContext.Create(), search, r1, r2, r3, r4, r5, searchOpt);
             var count = thumbnails.Count() / 4;
             var model = new List<ThumbnailBoxViewModel>();
 

@@ -9,5 +9,9 @@ namespace TravelMe.Utils
     {
         public const string EndUserRole = "Member";
         public const string AdminUserRole = "SuperAdmin";
+
+        public const string byPlaceName = "byPlaceName";
+        public const string byUser = "byUser";
+        public const string byTitle = "byTitle";
     }
 }
