@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using TravelMe.Models;
+using TravelMe.Utils;
 using TravelMe_webapp.Models;
 
 namespace TravelMe.Extensions
@@ -41,10 +42,26 @@ namespace TravelMe.Extensions
                               ).ToList();
                 List<ThumbnailModel> helper = new List<ThumbnailModel>();
 
-                if (!String.IsNullOrEmpty(search))
+                //if (!String.IsNullOrEmpty(search))
+                //{
+                //    return thumbnails.Where(t => t.Title.ToLower().Contains(search.ToLower())).OrderBy(t => t.Title);
+                //}
+                if (!String.IsNullOrEmpty(search) && searchOpt != null)
                 {
-                    return thumbnails.Where(t => t.Title.ToLower().Contains(search.ToLower())).OrderBy(t => t.Title);
+                    if (searchOpt.Equals(SD.byPlaceName))
+                    {
+                        return thumbnails.Where(t => t.Place.Name.ToLower().Contains(search.ToLower()));
+                    }
+                    else if (searchOpt.Equals(SD.byTitle))
+                    {
+                        return thumbnails.Where(t => t.Title.ToLower().Contains(search.ToLower()));
+                    }
+                    else if (searchOpt.Equals(SD.byBody))
+                    {
+                        return thumbnails.Where(t => t.Body.ToLower().Contains(search.ToLower()));
+                    }
                 }
+
                 if (r1)
                 {
                     var filteredThumbs = thumbnails.FindAll(t => t.Post.Rating == 1);
