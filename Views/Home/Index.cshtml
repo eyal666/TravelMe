@@ -5,39 +5,56 @@
 
 <script src="~/Scripts/google-map.js"></script>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<div class="jumbotron">
-    <h1>Welcome to TravelMe</h1>
-    <p class="lead">In ultricies elit ut elementum cursus. Fusce egestas porttitor felis. Fusce luctus a orci at dignissim. Donec at iaculis sapien, at elementum enim. Morbi gravida pellentesque eros, non lobortis sem finibus eget. Morbi vestibulum nisl ac urna faucibus bibendum. Nunc imperdiet iaculis tellus id dapibus. Maecenas consequat leo et bibendum lobortis.</p>
-</div>
 
-<div class="row">
-    <div>
-        <div id="map" class="google-map col-md-8"></div>
-
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApbYcXcY_Ork3UxwlQKRmbdQwsMxSFLO8&callback=initMultiMarkerMap"
-                async defer></script>
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    <div class="jumbotron">
+        <h1>Welcome to TravelMe</h1>
+        <p class="lead">In ultricies elit ut elementum cursus. Fusce egestas porttitor felis. Fusce luctus a orci at dignissim. Donec at iaculis sapien, at elementum enim. Morbi gravida pellentesque eros, non lobortis sem finibus eget. Morbi vestibulum nisl ac urna faucibus bibendum. Nunc imperdiet iaculis tellus id dapibus. Maecenas consequat leo et bibendum lobortis.</p>
     </div>
-    <div class="fb-page col-md-4" data-href="https://www.facebook.com/TravelMe-108028913949644" data-tabs="messages" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/TravelMe-108028913949644" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/TravelMe-108028913949644">TravelMe</a></blockquote></div>
-</div>
+
+    <div class="row">
+        <div>
+            <div id="map" class="google-map col-md-8"></div>
+
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApbYcXcY_Ork3UxwlQKRmbdQwsMxSFLO8&callback=initMultiMarkerMap"
+                    async defer></script>
+        </div>
+        <div class="fb-page col-md-4" data-href="https://www.facebook.com/TravelMe-108028913949644" data-tabs="messages" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/TravelMe-108028913949644" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/TravelMe-108028913949644">TravelMe</a></blockquote></div>
+    </div>
 
 
-<div style="margin-top:30px">
-    <a class="btn btn-primary btn-block" href="/Posts/Create" style="border-radius:100px">
-        <span class="glyphicon glyphicon-plus"></span>
-        Add a New Post
-    </a>
-</div>
-<div class="center-block">
-    <h3>Check out these posts:</h3>
-</div>
+    <div style="margin-top:30px">
+        <a class="btn btn-primary btn-block" href="/Posts/Create" style="border-radius:100px">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add a New Post
+        </a>
+    </div>
+    <div class="center-block">
+        <h3>Check out these posts:</h3>
+    </div>
 
-<div class="row form-border" style="margin-top:20px;">
+    <div class="row form-border" style="margin-top:20px;">
 
-    @foreach (var area in Model)
-    {
-        @Html.Partial("_ThumbnailAreaPartial", area);
-    }
-</div>
+        <div class="row">
+            <div class="pull-right" style="padding-right:15px;">
+                <button type="submit" value="Search" class="btn btn-sm btn-primary">
+                    <span class="glyphicon glyphicon-search"></span> Search
+                </button>
+            </div>
+
+            <div class="pull-right" style="margin-bottom:15px;">
+                @Html.Editor("search", new { htmlAttributes = new { @class = "form-control input-sm" } })
+            </div>
+
+
+        </div>
+        @foreach (var area in Model)
+        {
+            @Html.Partial("_ThumbnailAreaPartial", area);
+        }
+    </div>
+}
 
 
 

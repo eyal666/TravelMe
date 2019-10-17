@@ -68,12 +68,11 @@ namespace TravelMe.Controllers
             var longtitude = 0;
             var latitude = 0;
             var place = db.Places.FirstOrDefault(p => p.Name == postVM.Post.Title);
-            //var place = db.Places.Find(postVM.Post.PlaceID);
             if (place == null)
             {
                 place = new Place
                 {
-                    Name = postVM.Post.Title,
+                    Name = postVM.Post.Place.Name,
                     Longtitude = longtitude,
                     Latitude = latitude,
                     AvgRating = postVM.Post.Rating,

@@ -22,11 +22,16 @@ namespace TravelMe.Extensions
                               {
                                   PostId = p.ID,
                                   Title = p.Title,
-                                  Body= p.Body,
+                                  Body = p.Body,
                                   ImageUrl = p.ImageUrl,
                                   Link = "/PostDetails/Index/" + p.ID
                               }
                               ).ToList();
+
+                if (search != null)
+                {
+                    return thumbnails.Where(t => t.Title.ToLower().Contains(search.ToLower())).OrderBy(t => t.Title);
+                }
 
                 if (search != null)
                 {
