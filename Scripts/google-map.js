@@ -1,4 +1,4 @@
-﻿var coordinates = {};
+﻿let coordinates = {};
 
 function setCoordinates(lat, lng) {
     coordinates.lat = parseFloat(lat);
