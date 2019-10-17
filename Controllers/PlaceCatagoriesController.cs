@@ -40,7 +40,7 @@ namespace TravelMe.Controllers
         // GET: PlaceCatagories/Create
         public ActionResult Create()
         {
-            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Name");
+            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Address");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace TravelMe.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Name", placeCatagory.PlaceID);
+            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Address", placeCatagory.PlaceID);
             return View(placeCatagory);
         }
 
@@ -74,7 +74,7 @@ namespace TravelMe.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Name", placeCatagory.PlaceID);
+            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Address", placeCatagory.PlaceID);
             return View(placeCatagory);
         }
 
@@ -91,7 +91,7 @@ namespace TravelMe.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Name", placeCatagory.PlaceID);
+            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Address", placeCatagory.PlaceID);
             return View(placeCatagory);
         }
 

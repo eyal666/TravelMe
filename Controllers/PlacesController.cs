@@ -48,7 +48,7 @@ namespace TravelMe.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Longtitude,Latitude,AvgRating,NumOfPosts")] Place place)
+        public ActionResult Create([Bind(Include = "ID,Address,Longtitude,Latitude,AvgRating,NumOfPosts")] Place place)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace TravelMe.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Longtitude,Latitude,AvgRating,NumOfPosts")] Place place)
+        public ActionResult Edit([Bind(Include = "ID,Address,Longtitude,Latitude,AvgRating,NumOfPosts")] Place place)
         {
             if (ModelState.IsValid)
             {

@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201910151600250_Altitude_Longtitude_PostsController.Designer.cs">
       <DependentUpon>201910151600250_Altitude_Longtitude_PostsController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910171056330_Change_Post_Name_Arttibute_to_Address.cs" />
+    <Compile Include="Migrations\201910171056330_Change_Post_Name_Arttibute_to_Address.Designer.cs">
+      <DependentUpon>201910171056330_Change_Post_Name_Arttibute_to_Address.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -368,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910151600250_Altitude_Longtitude_PostsController.resx">
       <DependentUpon>201910151600250_Altitude_Longtitude_PostsController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910171056330_Change_Post_Name_Arttibute_to_Address.resx">
+      <DependentUpon>201910171056330_Change_Post_Name_Arttibute_to_Address.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

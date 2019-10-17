@@ -50,7 +50,7 @@ namespace TravelMe.Controllers
         // GET: Posts/Create
         public ActionResult Create()
         {
-            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Name");
+            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Address");
             return View();
         }
 
@@ -67,13 +67,13 @@ namespace TravelMe.Controllers
             // TODO: Get the coords based on the title of the blog post
             var longtitude = 0;
             var latitude = 0;
-            var place = db.Places.FirstOrDefault(p => p.Name == postVM.Post.Title);
+            var place = db.Places.FirstOrDefault(p => p.Address == postVM.Post.Title);
             //var place = db.Places.Find(postVM.Post.PlaceID);
             if (place == null)
             {
                 place = new Place
                 {
-                    Name = postVM.Post.Title,
+                    Address = postVM.Post.Title,
                     Longtitude = longtitude,
                     Latitude = latitude,
                     AvgRating = postVM.Post.Rating,
@@ -119,7 +119,7 @@ namespace TravelMe.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Name", post.PlaceID);
+            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Address", post.PlaceID);
             return View(post);
         }
 
@@ -136,7 +136,7 @@ namespace TravelMe.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Name", post.PlaceID);
+            ViewBag.PlaceID = new SelectList(db.Places, "ID", "Address", post.PlaceID);
             return View(post);
         }
 

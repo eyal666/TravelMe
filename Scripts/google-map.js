@@ -28,7 +28,7 @@ function initMultiMarkerMap() {
                 {
                     position: pos,
                     map: map,
-                    title: place.Name
+                    title: place.Address
                 }
             );
         });

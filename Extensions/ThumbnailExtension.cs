@@ -33,7 +33,7 @@ namespace TravelMe.Extensions
                     return thumbnails.Where(t => t.Title.ToLower().Contains(search.ToLower())).OrderBy(t => t.Title);
                 }
             }
-            catch (Exception e) { }
+            catch (Exception) { }
 
             return thumbnails.OrderBy(b => b.Title);
 
