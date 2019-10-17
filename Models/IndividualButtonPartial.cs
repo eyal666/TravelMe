@@ -13,8 +13,11 @@ namespace TravelMe.Models
         public string Glyph { get; set; }
         public string Text { get; set; }
         public int? CategoriesId { get; set; }
+        public int? MembershipTypeId { get; set; }
         public int? PlaceId { get; set; }
         public int? PostId { get; set; }
+        public string userId { get; set; }
+
         public string ActionParameter
         {
             get
@@ -31,6 +34,14 @@ namespace TravelMe.Models
                 if (PlaceId != null && PlaceId > 0)
                 {
                     param.Append(String.Format("{0}", PlaceId));
+                }
+                if (MembershipTypeId != null && MembershipTypeId > 0)
+                {
+                    param.Append(String.Format("{0}", MembershipTypeId));
+                }
+                if (userId != null && userId.Trim().Length > 0)
+                {
+                    param.Append(String.Format("{0}", userId));
                 }
 
                 return param.ToString();

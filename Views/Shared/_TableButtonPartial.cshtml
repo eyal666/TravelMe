@@ -12,7 +12,10 @@
            Text = "Edit",
            PostId = Model.PostId,
            CategoriesId = Model.CategoriesId,
-           PlaceId = Model.PlaceId
+           PlaceId = Model.PlaceId,
+           MembershipTypeId = Model.MembershipTypeId,
+           userId = Model.userId
+
         })
         @Html.Partial("_IndividualButtonPartial",
         new IndividualButtonPartial
@@ -23,7 +26,9 @@
            Text = "Details",
            PostId = Model.PostId,
            CategoriesId = Model.CategoriesId,
-           PlaceId = Model.PlaceId
+           PlaceId = Model.PlaceId,
+           MembershipTypeId = Model.MembershipTypeId,
+           userId = Model.userId
         })
         @Html.Partial("_IndividualButtonPartial",
         new IndividualButtonPartial
@@ -34,7 +39,9 @@
            Text = "Delete",
            PostId = Model.PostId,
            CategoriesId = Model.CategoriesId,
-           PlaceId = Model.PlaceId
+           PlaceId = Model.PlaceId,
+           MembershipTypeId = Model.MembershipTypeId,
+           userId = Model.userId
         })
     </div>
 </td>

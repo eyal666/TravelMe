@@ -196,10 +196,13 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MembershipTypeController.cs" />
     <Compile Include="Controllers\PlaceCatagoriesController.cs" />
     <Compile Include="Controllers\PlacesController.cs" />
     <Compile Include="Controllers\PostDetailsController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Extensions\DateRangeAttribute.cs" />
     <Compile Include="Extensions\ThumbnailExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -220,6 +223,22 @@
     <Compile Include="Migrations\201910151600250_Altitude_Longtitude_PostsController.Designer.cs">
       <DependentUpon>201910151600250_Altitude_Longtitude_PostsController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910170848218_addMemberShipTypeToDatabase.cs" />
+    <Compile Include="Migrations\201910170848218_addMemberShipTypeToDatabase.Designer.cs">
+      <DependentUpon>201910170848218_addMemberShipTypeToDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910170856105_seedMemberShipTypeDatabase.cs" />
+    <Compile Include="Migrations\201910170856105_seedMemberShipTypeDatabase.Designer.cs">
+      <DependentUpon>201910170856105_seedMemberShipTypeDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910171133508_addFiledsToMemberShipTable.cs" />
+    <Compile Include="Migrations\201910171133508_addFiledsToMemberShipTable.Designer.cs">
+      <DependentUpon>201910171133508_addFiledsToMemberShipTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910171247456_addedNewRegister.cs" />
+    <Compile Include="Migrations\201910171247456_addedNewRegister.Designer.cs">
+      <DependentUpon>201910171247456_addedNewRegister.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -227,6 +246,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndividualButtonPartial.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Place.cs" />
     <Compile Include="Models\PlaceCatagory.cs" />
     <Compile Include="Models\Post.cs" />
@@ -237,6 +257,7 @@
     <Compile Include="Utils\SD.cs" />
     <Compile Include="ViewModel\PostViewModel.cs" />
     <Compile Include="ViewModel\ThumbnailBoxViewModel.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -339,6 +360,13 @@
     <Content Include="Views\Shared\_ThumbnailAreaPartial.cshtml" />
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\PostDetails\index.cshtml" />
+    <Content Include="Views\MembershipType\Create.cshtml" />
+    <Content Include="Views\MembershipType\Delete.cshtml" />
+    <Content Include="Views\MembershipType\Details.cshtml" />
+    <Content Include="Views\MembershipType\Edit.cshtml" />
+    <Content Include="Views\MembershipType\Index.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -368,6 +396,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910151600250_Altitude_Longtitude_PostsController.resx">
       <DependentUpon>201910151600250_Altitude_Longtitude_PostsController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910170848218_addMemberShipTypeToDatabase.resx">
+      <DependentUpon>201910170848218_addMemberShipTypeToDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910170856105_seedMemberShipTypeDatabase.resx">
+      <DependentUpon>201910170856105_seedMemberShipTypeDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910171133508_addFiledsToMemberShipTable.resx">
+      <DependentUpon>201910171133508_addFiledsToMemberShipTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910171247456_addedNewRegister.resx">
+      <DependentUpon>201910171247456_addedNewRegister.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

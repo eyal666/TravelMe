@@ -5,123 +5,123 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
-using System.Net;
 using System.Web.Mvc;
 using TravelMe.Models;
-using TravelMe_webapp.Models;
-using TravelMe.Utils;
 
 namespace TravelMe.Controllers
 {
-    //[Authorize(Roles = SD.AdminUserRole)]
-    public class CategoriesController : Controller
+    public class MembershipTypeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Categories
+        // GET: MembershipType
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            return View(db.MembershipTypes.ToList());
         }
 
-        // GET: Categories/Details/5
+        // GET: MembershipType/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            MembershipType membershipType = db.MembershipTypes.Find(id);
+            if (membershipType == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(membershipType);
         }
 
-        // GET: Categories/Create
+        // GET: MembershipType/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: MembershipType/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Category category)
+        public ActionResult Create(MembershipType membershipType)
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
+                db.MembershipTypes.Add(membershipType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View();
+            return View(membershipType);
         }
 
-        // GET: Categories/Edit/5
+        // GET: MembershipType/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            MembershipType membershipType = db.MembershipTypes.Find(id);
+            if (membershipType == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(membershipType);
         }
 
-        // POST: Categories/Edit/5
+        // POST: MembershipType/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Category category)
+        public ActionResult Edit(MembershipType membershipType)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
+                db.Entry(membershipType).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(membershipType);
         }
 
-        // GET: Categories/Delete/5
+        // GET: MembershipType/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            MembershipType membershipType = db.MembershipTypes.Find(id);
+            if (membershipType == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(membershipType);
         }
 
-        // POST: Categories/Delete/5
-        [HttpPost]
+        // POST: MembershipType/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
+            MembershipType membershipType = db.MembershipTypes.Find(id);
+            db.MembershipTypes.Remove(membershipType);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

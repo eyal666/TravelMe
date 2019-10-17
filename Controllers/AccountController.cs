@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TravelMe.Models;
+using TravelMe.Utils;
 
 namespace TravelMe.Controllers
 {
@@ -139,7 +141,18 @@ namespace TravelMe.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            using (var db = ApplicationDbContext.Create())
+            {
+                RegisterViewModel newUser = new RegisterViewModel
+                {
+                   // MembershipTypes = db.MembershipTypes.Where(m => !m.Name.ToLower().Equals(SD.AdminUserRole.ToLower())).ToList(),
+                   // BirthDate = DateTime.Now
+
+                    MembershipTypes = db.MembershipTypes.ToList(),
+                    BirthDate = DateTime.Now
+                };
+                return View(newUser);
+            }
         }
 
         //
@@ -151,10 +164,41 @@ namespace TravelMe.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    BirthDate = model.BirthDate,
+                    LastName = model.LastName,
+                    FirstName = model.FirstName,
+                    Phone = model.Phone,
+                    MembershipTypeId = model.MembershipTypeId,
+                    Disable = false
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    using (var db = ApplicationDbContext.Create())
+                    {
+                        model.MembershipTypes = db.MembershipTypes.ToList();
+                        var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                        var roleManager = new RoleManager<IdentityRole>(roleStore);
+                        var memebership = model.MembershipTypes.SingleOrDefault(m => m.Id == model.MembershipTypeId).Name.ToString();
+
+                        if (memebership.ToLower().Contains("admin"))
+                        {
+                            //For Super Admin
+                            await roleManager.CreateAsync(new IdentityRole(SD.AdminUserRole));
+                            await UserManager.AddToRoleAsync(user.Id, SD.AdminUserRole);
+                        }
+                        else
+                        {
+                            //For Customer
+                            await roleManager.CreateAsync(new IdentityRole(SD.EndUserRole));
+                            await UserManager.AddToRoleAsync(user.Id, SD.EndUserRole);
+                        }
+                    }
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
