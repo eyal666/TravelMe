@@ -77,10 +77,9 @@
         </dl>
 
         @Html.HiddenFor(m => m.PlaceID)
-
     </div>
 </div>
-
+<div class="fb-comments" data-href="@string.Format("https://localhost:44393/PostDetails/Index/{0}", @Model.ID)" data-width="" data-numposts="5"></div>
 <div>
     <div id="map" class="google-map post-map"></div>
 
