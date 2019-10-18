@@ -50,7 +50,7 @@ namespace TravelMe.Extensions
                 {
                     if (searchOpt.Equals(SD.byPlaceName))
                     {
-                        return thumbnails.Where(t => t.Place.Name.ToLower().Contains(search.ToLower()));
+                        return thumbnails.Where(t => t.Place.Address.ToLower().Contains(search.ToLower()));
                     }
                     else if (searchOpt.Equals(SD.byTitle))
                     {
@@ -110,7 +110,7 @@ namespace TravelMe.Extensions
                 }
 
             }
-            catch (Exception e) { }
+            catch (Exception) { }
 
             return thumbnails.OrderBy(b => b.Title);
 

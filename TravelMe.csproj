@@ -227,6 +227,10 @@
     <Compile Include="Migrations\201910170848218_addMemberShipTypeToDatabase.Designer.cs">
       <DependentUpon>201910170848218_addMemberShipTypeToDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910171056330_Change_Post_Name_Arttibute_to_Address.cs" />
+    <Compile Include="Migrations\201910171056330_Change_Post_Name_Arttibute_to_Address.Designer.cs">
+      <DependentUpon>201910171056330_Change_Post_Name_Arttibute_to_Address.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201910170856105_seedMemberShipTypeDatabase.cs" />
     <Compile Include="Migrations\201910170856105_seedMemberShipTypeDatabase.Designer.cs">
       <DependentUpon>201910170856105_seedMemberShipTypeDatabase.cs</DependentUpon>
@@ -238,6 +242,10 @@
     <Compile Include="Migrations\201910171247456_addedNewRegister.cs" />
     <Compile Include="Migrations\201910171247456_addedNewRegister.Designer.cs">
       <DependentUpon>201910171247456_addedNewRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910181358153_merge1.cs" />
+    <Compile Include="Migrations\201910181358153_merge1.Designer.cs">
+      <DependentUpon>201910181358153_merge1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -295,6 +303,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\place-search.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -360,6 +369,8 @@
     <Content Include="Views\Shared\_ThumbnailAreaPartial.cshtml" />
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\PostDetails\index.cshtml" />
+    <Content Include="Views\Posts\Delete.cshtml" />
+    <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\MembershipType\Create.cshtml" />
     <Content Include="Views\MembershipType\Delete.cshtml" />
     <Content Include="Views\MembershipType\Details.cshtml" />
@@ -397,6 +408,9 @@
     <EmbeddedResource Include="Migrations\201910151600250_Altitude_Longtitude_PostsController.resx">
       <DependentUpon>201910151600250_Altitude_Longtitude_PostsController.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910171056330_Change_Post_Name_Arttibute_to_Address.resx">
+      <DependentUpon>201910171056330_Change_Post_Name_Arttibute_to_Address.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910170848218_addMemberShipTypeToDatabase.resx">
       <DependentUpon>201910170848218_addMemberShipTypeToDatabase.cs</DependentUpon>
     </EmbeddedResource>
@@ -408,6 +422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910171247456_addedNewRegister.resx">
       <DependentUpon>201910171247456_addedNewRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910181358153_merge1.resx">
+      <DependentUpon>201910181358153_merge1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

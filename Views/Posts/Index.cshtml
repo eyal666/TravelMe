@@ -39,9 +39,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Rating)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
+              <td>
+                @{ 
+                  string imgUrlSub = item.ImageUrl.Length < 40 ? item.ImageUrl : item.ImageUrl.Substring(0, 40) + "...";
+                }
+                @Html.DisplayFor(modelItem => imgUrlSub)
+              </td>
             <td>
                 @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { PostId = item.ID  })
             </td>

@@ -1,4 +1,7 @@
-﻿var coordinates = {};
+﻿//TODO: Add interactive map (on marker click)
+//TODO: Add weather web service
+
+let coordinates = {};
 
 function setCoordinates(lat, lng) {
     coordinates.lat = parseFloat(lat);
@@ -28,7 +31,7 @@ function initMultiMarkerMap() {
                 {
                     position: pos,
                     map: map,
-                    title: place.Name
+                    title: place.Address
                 }
             );
         });
@@ -36,7 +39,7 @@ function initMultiMarkerMap() {
 }
 
 function initSingleMarkerMap() {
-    const map = makeMap(7, coordinates);
+    const map = makeMap(12, coordinates);
     const marker = new google.maps.Marker(
         {
             position: coordinates,
