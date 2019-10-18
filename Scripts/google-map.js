@@ -36,7 +36,7 @@ function initMultiMarkerMap() {
 }
 
 function initSingleMarkerMap() {
-    const map = makeMap(7, coordinates);
+    const map = makeMap(12, coordinates);
     const marker = new google.maps.Marker(
         {
             position: coordinates,

@@ -27,21 +27,16 @@
       <div class="form-group">
         @Html.LabelFor(model => model.Post.Place.Address, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-          <input id="place-search"
-                 placeholder="Search for a place..."
-                 class = "form-control", style = "width:1000px;"
-                 type="text" />
-          @*@Html.EditorFor(model => model.Post.Place.Address, new { htmlAttributes = new { @class = "form-control", style = "width:1000px;", id = "autocomplete", type = "text", placeholder = "Search for a place..." } })
-          @Html.ValidationMessageFor(model => model.Post.Place.Address, "", new { @class = "text-danger" })*@
+          @*<input id="place-search"
+    placeholder="Search for a place..."
+    class = "form-control", style = "width:1000px;"
+    type="text" />*@
+          @Html.EditorFor(model => model.Post.Place.Address, new { htmlAttributes = new { @class = "form-control", style = "width:1000px;", id = "place-search", type = "text", placeholder = "Search for a place..." } })
+          @Html.ValidationMessageFor(model => model.Post.Place.Address, "", new { @class = "text-danger" })
+          @Html.EditorFor(model => model.Post.Place.Latitude, new { htmlAttributes = new { id = "latitude", type = "hidden" } })
+          @Html.EditorFor(model => model.Post.Place.Longtitude, new { htmlAttributes = new { id = "longtitude", type = "hidden" } })
         </div>
       </div>
-
-    @*<div id="locationField">
-      <input id="autocomplete"
-             placeholder="Enter your address"
-             onFocus="geolocate()"
-             type="text" />
-    </div>*@
 
       <div class="form-group">
         @Html.LabelFor(model => model.Post.Body, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -51,19 +46,16 @@
         </div>
       </div>
 
-      <div class="form-group">
-        @Html.LabelFor(model => model.Post.ImageUrl, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-          @Html.EditorFor(model => model.Post.ImageUrl, new { htmlAttributes = new { @class = "form-control" } })
+      <div>
+          @Html.EditorFor(model => model.Post.ImageUrl, new { htmlAttributes = new { id = "image-url", type = "hidden" } })
           @Html.ValidationMessageFor(model => model.Post.ImageUrl, "", new { @class = "text-danger" })
-        </div>
       </div>
 
 
       <div class="form-group">
         @Html.LabelFor(model => model.Post.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-          @Html.RadioButtonFor(m => m.Post.Rating, "1", htmlAttributes: new { @class = "control-label" })
+          @Html.RadioButtonFor(m => m.Post.Rating, "1", htmlAttributes: new { @class = "control-label" }) @*TODO: change radio buttons to a real favorite bar*@
           @Html.RadioButtonFor(m => m.Post.Rating, "2")
           @Html.RadioButtonFor(m => m.Post.Rating, "3")
           @Html.RadioButtonFor(m => m.Post.Rating, "4")

@@ -112,6 +112,8 @@ namespace TravelMe.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Place place = db.Places.Find(id);
+            //TODO: delete all posts connected to place
+            
             db.Places.Remove(place);
             db.SaveChanges();
             return RedirectToAction("Index");
