@@ -147,9 +147,7 @@ namespace TravelMe.Controllers
                 {
                     MembershipTypes = db.MembershipTypes.Where(m => !m.Name.ToLower().Equals(SD.AdminUserRole.ToLower())).ToList(),
                     BirthDate = DateTime.Now
-
-                    //MembershipTypes = db.MembershipTypes.ToList(),
-                    //BirthDate = DateTime.Now
+               
                 };
                 return View(newUser);
             }
