@@ -20,5 +20,7 @@ function fillInAddress() {
   const place = autocomplete.getPlace();
   $("#latitude")[0].value = place.geometry.location.lat();
   $("#longtitude")[0].value = place.geometry.location.lng();
-  $('#image-url')[0].value = place.photos[0].getUrl();
+  const imageUrl = place.photos[0].getUrl();
+  $('#image-url')[0].value = imageUrl;
+  $('#img-box')[0].src = imageUrl;
 }

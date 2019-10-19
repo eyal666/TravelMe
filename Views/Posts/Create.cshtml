@@ -15,28 +15,28 @@
     <h3>Add a New Post</h3>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-border col-md-10">
-      <div class="form-group">
-        @Html.LabelFor(model => model.Post.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-          @Html.EditorFor(model => model.Post.Title, new { htmlAttributes = new { @class = "form-control", style = "width:1000px;" } })
-          @Html.ValidationMessageFor(model => model.Post.Title, "", new { @class = "text-danger" })
-        </div>
+  <div class="form-border col-md-10">
+    <div class="form-group">
+      @Html.LabelFor(model => model.Post.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.Post.Title, new { htmlAttributes = new { @class = "form-control", style = "width:1000px;" } })
+        @Html.ValidationMessageFor(model => model.Post.Title, "", new { @class = "text-danger" })
       </div>
+    </div>
 
-      <div class="form-group">
-        @Html.LabelFor(model => model.Post.Place.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-          @*<input id="place-search"
-    placeholder="Search for a place..."
-    class = "form-control", style = "width:1000px;"
-    type="text" />*@
-          @Html.EditorFor(model => model.Post.Place.Address, new { htmlAttributes = new { @class = "form-control", style = "width:1000px;", id = "place-search", type = "text", placeholder = "Search for a place..." } })
-          @Html.ValidationMessageFor(model => model.Post.Place.Address, "", new { @class = "text-danger" })
-          @Html.EditorFor(model => model.Post.Place.Latitude, new { htmlAttributes = new { id = "latitude", type = "hidden" } })
-          @Html.EditorFor(model => model.Post.Place.Longtitude, new { htmlAttributes = new { id = "longtitude", type = "hidden" } })
-        </div>
+    <div class="form-group">
+      @Html.LabelFor(model => model.Post.Place.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+      <div class="col-md-10">
+        @Html.EditorFor(model => model.Post.Place.Address, new { htmlAttributes = new { @class = "form-control", style = "width:1000px;", id = "place-search", type = "text", placeholder = "Search for a place..." } })
+        @Html.ValidationMessageFor(model => model.Post.Place.Address, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.Post.Place.Latitude, new { htmlAttributes = new { id = "latitude", type = "hidden" } })
+        @Html.EditorFor(model => model.Post.Place.Longtitude, new { htmlAttributes = new { id = "longtitude", type = "hidden" } })
       </div>
+    </div>
+
+    <div class="form-group">
+      <img id="img-box" class="img-post col-md-10" src="~/Content/Photos/default-pic.jpg" />
+    </div>
 
       <div class="form-group">
         @Html.LabelFor(model => model.Post.Body, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -47,8 +47,8 @@
       </div>
 
       <div>
-          @Html.EditorFor(model => model.Post.ImageUrl, new { htmlAttributes = new { id = "image-url", type = "hidden" } })
-          @Html.ValidationMessageFor(model => model.Post.ImageUrl, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.Post.ImageUrl, new { htmlAttributes = new { id = "image-url", type = "hidden" } })
+        @Html.ValidationMessageFor(model => model.Post.ImageUrl, "", new { @class = "text-danger" })
       </div>
 
 

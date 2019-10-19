@@ -1,5 +1,4 @@
 ﻿//TODO: Add interactive map (on marker click)
-//TODO: Add weather web service
 
 let coordinates = {};
 

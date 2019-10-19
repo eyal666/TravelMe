@@ -9,6 +9,7 @@
 <script src="~/Scripts/google-map.js"></script>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/weather-handler.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
 <script>setCoordinates("@Model.Place.Latitude","@Model.Place.Longtitude")</script>
 <div> </div>
 <div class="row">
@@ -86,6 +87,8 @@
   <div id="map" class="google-map col-md-8"></div>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPv71U8lH9AB9wy-Xz2ffwa3mZED8EQoY&callback=initSingleMarkerMap"
           async defer></script>
-  <div id="openweathermap-widget-12" class="col-md-4"></div>
+  <div id="temp-div" class="col-md-4>
+
+  </div>
     <script>initWeatherWidget()</script>
 </div>
