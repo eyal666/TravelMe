@@ -145,11 +145,9 @@ namespace TravelMe.Controllers
             {
                 RegisterViewModel newUser = new RegisterViewModel
                 {
-                   // MembershipTypes = db.MembershipTypes.Where(m => !m.Name.ToLower().Equals(SD.AdminUserRole.ToLower())).ToList(),
-                   // BirthDate = DateTime.Now
-
-                    MembershipTypes = db.MembershipTypes.ToList(),
+                    MembershipTypes = db.MembershipTypes.Where(m => !m.Name.ToLower().Equals(SD.AdminUserRole.ToLower())).ToList(),
                     BirthDate = DateTime.Now
+               
                 };
                 return View(newUser);
             }
@@ -193,7 +191,7 @@ namespace TravelMe.Controllers
                         }
                         else
                         {
-                            //For Customer
+                            //For Member
                             await roleManager.CreateAsync(new IdentityRole(SD.EndUserRole));
                             await UserManager.AddToRoleAsync(user.Id, SD.EndUserRole);
                         }
@@ -210,6 +208,10 @@ namespace TravelMe.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
+            }
+            using (var db = ApplicationDbContext.Create())
+            {
+                model.MembershipTypes = db.MembershipTypes.ToList();
             }
 
             // If we got this far, something failed, redisplay form

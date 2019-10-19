@@ -247,6 +247,14 @@
     <Compile Include="Migrations\201910181358153_merge1.Designer.cs">
       <DependentUpon>201910181358153_merge1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910181217349_addedUser.cs" />
+    <Compile Include="Migrations\201910181217349_addedUser.Designer.cs">
+      <DependentUpon>201910181217349_addedUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910181325223_changeMemberShi.cs" />
+    <Compile Include="Migrations\201910181325223_changeMemberShi.Designer.cs">
+      <DependentUpon>201910181325223_changeMemberShi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -379,6 +387,9 @@
     <Content Include="Views\MembershipType\Index.cshtml" />
     <Content Include="Views\Manage\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -426,6 +437,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910181358153_merge1.resx">
       <DependentUpon>201910181358153_merge1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910181217349_addedUser.resx">
+      <DependentUpon>201910181217349_addedUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910181325223_changeMemberShi.resx">
+      <DependentUpon>201910181325223_changeMemberShi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
