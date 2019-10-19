@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using TravelMe_webapp.Models;
 
 namespace TravelMe.Models
 {
@@ -38,15 +39,15 @@ namespace TravelMe.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<TravelMe_webapp.Models.Place> Places { get; set; }
+        public System.Data.Entity.DbSet<Place> Places { get; set; }
 
-        public System.Data.Entity.DbSet<TravelMe_webapp.Models.Category> Categories { get; set; }
+        public System.Data.Entity.DbSet<Category> Categories { get; set; }
 
-        public System.Data.Entity.DbSet<TravelMe_webapp.Models.Comments> Comments { get; set; }
+        public System.Data.Entity.DbSet<Comments> Comments { get; set; }
 
-        public System.Data.Entity.DbSet<TravelMe_webapp.Models.Post> Posts { get; set; }
+        public System.Data.Entity.DbSet<Post> Posts { get; set; }
 
-        public System.Data.Entity.DbSet<TravelMe_webapp.Models.PlaceCatagory> PlaceCatagories { get; set; }
+        public System.Data.Entity.DbSet<PlaceCatagory> PlaceCatagories { get; set; }
 
         public DbSet<MembershipType> MembershipTypes { get; set; }
     }
