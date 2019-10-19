@@ -26,18 +26,15 @@ textarea {
 
 /* Optional: Makes the sample page fill the window. */
 .google-map {
-    height: 450px;
+    height: 500px;
     margin: 0;
     padding: 0;
 }
 
-.post-map {
+.post-buttom {
     position: relative;
-    left: -20px;
-    width: 75%;
-    margin: 20px;
-    padding: 0;
-
+    left: 20px;
+    margin-right: 20px;
 }
 
 .post-button {
