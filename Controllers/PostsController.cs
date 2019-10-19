@@ -22,6 +22,7 @@ namespace TravelMe.Controllers
     public ActionResult Index()
     {
       var posts = db.Posts.Include(p => p.Place);
+           
       return View(posts.ToList());
     }
 
