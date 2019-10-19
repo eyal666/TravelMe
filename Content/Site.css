@@ -81,3 +81,7 @@ html {
   position: relative;
   min-height: 100%;
 }
+
+.big-font {
+  font-size: 30px;
+}

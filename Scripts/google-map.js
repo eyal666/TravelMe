@@ -50,3 +50,10 @@ function initSingleMarkerMap() {
 function makeMap(zoom, center) {
    return new google.maps.Map($('#map')[0], { zoom: zoom, center: center });
 }
+
+function setTemperatures() {
+  let url = `//api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lng}&units=metric&appid=cc0be754151c6d2a5897645cb8258f46`;
+  $.get(url, (data, status) => {
+    $('#tempurature').html(`Now: ${parseInt(data.main.temp)} °C`);
+  });
+}

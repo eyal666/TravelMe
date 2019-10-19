@@ -8,8 +8,6 @@
 
 <script src="~/Scripts/google-map.js"></script>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/weather-handler.js"></script>
-<script src="~/Scripts/bootstrap.js"></script>
 <script>setCoordinates("@Model.Place.Latitude","@Model.Place.Longtitude")</script>
 <div> </div>
 <div class="row">
@@ -20,7 +18,9 @@
 
   <div class="col-sm-6 col-xs-8 content-post-main">
     <div class="content-post-title-author">
-      <h2><b>@Model.Title</b></h2>
+      <h2><b>@Model.Title </b></h2>
+      <h4 id="tempurature"></h4>
+      <script>setTemperatures()</script>
       <h5>By: @Model.UserID</h5>
     </div>
     <div>
@@ -83,12 +83,12 @@
 </div>
 <div class="fb-comments" data-href="@string.Format("https://localhost:44393/PostDetails/Index/{0}", @Model.ID)" data-width="" data-numposts="5"></div>
 
-<div class="row post-bottom">
-  <div id="map" class="google-map col-md-8"></div>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPv71U8lH9AB9wy-Xz2ffwa3mZED8EQoY&callback=initSingleMarkerMap"
-          async defer></script>
-  <div id="temp-div" class="col-md-4>
+<div class="row post-buttom">
+  <div id="map" class="google-map col-md-9">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPv71U8lH9AB9wy-Xz2ffwa3mZED8EQoY&callback=initSingleMarkerMap"
+            async defer></script>
+  </div>
+  <div class="col-md-3">
 
   </div>
-    <script>initWeatherWidget()</script>
 </div>
