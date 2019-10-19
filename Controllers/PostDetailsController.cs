@@ -12,7 +12,7 @@ using TravelMe_webapp.Models;
 
 namespace TravelMe.Controllers
 {
-    [Authorize]
+  //  [Authorize]
     public class PostDetailsController : Controller
     {
         private ApplicationDbContext db;
@@ -43,6 +43,26 @@ namespace TravelMe.Controllers
                 Place = postModel.Place
             };
 
+            //To Write Cookie to local computer
+            HttpCookie cookie = new HttpCookie("Visited");
+            cookie["pid"] = model.ID.ToString();
+            cookie["uid"] = model.UserID.ToString();
+            Response.Cookies.Add(cookie);
+            //HttpContext.CurrentHandler.Response.Cookies.Add(cookie);
+
+
+
+            //to read cookie from local computer
+            Cook temp = new Cook();
+           var cookie1 =  Request.Cookies["Visited"];
+            // 
+            var t = cookie1["pid"];
+            temp.UID = cookie1["uid"];
+            temp.PID=t;
+            db.Cooks.Add(temp);
+            db.SaveChanges();
+
+            //cookie1["pid"]
             return View(model);
         }
 

@@ -194,6 +194,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
+    <Compile Include="Controllers\CooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembershipTypeController.cs" />
@@ -255,10 +256,15 @@
     <Compile Include="Migrations\201910181325223_changeMemberShi.Designer.cs">
       <DependentUpon>201910181325223_changeMemberShi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910191210406_cookie.cs" />
+    <Compile Include="Migrations\201910191210406_cookie.Designer.cs">
+      <DependentUpon>201910191210406_cookie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Comments.cs" />
+    <Compile Include="Models\Cook.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndividualButtonPartial.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -393,6 +399,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Cooks\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -444,6 +451,9 @@
     <EmbeddedResource Include="Migrations\201910181325223_changeMemberShi.resx">
       <DependentUpon>201910181325223_changeMemberShi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910191210406_cookie.resx">
+      <DependentUpon>201910191210406_cookie.cs</DependentUpon>
+      </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -18,6 +18,7 @@ namespace TravelMe.Models
         public bool Disable { get; set; }
         public int MembershipTypeId { get; set; }
 
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -50,5 +51,7 @@ namespace TravelMe.Models
         public System.Data.Entity.DbSet<PlaceCatagory> PlaceCatagories { get; set; }
 
         public DbSet<MembershipType> MembershipTypes { get; set; }
+
+        public System.Data.Entity.DbSet<TravelMe.Models.Cook> Cooks { get; set; }
     }
 }
