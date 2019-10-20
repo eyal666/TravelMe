@@ -14,7 +14,7 @@
                     </div>
                     <div class="caption">
                         <h3><a href="@thumbnail.Link">@thumbnail.Title</a></h3>
-                        <p>@Html.Raw(thumbnail.Body)</p>
+                        <p>@Html.Raw(thumbnail.Body.Substring(0,250) + "...")</p>
                     </div>
                     <div>
                         <span>Rating:</span>
