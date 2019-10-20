@@ -22,6 +22,6 @@ namespace TravelMe_webapp.Models
         [Required]
         [DisplayName("Posts Count")]
         public int NumOfPosts { get; set; }
-
+        //public List<int> PostsID { get; set; }
     }
 }

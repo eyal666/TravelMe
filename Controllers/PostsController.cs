@@ -100,7 +100,7 @@ namespace TravelMe.Controllers
         DateAdded = DateTime.Now,
         Place = place
       };
-
+      //place.PostsID.Add(post.ID);
       db.Posts.Add(post);
       db.SaveChanges();
       return Redirect("/PostDetails/Index/" + post.ID);
@@ -168,6 +168,7 @@ namespace TravelMe.Controllers
       else
       {
         place.NumOfPosts--;
+        //place.PostsID.Remove(post.ID);
       }
 
       db.Posts.Remove(post);
