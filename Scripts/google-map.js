@@ -31,7 +31,7 @@ function initMultiMarkerMap() {
           position: pos,
           map: map,
           title: place.Address,
-          url: 'https://google.com/'
+          url: `PostDetails/Index/${place.PostsIdList.split(",")[0]}`
         }
       );
       marker.addListener('click', () => window.location.href = marker.url);

@@ -82,7 +82,7 @@ namespace TravelMe.Controllers
       else
       {
         var avg = db.Posts
-                    .Where(p => p.ID == place.ID && p.Rating != 0)
+                    .Where(p => p.PlaceID == place.ID && p.Rating != 0)
                     .Average(p => p.Rating);
         place.NumOfPosts++;
         place.AvgRating = (avg + postVM.Post.Rating) / place.NumOfPosts;
@@ -100,8 +100,9 @@ namespace TravelMe.Controllers
         DateAdded = DateTime.Now,
         Place = place
       };
-      //place.PostsID.Add(post.ID);
       db.Posts.Add(post);
+      db.SaveChanges();
+      place.AddPostID(post.ID);
       db.SaveChanges();
       return Redirect("/PostDetails/Index/" + post.ID);
     }
@@ -168,7 +169,7 @@ namespace TravelMe.Controllers
       else
       {
         place.NumOfPosts--;
-        //place.PostsID.Remove(post.ID);
+        place.RemovePostID(post.ID);
       }
 
       db.Posts.Remove(post);

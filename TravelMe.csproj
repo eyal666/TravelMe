@@ -260,6 +260,10 @@
     <Compile Include="Migrations\201910191210406_cookie.Designer.cs">
       <DependentUpon>201910191210406_cookie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910201330542_added_postsID.cs" />
+    <Compile Include="Migrations\201910201330542_added_postsID.Designer.cs">
+      <DependentUpon>201910201330542_added_postsID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -455,6 +459,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910191210406_cookie.resx">
       <DependentUpon>201910191210406_cookie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910201330542_added_postsID.resx">
+      <DependentUpon>201910201330542_added_postsID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
