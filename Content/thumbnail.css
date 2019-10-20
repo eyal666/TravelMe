@@ -1,10 +1,12 @@
 ﻿.thumbnail .thumbnail-img-container {
+    object-fit: cover;
     overflow: hidden;
 }
 
 .thumbnail .thumbnail-img {
+    object-fit: cover;
     width: 100%;
-    height: auto;
+    height: 175px;
     transition: ease-in-out 0.8s;
 }
 
@@ -14,6 +16,7 @@
 }
 
 .thumbnail {
+    object-fit: cover;
     transition: all 0.4s, ease-in-out 0s;
 }
 
