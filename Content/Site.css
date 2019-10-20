@@ -16,13 +16,9 @@
   white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-  max-width: 280px;
-}
-
+.travelMeTitle {
+    text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(0,0,0,0.15);
+}   
 
 /* Optional: Makes the sample page fill the window. */
 .google-map {
@@ -31,16 +27,12 @@ textarea {
   padding: 0;
 }
 
-.post-buttom {
-  position: relative;
-  left: 20px;
-  margin-right: 20px;
-}
-
 .post-button {
-  margin: 10px;
+    position: relative;
+    left: 20px;
+    margin: 10px;
+    margin-right: 20px;
 }
-
 
 .table-header {
   background-color: #cee7ff;
@@ -52,8 +44,6 @@ textarea {
   border-radius: 20px;
   padding-top: 20px;
   padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
   margin-bottom: 20px;
 }
 
@@ -74,10 +64,27 @@ textarea {
 .img-post {
   height: 200px;
   width: 308px;
-  right: -160px;
+  right: -200px;
 }
 
 html {
   position: relative;
   min-height: 100%;
+}
+
+.float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #3563a3;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+}
+
+.my-float {
+    margin-top: 22px;
 }

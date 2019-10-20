@@ -105,14 +105,14 @@ namespace TravelMe.Extensions
                 if (r1 || r2 || r3 || r4 || r5)
                 {
                     thumbnails = helper;
-                    return thumbnails.OrderByDescending(b => b.Post.Rating);
+                    return thumbnails.OrderByDescending(t => t.Post.Rating).ThenByDescending(t => t.Post.DateAdded);
 
                 }
 
             }
             catch (Exception) { }
 
-            return thumbnails.OrderBy(b => b.Title);
+            return thumbnails.OrderByDescending(t => t.Post.DateAdded);
 
         }
     }

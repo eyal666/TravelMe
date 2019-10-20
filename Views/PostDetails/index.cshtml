@@ -1,9 +1,12 @@
 ﻿@model TravelMe_webapp.Models.Post
 
 @using TravelMe.Utils;
+@using Microsoft.AspNet.Identity;
+
+
 
 @{
-  ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
 }
 
 <script src="~/Scripts/google-map.js"></script>
@@ -11,85 +14,81 @@
 <script>setCoordinates("@Model.Place.Latitude","@Model.Place.Longtitude")</script>
 <div> </div>
 <div class="row">
-  <div class="col-sm-3 col-xs-4 image-post">
-    <img class="thumbnail-img" src="@Model.ImageUrl" alt="" style="width:100%;height:auto;padding:10px;" />
-  </div>
-
-
-  <div class="col-sm-6 col-xs-8 content-post-main">
-    <div class="content-post-title-author">
-      <h2><b>@Model.Title </b></h2>
-      <h5>@Model.Place.Address</h5>
-      <h5 id="tempurature"></h5>
-      <script>setTemperatures()</script>
-      <h6>By: @Model.UserID</h6>
+    <div class="col-sm-3 col-xs-4 image-post">
+        <img class="thumbnail-img" src="@Model.ImageUrl" alt="" style="width:100%;height:auto;padding:10px;" />
     </div>
-    <div>
-      <br />
-      <span>@Html.Raw(Model.Body)</span>
-    </div><br />
-  </div>
 
 
-  <div class="col-sm-3 col-xs-12 content-post-product-details">
-    <dl>
-      <dt>
-        @*@Html.DisplayNameFor(m => m.Publisher)*@
-      </dt>
-      <dd>
-        @*&nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Publisher)*@
-      </dd>
-    </dl>
-    <dl>
-      <dt>
-        @Html.DisplayNameFor(m => m.DateAdded)
-      </dt>
-      <dd>
-        &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.DateAdded)
-      </dd>
-    </dl>
-    <dl>
-      <dt>
-        @Html.DisplayNameFor(m => m.Place.AvgRating)
-      </dt>
-      <dd>
-        &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Place.AvgRating)
-      </dd>
-    </dl>
-    <dl>
-      <dt>
-        @Html.DisplayNameFor(m => m.Place.NumOfPosts)
-      </dt>
-      <dd>
-        &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Place.NumOfPosts)
-      </dd>
-    </dl>
-    <dl>
-      <dt>
-        @Html.DisplayNameFor(m => m.Rating)
-      </dt>
-      <dd>
-        &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Rating)
-      </dd>
-    </dl>
-    <dl>
-      <dt>Follow our page on Facebook</dt>
-      <dd>
-        <div class="fb-like" data-href="https://www.facebook.com/TravelMe-108028913949644" data-width="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-      </dd>
-    </dl>
+    <div class="col-sm-6 col-xs-8 content-post-main">
+        <div class="content-post-title-author">
+            <h2><b>@Model.Title </b></h2>
+            <h5>@Model.Place.Address</h5>
+            <h5 id="tempurature"></h5>
+            <script>setTemperatures()</script>
+            <h6>By: @Model.UserID</h6>
+            @if (Model.UserID.Equals(User.Identity.GetUserName()))
+            {
+                <span><a type="button" href="@string.Format("https://localhost:44393/Posts/Edit/{0}", @Model.ID)" class="btn btn-sm btn-primary" style="margin-bottom:10px;   ">Edit Post</a></span>
+            }
+        </div>
+        <div>
+            <br />
+            <span>@Html.Raw(Model.Body)</span>
+        </div><br />
+    </div>
 
-    @Html.HiddenFor(m => m.PlaceID)
-  </div>
+
+    <div class="col-sm-3 col-xs-12 content-post-product-details">
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(m => m.DateAdded)
+            </dt>
+            <dd>
+                &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.DateAdded)
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(m => m.Place.AvgRating)
+            </dt>
+            <dd>
+                &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Place.AvgRating)
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(m => m.Place.NumOfPosts)
+            </dt>
+            <dd>
+                &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Place.NumOfPosts)
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(m => m.Rating)
+            </dt>
+            <dd>
+                &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Rating)
+            </dd>
+        </dl>
+        <dl>
+            <dt>Follow our page on Facebook</dt>
+            <dd>
+                <div class="fb-like" data-href="https://www.facebook.com/TravelMe-108028913949644" data-width="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+            </dd>
+        </dl>
+
+        @Html.HiddenFor(m => m.PlaceID)
+    </div>
 </div>
 <div class="fb-comments" data-href="@string.Format("https://localhost:44393/PostDetails/Index/{0}", @Model.ID)" data-width="" data-numposts="5"></div>
 
 <div class="row post-buttom">
-  <div id="map" class="google-map col-md-9">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPv71U8lH9AB9wy-Xz2ffwa3mZED8EQoY&callback=initSingleMarkerMap"
-            async defer></script>
-  </div>
-  <div class="col-md-3">
+    <div id="map" class="google-map col-md-9">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPv71U8lH9AB9wy-Xz2ffwa3mZED8EQoY&callback=initSingleMarkerMap"
+                async defer></script>
+    </div>
+    <div class="col-md-3">
 
-  </div>
+    </div>
 </div>
