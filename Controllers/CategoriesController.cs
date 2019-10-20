@@ -8,7 +8,7 @@ using TravelMe.Utils;
 
 namespace TravelMe.Controllers
 {
-    //[Authorize(Roles = SD.AdminUserRole)]
+    [Authorize(Roles = SD.AdminUserRole)]
     public class CategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
