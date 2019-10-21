@@ -28,7 +28,8 @@
             <h6>By: @Model.UserID</h6>
             @if (Model.UserID.Equals(User.Identity.GetUserName()) || User.IsInRole(SD.AdminUserRole))
             {
-                <span><a type="button" href="@string.Format("https://localhost:44393/Posts/Edit/{0}", @Model.ID)" class="btn btn-sm btn-primary" style="margin-bottom:10px;   ">Edit Post</a></span>
+                <span><a type="button" href="@string.Format("https://localhost:44393/Posts/Edit/{0}", @Model.ID)" class="btn btn-sm btn-primary" style="margin-bottom:10px;">Edit Post</a></span>
+                <span><a type="button" href="@string.Format("https://localhost:44393/Posts/Delete/{0}", @Model.ID)" class="btn btn-sm btn-danger" style="margin-bottom:10px;">Delete Post</a></span>
             }
         </div>
         <div>

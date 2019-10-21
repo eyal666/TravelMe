@@ -1,5 +1,5 @@
 ﻿@model TravelMe_webapp.Models.Post
-
+@using TravelMe.Utils;
 @{
     ViewBag.Title = "Delete";
 }
@@ -80,9 +80,16 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+
+<div class="form-actions no-color">
+    <input type="submit" value="Delete" class="btn btn-default" />
+
+    @if (User.IsInRole(SD.AdminUserRole))
+    {
+        <div>
             @Html.ActionLink("Back to List", "Index")
         </div>
+    }   
+</div>
     }
 </div>
