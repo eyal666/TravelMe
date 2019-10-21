@@ -179,20 +179,28 @@ namespace TravelMe.Controllers
                 {
                     using (var db = ApplicationDbContext.Create())
                     {
-                        model.MembershipTypes = db.MembershipTypes.ToList();
-                        var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
-                        var roleManager = new RoleManager<IdentityRole>(roleStore);
-                        var memebership = model.MembershipTypes.SingleOrDefault(m => m.Id == model.MembershipTypeId).Name.ToString();
-
-                        if (memebership.ToLower().Contains("admin"))
+                        var numOfUsers = db.Users.ToList().Count();
+                        if (db.MembershipTypes.Count() == 0)
                         {
-                            //For Super Admin
+                            db.MembershipTypes.Add(new MembershipType { Name = SD.AdminUserRole });
+                            db.MembershipTypes.Add(new MembershipType { Name = SD.EndUserRole });
+                            db.SaveChanges();
+                        }
+                        if (numOfUsers == 1)
+                        {
+                            var accountTypes = db.MembershipTypes.ToList().Where(n => n.Name.ToLower().Equals("admin")).ToList();
+                            user.MembershipTypeId = accountTypes[0].Id;
+                            var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                            var roleManager = new RoleManager<IdentityRole>(roleStore);
                             await roleManager.CreateAsync(new IdentityRole(SD.AdminUserRole));
                             await UserManager.AddToRoleAsync(user.Id, SD.AdminUserRole);
                         }
                         else
                         {
-                            //For Member
+                            var accountTypes = db.MembershipTypes.ToList().Where(n => n.Name.ToLower().Equals("member")).ToList();
+                            user.MembershipTypeId = accountTypes[0].Id;
+                            var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                            var roleManager = new RoleManager<IdentityRole>(roleStore);
                             await roleManager.CreateAsync(new IdentityRole(SD.EndUserRole));
                             await UserManager.AddToRoleAsync(user.Id, SD.EndUserRole);
                         }

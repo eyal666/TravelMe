@@ -14,12 +14,12 @@ using TravelMe_webapp.Models;
 
 namespace TravelMe.Controllers
 {
-    [Authorize(Roles = SD.AdminUserRole)]
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Posts
+        [Authorize(Roles = SD.AdminUserRole)]
         public ActionResult Index()
         {
             var posts = db.Posts.Include(p => p.Place);
@@ -28,6 +28,7 @@ namespace TravelMe.Controllers
         }
 
         // GET: Posts/Details/5
+        [Authorize(Roles = SD.AdminUserRole)]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -50,6 +51,7 @@ namespace TravelMe.Controllers
         }
 
         // GET: Posts/Create
+        [Authorize()]
         public ActionResult Create()
         {
             ViewBag.PlaceID = new SelectList(db.Places, "ID", "Address");
@@ -61,6 +63,7 @@ namespace TravelMe.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize()]
         public ActionResult Create(PostViewModel postVM)
         {
             var userid = User.Identity.GetUserId();
@@ -109,6 +112,7 @@ namespace TravelMe.Controllers
         }
 
         // GET: Posts/Edit/5
+        [Authorize()]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -129,6 +133,7 @@ namespace TravelMe.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize()]
         public ActionResult Edit(Post post)
         {
             if (ModelState.IsValid)
@@ -142,6 +147,7 @@ namespace TravelMe.Controllers
         }
 
         // GET: Posts/Delete/5
+        [Authorize()]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -159,6 +165,7 @@ namespace TravelMe.Controllers
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize()]
         public ActionResult DeleteConfirmed(int id)
         {
             Post post = db.Posts.Find(id);
