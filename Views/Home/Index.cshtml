@@ -66,7 +66,7 @@
                 5
                 @Html.CheckBox("r5")&nbsp;
                 Search By Title:&nbsp;
-                @Html.RadioButton("searchOpt", SD.byTitle)&nbsp;
+                @Html.RadioButton("searchOpt", SD.byTitle, new { @checked = true })&nbsp;
                 By Post Text:&nbsp;
                 @Html.RadioButton("searchOpt", SD.byBody)&nbsp;
                 By Address:&nbsp;
