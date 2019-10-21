@@ -40,29 +40,19 @@ namespace TravelMe.Extensions
                                   Place = p.Place
                               }
                               ).ToList();
-                List<ThumbnailModel> helper = thumbnails;
-                if (r1)
-                {
-                    helper.RemoveAll(t => t.Post.Rating != 1);
-                }
-                if (r2)
-                {
-                    helper.RemoveAll(t => t.Post.Rating != 2);
-                }
-                if (r3)
-                {
-                    helper.RemoveAll(t => t.Post.Rating != 3);
-                }
-                if (r4)
-                {
-                    helper.RemoveAll(t => t.Post.Rating != 4);
-                }
-                if (r5)
-                {
-                    helper.RemoveAll(t => t.Post.Rating != 5);
-                }
+                List<ThumbnailModel> helper = new List<ThumbnailModel>();
+                if (r1) AddToHelper(1, helper, thumbnails);
+                if (r2) AddToHelper(2, helper, thumbnails);
+                if (r3) AddToHelper(3, helper, thumbnails);
+                if (r4) AddToHelper(4, helper, thumbnails);
+                if (r5) AddToHelper(5, helper, thumbnails);
+
                 if (!String.IsNullOrEmpty(search) && searchOpt != null)
                 {
+                    if (helper.Count() == 0)
+                    {
+                        helper = thumbnails;
+                    }
                     if (searchOpt.Equals(SD.byPlaceName))
                     {
                         return helper.Where(t => t.Place.Address.ToLower().Contains(search.ToLower()));
@@ -76,12 +66,25 @@ namespace TravelMe.Extensions
                         return helper.Where(t => t.Body.ToLower().Contains(search.ToLower()));
                     }
                 }
+                if (r1 || r2 || r3 || r4 || r5)
+                {
+                    thumbnails = helper;
+                    return thumbnails.OrderByDescending(t => t.Post.Rating).ThenByDescending(t => t.Post.DateAdded);
+                }
 
             }
             catch (Exception) { }
-
             return thumbnails.OrderByDescending(t => t.Post.DateAdded);
 
+        }
+
+        public static void AddToHelper(int r, List<ThumbnailModel> helper, List<ThumbnailModel> thumbnails)
+        {
+            var filteredThumbs = thumbnails.FindAll(t => t.Post.Rating == r);
+            foreach (var t in filteredThumbs)
+            {
+                helper.Add(t);
+            }
         }
     }
 }
