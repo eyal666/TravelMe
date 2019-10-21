@@ -8,12 +8,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TravelMe.Models;
+using TravelMe.Utils;
 using TravelMe.ViewModel;
 using TravelMe_webapp.Models;
 
 namespace TravelMe.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = SD.AdminUserRole)]
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -1,26 +1,27 @@
 ﻿@model TravelMe_webapp.Models.Category
-
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Category</h4>
+    <h3>Category Details</h3>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-    </dl>
+    <div class="form-border">
+        <fieldset disabled>
+            <div class="row" style="padding-bottom:5px; padding-top:5px;">
+                <div class="col-md-2">
+                    @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label" })
+                </div>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                </div>
+            </div>
+        </fieldset>
+    </div>
 </div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.Partial("_BackToListButtonPartial")
+    @Html.Partial("_EditButtonPartial", Model.ID)
 </p>

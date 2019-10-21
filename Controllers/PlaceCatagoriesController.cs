@@ -7,10 +7,12 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TravelMe.Models;
+using TravelMe.Utils;
 using TravelMe_webapp.Models;
 
 namespace TravelMe.Controllers
 {
+    [Authorize(Roles = SD.AdminUserRole)]
     public class PlaceCatagoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

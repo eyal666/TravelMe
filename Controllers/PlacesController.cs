@@ -12,6 +12,7 @@ using TravelMe_webapp.Models;
 
 namespace TravelMe.Controllers
 {
+    [Authorize(Roles = SD.AdminUserRole)]
     public class PlacesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

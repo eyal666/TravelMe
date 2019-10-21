@@ -145,7 +145,8 @@ namespace TravelMe.Controllers
             {
                 RegisterViewModel newUser = new RegisterViewModel
                 {
-                    MembershipTypes = db.MembershipTypes.Where(m => !m.Name.ToLower().Equals(SD.AdminUserRole.ToLower())).ToList(),
+                   // MembershipTypes = db.MembershipTypes.Where(m => !m.Name.ToLower().Equals(SD.AdminUserRole.ToLower())).ToList(),
+                   MembershipTypes = db.MembershipTypes.ToList(),
                     BirthDate = DateTime.Now
                
                 };
