@@ -12,18 +12,20 @@ using TravelMe_webapp.Models;
 
 namespace TravelMe.Controllers
 {
-    [Authorize(Roles = SD.AdminUserRole)]
+
     public class PlacesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Places
+        [Authorize(Roles = SD.AdminUserRole)]
         public ActionResult Index()
         {
             return View(db.Places.ToList());
         }
 
         // GET: Places/Details/5
+        [Authorize(Roles = SD.AdminUserRole)]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,6 +41,7 @@ namespace TravelMe.Controllers
         }
 
         // GET: Places/Create
+        [Authorize(Roles = SD.AdminUserRole)]
         public ActionResult Create()
         {
             return View();
@@ -49,6 +52,7 @@ namespace TravelMe.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = SD.AdminUserRole)]
         public ActionResult Create([Bind(Include = "ID,Address,Longtitude,Latitude,AvgRating,NumOfPosts")] Place place)
         {
             if (ModelState.IsValid)
@@ -62,6 +66,7 @@ namespace TravelMe.Controllers
         }
 
         // GET: Places/Edit/5
+        [Authorize(Roles = SD.AdminUserRole)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,7 +86,8 @@ namespace TravelMe.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Address,Longtitude,Latitude,AvgRating,NumOfPosts")] Place place)
+        [Authorize(Roles = SD.AdminUserRole)]
+        public ActionResult Edit(Place place)
         {
             if (ModelState.IsValid)
             {
@@ -93,6 +99,7 @@ namespace TravelMe.Controllers
         }
 
         // GET: Places/Delete/5
+        [Authorize(Roles = SD.AdminUserRole)]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,6 +117,7 @@ namespace TravelMe.Controllers
         // POST: Places/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = SD.AdminUserRole)]
         public ActionResult DeleteConfirmed(int id)
         {
             Place place = db.Places.Find(id);
@@ -125,7 +133,7 @@ namespace TravelMe.Controllers
             var places = db.Places.ToList();
             return Json(places, JsonRequestBehavior.AllowGet);
         }
-
+        [Authorize(Roles = SD.AdminUserRole)]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
