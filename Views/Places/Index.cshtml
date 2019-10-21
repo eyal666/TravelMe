@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<TravelMe_webapp.Models.Place>
-
+@using TravelMe.Models
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h3>Manage Places</h3>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.Partial("_CreateButtonPartial")
 </p>
-<table class="table">
-    <tr>
+<table class="table table-condensed table-hover">
+    <tr class="table-header">
         <th>
             @Html.DisplayNameFor(model => model.Address)
         </th>
@@ -27,31 +27,31 @@
             @Html.DisplayNameFor(model => model.NumOfPosts)
         </th>
         <th></th>
+        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Longtitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Latitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AvgRating)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumOfPosts)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longtitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvgRating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumOfPosts)
+            </td>
+            <td>
+                @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { PlaceId = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>

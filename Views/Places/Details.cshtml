@@ -4,55 +4,67 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Place</h4>
+<div class="form-horizontal">
+    <h3>Place Details</h3>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+<div class="row form-border">
+    <div class="col-sm-9">
+        <fieldset disabled>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Longtitude)
-        </dt>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Longtitude, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Longtitude, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Longtitude, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Longtitude)
-        </dd>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </dt>
+            <div class="form-group">
+                @Html.LabelFor(model => model.AvgRating, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AvgRating, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AvgRating, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Latitude)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AvgRating)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AvgRating)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumOfPosts)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumOfPosts)
-        </dd>
-
-    </dl>
+            <div class="form-group">
+                @Html.LabelFor(model => model.NumOfPosts, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.NumOfPosts, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NumOfPosts, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </fieldset>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Partial("_BackToListButtonPartial")
+                <input type="submit" value="Save" class="btn btn-sm btn-success" />
+            </div>
+        </div>
+    </div>
+
+
+
+
+
