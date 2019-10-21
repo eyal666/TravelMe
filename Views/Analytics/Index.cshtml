@@ -1,17 +1,11 @@
 ﻿@using TravelMe.Models
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "TravelMe - Analytics";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ApplicationDbContext db = new ApplicationDbContext();
 }
-<header>
-    <h3>Ratings Chart</h3>
-</header>
 <hr />
 <head>
-    <title>TravelMe - Analytics</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
     <style>
         body {
             /width:1060px;
@@ -60,10 +54,20 @@
         }
     </style>
 </head>
-<div class="row d-flex justify-content-center">
-    <div id='dashboard' class="col-auto"></div>
-</div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Ratings per post</h3>
+
+            <div id='ratings' class="col-auto"></div>
+        </div>
+        <div class="col-md-6">
+            <h3>Unique posts per place</h3>
+            <div id='posts' class="col-auto"></div>
+        </div>
+    </div>
+</div>
 <hr />
 
 <script src="https://d3js.org/d3.v3.min.js"></script>
@@ -212,5 +216,32 @@
       , { State: '4', freq: { low: 0, mid: 0, high: JSAvailabilityArr[3]}}
       , { State: '5', freq: { low: 0, mid: 0, high: JSAvailabilityArr[4]}}
 ];
-dashboard('#dashboard',freqData);
+    dashboard('#ratings', freqData);
+</script>
+<script>
+    @{
+        int[] postsData =
+        {
+            db.Posts.Count(t => t.Place.NumOfPosts == 1),
+            db.Posts.Count(t => t.Place.NumOfPosts == 2),
+            db.Posts.Count(t => t.Place.NumOfPosts == 3),
+            db.Posts.Count(t => t.Place.NumOfPosts == 4),
+            db.Posts.Count(t => t.Place.NumOfPosts >= 5),
+        };
+    }
+        var JSAvailabilityArr = [
+        @postsData[0],
+        @postsData[1],
+        @postsData[2],
+        @postsData[3],
+        @postsData[4]
+    ];
+  var freqData=[
+        { State: '1', freq: { low: 0, mid: 0, high: JSAvailabilityArr[0]}}
+      , { State: '2', freq: { low: 0, mid: 0, high: JSAvailabilityArr[1]}}
+      , { State: '3', freq: { low: 0, mid: 0, high: JSAvailabilityArr[2]}}
+      , { State: '4', freq: { low: 0, mid: 0, high: JSAvailabilityArr[3]}}
+      , { State: '5', freq: { low: 0, mid: 0, high: JSAvailabilityArr[4]}}
+];
+    dashboard('#posts', freqData);
 </script>
