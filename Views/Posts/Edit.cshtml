@@ -89,12 +89,7 @@
                 <input type="submit" value="Save" class="btn btn-sm btn-success" />
             </div>
         </div>
-        @if (User.IsInRole(SD.AdminUserRole))
-        {
-            <div>
-                @Html.ActionLink("Back to List", "Index")
-            </div>
-        }
+        
 
     </div>
 }
