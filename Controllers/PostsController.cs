@@ -22,7 +22,6 @@ namespace TravelMe.Controllers
         [Authorize(Roles = SD.AdminUserRole)]
         public ActionResult Index()
         {
-            //var post = from p in db.Posts
             //           join c in db.Categories on p.CategoryName equals c.CategoryName
             //           select new PostViewModel
             //           {
@@ -102,12 +101,13 @@ namespace TravelMe.Controllers
                 place.NumOfPosts++;
                 place.AvgRating = (avg + postVM.Post.Rating) / place.NumOfPosts;
             }
+
             var post = new Post
             {
                 ID = postVM.Post.ID,
                 Title = postVM.Post.Title,
                 Body = postVM.Post.Body,
-                ImageUrl = postVM.Post.ImageUrl,
+                ImageUrl = "",
                 UserID = user == null ? "Guest Account" : user.Id,
                 PlaceID = postVM.Post.ID,
                 Rating = postVM.Post.Rating,
@@ -117,6 +117,14 @@ namespace TravelMe.Controllers
                 CategoryName = postVM.Post.CategoryName
             };
             db.Posts.Add(post);
+            db.SaveChanges();
+            //Caching post picture
+            var imagePath = Server.MapPath("~/Content/Photos/Posts/" + post.ID + ".png");
+            using (var client = new WebClient())
+            {
+                client.DownloadFile(postVM.Post.ImageUrl, imagePath);
+            }
+            post.ImageUrl = "/Content/Photos/Posts/" + post.ID + ".png";
             place.AddPostID(post.ID);
             db.SaveChanges();
             return Redirect("/PostDetails/Index/" + post.ID);

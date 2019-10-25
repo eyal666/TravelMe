@@ -246,16 +246,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Media\video.mp4" />
-    <Content Include="Content\Photos\america.jpg" />
     <Content Include="Content\Photos\arrows.jpg" />
     <Content Include="Content\Photos\default-pic.jpg" />
-    <Content Include="Content\Photos\jaffa.jpg" />
     <Content Include="Content\Photos\markercluster1.png" />
-    <Content Include="Content\Photos\maldives.jpg" />
-    <Content Include="Content\Photos\morroco.jpg" />
-    <Content Include="Content\Photos\paris.jpg" />
-    <Content Include="Content\Photos\peru.jpg" />
-    <Content Include="Content\Photos\russia.jpg" />
     <Content Include="Content\postDetails.css" />
     <Content Include="Content\social.css" />
     <Content Include="Content\thumbnail.css" />
@@ -361,6 +354,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Photos\Posts\" />
     <Folder Include="Views\Cooks\" />
   </ItemGroup>
   <ItemGroup>

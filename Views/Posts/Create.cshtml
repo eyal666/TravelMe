@@ -10,19 +10,12 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
         <h3>Add a New Post</h3>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-border col-md-12">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Post.CategoryName, "CategoryName", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Post.CategoryName, new SelectList(Model.Categories, "Id", "CategoryName"), new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Post.CategoryName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Post.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -32,10 +25,20 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Post.CategoryName, "CategoryName", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Post.CategoryName, new SelectList(Model.Categories, "CategoryName", "CategoryName"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Post.CategoryName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Post.Place.Address, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Post.Place.Address, new { htmlAttributes = new { @class = "form-control", id = "place-search", type = "text", placeholder = "Search for a place..." } })
                 @Html.ValidationMessageFor(model => model.Post.Place.Address, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Post.Place.Latitude, new { htmlAttributes = new { id = "latitude", type = "hidden" } })
+                @Html.EditorFor(model => model.Post.Place.Longtitude, new { htmlAttributes = new { id = "longtitude", type = "hidden" } })
             </div>
         </div>
 
