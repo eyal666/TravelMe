@@ -21,14 +21,14 @@ namespace TravelMe.Controllers
         {
             db = ApplicationDbContext.Create();
         }
-        // GET: BookDetail
+        
         public ActionResult Index(int id)
         {
             var userid = User.Identity.GetUserId();
             var user = db.Users.FirstOrDefault(u => u.Id == userid);
             var postModel = db.Posts.Include(p => p.Place).SingleOrDefault(p => p.ID == id);
             var author = db.Users.FirstOrDefault(u => u.Id == postModel.UserID);
-
+            var currentCount = ++postModel.NumOfViews;
             PostViewModel model = new PostViewModel
             {
                 Post = new Post
@@ -40,7 +40,7 @@ namespace TravelMe.Controllers
                     UserID = author == null ? "Guest Account" : author.Email,
                     PlaceID = postModel.PlaceID,
                     Rating = postModel.Rating,
-                    NumOfViews = postModel.NumOfViews,
+                    NumOfViews = currentCount,
                     DateAdded = postModel.DateAdded,
                     Place = postModel.Place,
                     Category = postModel.Category,

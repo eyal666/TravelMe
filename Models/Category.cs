@@ -12,7 +12,7 @@ namespace TravelMe_webapp.Models
         [Required]
         public int ID { get; set; }
         [Required]
-        [DisplayName("Category Name")]
+        [DisplayName("Category")]
         public string CategoryName { get; set; }
     }
 }
