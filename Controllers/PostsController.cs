@@ -28,8 +28,8 @@ namespace TravelMe.Controllers
             //           {
             //               Post =  
             //           };
-            var posts = db.Posts.Include(p => p.Place);
-
+            ViewBag.CategoryNames = db.Categories.ToList();
+            var posts = db.Posts.Include(p => p.Category);
             return View(posts.ToList());
         }
 

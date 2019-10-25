@@ -36,8 +36,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Post.Place.Address, new { htmlAttributes = new { @class = "form-control", id = "place-search", type = "text", placeholder = "Search for a place..." } })
                 @Html.ValidationMessageFor(model => model.Post.Place.Address, "", new { @class = "text-danger" })
-                @Html.EditorFor(model => model.Post.Place.Latitude, new { htmlAttributes = new { id = "latitude", type = "hidden" } })
-                @Html.EditorFor(model => model.Post.Place.Longtitude, new { htmlAttributes = new { id = "longtitude", type = "hidden" } })
             </div>
         </div>
 
