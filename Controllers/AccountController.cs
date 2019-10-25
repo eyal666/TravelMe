@@ -150,7 +150,7 @@ namespace TravelMe.Controllers
                     BirthDate = DateTime.Now
                
                 };
-                ViewBag.NumOfUsers = db.Users.ToList().Count();
+                ViewBag.NumOfAdmins = db.Users.Where(u => u.MembershipTypeId.Equals(2)).Count();
                 return View(newUser);
             }
         }

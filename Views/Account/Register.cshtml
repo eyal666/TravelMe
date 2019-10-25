@@ -54,7 +54,7 @@
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
     </div>
-    if(ViewBag.NumOfUsers == 0)
+    if(ViewBag.NumOfAdmins == 0)
     {
         <div class="form-group">
             @Html.LabelFor(m => m.MembershipTypeId, "Membership type ID", htmlAttributes: new { @class = "col-md-2 control-label" })
