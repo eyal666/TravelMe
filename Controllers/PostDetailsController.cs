@@ -9,6 +9,7 @@ using TravelMe.Utils;
 using TravelMe.ViewModel;
 using TravelMe.Models;
 using TravelMe_webapp.Models;
+using TravelMeML.Model;
 
 namespace TravelMe.Controllers
 {
@@ -47,27 +48,49 @@ namespace TravelMe.Controllers
                     CategoryName = postModel.CategoryName,
                 }
             };
-
+            // Cook serv = new Cook();
+            // serv.PID = model.Post.ID.ToString();
+            //serv.
             //To Write Cookie to local computer
-            HttpCookie cookie = new HttpCookie("Visited");
-            cookie["pid"] = model.Post.ID.ToString();
-            cookie["uid"] = model.Post.UserID.ToString();
-            Response.Cookies.Add(cookie);
-            //HttpContext.CurrentHandler.Response.Cookies.Add(cookie);
+            //HttpCookie cookie = new HttpCookie("Visited");
+            //cookie["pid"] = model.Post.ID.ToString();
+            //cookie["uid"] = this.User.Identity.GetUserId();
+            //cookie["rate"] = model.Post.Rating.ToString();
+            //cookie["address"] = model.Post.Place.Address;
+
+            //Response.Cookies.Add(cookie);
+            ////HttpContext.CurrentHandler.Response.Cookies.Add(cookie);
 
 
 
-            //to read cookie from local computer
+            //Cook temp = new Cook();
+            //var cookie1 = Request.Cookies["Visited"];
+
+            //temp.PID = cookie1["pid"];
+            //temp.UID = cookie1["uid"];
+            //temp.Rating =  cookie1["rate"];
+            //temp.Address = cookie1["address"];
+            var addarray = model.Post.Place.Address.Split(',');
+            var country = addarray[addarray.Length - 1];
             Cook temp = new Cook();
-            var cookie1 = Request.Cookies["Visited"];
-            // 
-            var t = cookie1["pid"];
-            temp.UID = cookie1["uid"];
-            temp.PID = t;
+            temp.PID= model.Post.ID.ToString();
+            temp.UID = this.User.Identity.GetUserId();
+            temp.Rating= model.Post.Rating.ToString();
+            temp.Address=country;
+            temp.Cat = model.Post.CategoryName;
             db.Cooks.Add(temp);
             db.SaveChanges();
 
-            //cookie1["pid"]
+            // Add input data
+          var input = new ModelInput();
+            input.Address = country;
+            input.Cat = model.Post.CategoryName;
+
+           // // Load model and predict output of sample data
+           ModelOutput result = ConsumeModel.Predict(input);
+           var i = result.Prediction;
+            model.Post.Rec = i;
+
             return View(model);
         }
 
