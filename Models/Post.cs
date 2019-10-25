@@ -32,5 +32,11 @@ namespace TravelMe_webapp.Models
         public DateTime DateAdded { get; set; }
         [Required]
         public Place Place { get; set; }
+
+        [Required]
+        public string CategoryName { get; set; }
+
+        public Category Category { get; set; }
+
     }
 }

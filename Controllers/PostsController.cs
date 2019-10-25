@@ -22,6 +22,12 @@ namespace TravelMe.Controllers
         [Authorize(Roles = SD.AdminUserRole)]
         public ActionResult Index()
         {
+            //var post = from p in db.Posts
+            //           join c in db.Categories on p.CategoryName equals c.CategoryName
+            //           select new PostViewModel
+            //           {
+            //               Post =  
+            //           };
             var posts = db.Posts.Include(p => p.Place);
 
             return View(posts.ToList());
@@ -54,8 +60,13 @@ namespace TravelMe.Controllers
         [Authorize()]
         public ActionResult Create()
         {
+            var category = db.Categories.ToList();
+            var model = new PostViewModel
+            {
+                Categories = category
+            };
             ViewBag.PlaceID = new SelectList(db.Places, "ID", "Address");
-            return View();
+            return View(model);
         }
 
         // POST: Posts/Create
@@ -102,10 +113,10 @@ namespace TravelMe.Controllers
                 Rating = postVM.Post.Rating,
                 NumOfViews = 0,
                 DateAdded = DateTime.Now,
-                Place = place
+                Place = place,
+                CategoryName = postVM.Post.CategoryName
             };
             db.Posts.Add(post);
-            db.SaveChanges();
             place.AddPostID(post.ID);
             db.SaveChanges();
             return Redirect("/PostDetails/Index/" + post.ID);
@@ -124,8 +135,13 @@ namespace TravelMe.Controllers
             {
                 return HttpNotFound();
             }
+            var model = new PostViewModel
+            {
+                Post = post,
+                Categories = db.Categories.ToList()
+            };
             ViewBag.PlaceID = new SelectList(db.Places, "ID", "Address", post.PlaceID);
-            return View(post);
+            return View(model);
         }
 
         // POST: Posts/Edit/5
@@ -134,8 +150,48 @@ namespace TravelMe.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize()]
-        public ActionResult Edit(Post post)
+        public ActionResult Edit(PostViewModel postVM)
         {
+            var userid = User.Identity.GetUserId();
+            var user = db.Users.FirstOrDefault(u => u.Id == userid);
+
+
+            var place = db.Places.FirstOrDefault(p => p.ID == postVM.Post.PlaceID);
+            if (place == null)
+            {
+                place = new Place
+                {
+                    Address = postVM.Post.Place.Address,
+                    Longtitude = postVM.Post.Place.Longtitude,
+                    Latitude = postVM.Post.Place.Latitude,
+                    AvgRating = postVM.Post.Rating,
+                    NumOfPosts = 1
+                };
+                db.Places.Add(place);
+            }
+            else
+            {
+                var avg = db.Posts
+                            .Where(p => p.PlaceID == place.ID && p.Rating != 0)
+                            .Average(p => p.Rating);
+                place.NumOfPosts++;
+                place.AvgRating = (avg + postVM.Post.Rating) / place.NumOfPosts;
+            }
+            var post = new Post
+            {
+                ID = postVM.Post.ID,
+                Title = postVM.Post.Title,
+                Body = postVM.Post.Body,
+                ImageUrl = postVM.Post.ImageUrl,
+                UserID = user == null ? "Guest Account" : user.Id,
+                PlaceID = postVM.Post.ID,
+                Rating = postVM.Post.Rating,
+                NumOfViews = 0,
+                DateAdded = DateTime.Now,
+                Place = place,
+                CategoryName = postVM.Post.CategoryName
+
+            };
             if (ModelState.IsValid)
             {
                 db.Entry(post).State = EntityState.Modified;
@@ -143,7 +199,8 @@ namespace TravelMe.Controllers
                 return Redirect("/PostDetails/Index/" + post.ID);
             }
             ViewBag.PlaceID = new SelectList(db.Places, "ID", "Address", post.PlaceID);
-            return View(post);
+            postVM.Categories = db.Categories.ToList();
+            return View(postVM);
         }
 
         // GET: Posts/Delete/5
@@ -159,7 +216,12 @@ namespace TravelMe.Controllers
             {
                 return HttpNotFound();
             }
-            return View(post);
+            var model = new PostViewModel
+            {
+                Post = post,
+                Categories = db.Categories.ToList()
+            };
+            return View(model);
         }
 
         // POST: Posts/Delete/5

@@ -44,11 +44,7 @@ namespace TravelMe.Models
 
         public System.Data.Entity.DbSet<Category> Categories { get; set; }
 
-        public System.Data.Entity.DbSet<Comments> Comments { get; set; }
-
         public System.Data.Entity.DbSet<Post> Posts { get; set; }
-
-        public System.Data.Entity.DbSet<PlaceCatagory> PlaceCatagories { get; set; }
 
         public DbSet<MembershipType> MembershipTypes { get; set; }
 

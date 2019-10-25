@@ -23,32 +23,38 @@
         <th>
             @Html.DisplayNameFor(model => model.ImageUrl)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </th>
         <th></th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Body)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-              <td>
-                @{ 
-                  string imgUrlSub = item.ImageUrl.Length < 40 ? item.ImageUrl : item.ImageUrl.Substring(0, 40) + "...";
-                }
-                @Html.DisplayFor(modelItem => imgUrlSub)
-              </td>
-            <td>
-                @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { PostId = item.ID  })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Body)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Rating)
+    </td>
+    <td>
+        @{
+            string imgUrlSub = item.ImageUrl.Length < 40 ? item.ImageUrl : item.ImageUrl.Substring(0, 40) + "...";
+        }
+        @Html.DisplayFor(modelItem => imgUrlSub)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category.CategoryName)
+    </td>
+    <td>
+        @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { PostId = item.ID })
+    </td>
+</tr>
     }
 
 </table>
