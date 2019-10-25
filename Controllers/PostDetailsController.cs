@@ -12,7 +12,7 @@ using TravelMe_webapp.Models;
 
 namespace TravelMe.Controllers
 {
-  //  [Authorize]
+    //  [Authorize]
     public class PostDetailsController : Controller
     {
         private ApplicationDbContext db;
@@ -29,24 +29,29 @@ namespace TravelMe.Controllers
             var postModel = db.Posts.Include(p => p.Place).SingleOrDefault(p => p.ID == id);
             var author = db.Users.FirstOrDefault(u => u.Id == postModel.UserID);
 
-            Post model = new Post
+            PostViewModel model = new PostViewModel
             {
-                ID = postModel.ID,
-                Title = postModel.Title,
-                Body = postModel.Body,
-                ImageUrl = postModel.ImageUrl,
-                UserID = author == null ? "Guest Account" : author.Email,
-                PlaceID = postModel.PlaceID,
-                Rating = postModel.Rating,
-                NumOfViews = postModel.NumOfViews,
-                DateAdded = postModel.DateAdded,
-                Place = postModel.Place
+                Post = new Post
+                {
+                    ID = postModel.ID,
+                    Title = postModel.Title,
+                    Body = postModel.Body,
+                    ImageUrl = postModel.ImageUrl,
+                    UserID = author == null ? "Guest Account" : author.Email,
+                    PlaceID = postModel.PlaceID,
+                    Rating = postModel.Rating,
+                    NumOfViews = postModel.NumOfViews,
+                    DateAdded = postModel.DateAdded,
+                    Place = postModel.Place,
+                    Category = postModel.Category,
+                    CategoryName = postModel.CategoryName,
+                }
             };
 
             //To Write Cookie to local computer
             HttpCookie cookie = new HttpCookie("Visited");
-            cookie["pid"] = model.ID.ToString();
-            cookie["uid"] = model.UserID.ToString();
+            cookie["pid"] = model.Post.ID.ToString();
+            cookie["uid"] = model.Post.UserID.ToString();
             Response.Cookies.Add(cookie);
             //HttpContext.CurrentHandler.Response.Cookies.Add(cookie);
 
@@ -54,11 +59,11 @@ namespace TravelMe.Controllers
 
             //to read cookie from local computer
             Cook temp = new Cook();
-           var cookie1 =  Request.Cookies["Visited"];
+            var cookie1 = Request.Cookies["Visited"];
             // 
             var t = cookie1["pid"];
             temp.UID = cookie1["uid"];
-            temp.PID=t;
+            temp.PID = t;
             db.Cooks.Add(temp);
             db.SaveChanges();
 
