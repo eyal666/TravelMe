@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace TravelMe_webapp.Models
+namespace TravelMe.ViewModel
 {
-    public class Category
+    public class PostVM
     {
         [Required]
-        public int ID { get; set; }
-        [Required]
-        [DisplayName("Category Name")]
         public string CategoryName { get; set; }
     }
 }

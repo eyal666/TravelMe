@@ -17,7 +17,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort>44393</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -194,12 +194,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
-    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\CooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembershipTypeController.cs" />
-    <Compile Include="Controllers\PlaceCatagoriesController.cs" />
     <Compile Include="Controllers\PlacesController.cs" />
     <Compile Include="Controllers\PostDetailsController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
@@ -212,6 +210,14 @@
     <Compile Include="Migrations\201910201330542_added_postsID.cs" />
     <Compile Include="Migrations\201910201330542_added_postsID.Designer.cs">
       <DependentUpon>201910201330542_added_postsID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910250813408_changeModels.cs" />
+    <Compile Include="Migrations\201910250813408_changeModels.Designer.cs">
+      <DependentUpon>201910250813408_changeModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910250921370_changeModels1.cs" />
+    <Compile Include="Migrations\201910250921370_changeModels1.Designer.cs">
+      <DependentUpon>201910250921370_changeModels1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -368,6 +374,12 @@
     <EmbeddedResource Include="Migrations\201910201330542_added_postsID.resx">
       <DependentUpon>201910201330542_added_postsID.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910250813408_changeModels.resx">
+      <DependentUpon>201910250813408_changeModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910250921370_changeModels1.resx">
+      <DependentUpon>201910250921370_changeModels1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -388,10 +400,11 @@
           <DevelopmentServerPort>61717</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>https://localhost:44393/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>https://localhost:44393/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl>https://localhost:44393/</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
