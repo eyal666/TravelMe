@@ -113,7 +113,7 @@ namespace TravelMe.Controllers
       {
         client.DownloadFile(postVM.Post.ImageUrl, imagePath);
       }
-      post.ImageUrl = imagePath;
+      post.ImageUrl = "/Content/Photos/Posts/" + post.ID + ".png";
       place.AddPostID(post.ID);
       db.SaveChanges();
       return Redirect("/PostDetails/Index/" + post.ID);
