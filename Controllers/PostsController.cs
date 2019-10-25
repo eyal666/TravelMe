@@ -91,7 +91,7 @@ namespace TravelMe.Controllers
         place.NumOfPosts++;
         place.AvgRating = (avg + postVM.Post.Rating) / place.NumOfPosts;
       }
-     
+
       var post = new Post
       {
         ID = postVM.Post.ID,
@@ -119,6 +119,64 @@ namespace TravelMe.Controllers
       return Redirect("/PostDetails/Index/" + post.ID);
     }
 
+    
+    [ValidateAntiForgeryToken]
+    [Authorize()]
+    public int CreateEdit(Post newPost)
+    {
+      var userid = User.Identity.GetUserId();
+      var user = db.Users.FirstOrDefault(u => u.Id == userid);
+
+
+      var place = db.Places.FirstOrDefault(p => p.Address == newPost.Place.Address);
+      if (place == null)
+      {
+        place = new Place
+        {
+          Address = newPost.Place.Address,
+          Longtitude = newPost.Place.Longtitude,
+          Latitude = newPost.Place.Latitude,
+          AvgRating = newPost.Rating,
+          NumOfPosts = 1
+        };
+        db.Places.Add(place);
+      }
+      else
+      {
+        var avg = db.Posts
+                    .Where(p => p.PlaceID == place.ID && p.Rating != 0)
+                    .Average(p => p.Rating);
+        place.NumOfPosts++;
+        place.AvgRating = (avg + newPost.Rating) / place.NumOfPosts;
+      }
+
+      var post = new Post
+      {
+        ID = newPost.ID,
+        Title = newPost.Title,
+        Body = newPost.Body,
+        ImageUrl = "",
+        UserID = user == null ? "Guest Account" : user.Id,
+        PlaceID = place.ID,
+        Rating = newPost.Rating,
+        NumOfViews = newPost.NumOfViews,
+        DateAdded = DateTime.Parse(newPost.DateAdded.ToString()),
+        Place = place
+      };
+      db.Posts.Add(post);
+      db.SaveChanges();
+      //Caching post picture
+      var imagePath = Server.MapPath("~/Content/Photos/Posts/" + post.ID + ".png");
+      using (var client = new WebClient())
+      {
+        client.DownloadFile(newPost.ImageUrl, imagePath);
+      }
+      post.ImageUrl = "/Content/Photos/Posts/" + post.ID + ".png";
+      place.AddPostID(post.ID);
+      db.SaveChanges();
+      return post.ID;
+    }
+
     // GET: Posts/Edit/5
     [Authorize()]
     public ActionResult Edit(int? id)
@@ -144,14 +202,11 @@ namespace TravelMe.Controllers
     [Authorize()]
     public ActionResult Edit(Post post)
     {
-      if (ModelState.IsValid)
-      {
-        db.Entry(post).State = EntityState.Modified;
-        db.SaveChanges();
-        return Redirect("/PostDetails/Index/" + post.ID);
-      }
-      ViewBag.PlaceID = new SelectList(db.Places, "ID", "Address", post.PlaceID);
-      return View(post);
+      Post oldPost = post;
+      DeleteConfirmed(post.ID);
+      int newID = CreateEdit(oldPost);
+      return Redirect("/PostDetails/Index/" + newID);
+
     }
 
     // GET: Posts/Delete/5
@@ -178,6 +233,11 @@ namespace TravelMe.Controllers
     {
       Post post = db.Posts.Find(id);
       Place place = db.Places.Find(post.PlaceID);
+      string imgToDelete = Server.MapPath("~/Content/Photos/Posts/" + post.ID + ".png");
+      if (System.IO.File.Exists(imgToDelete))
+      {
+        System.IO.File.Delete(imgToDelete);
+      }
       if (place.NumOfPosts <= 1)
       {
         db.Places.Remove(place);
