@@ -1,4 +1,4 @@
-﻿@model TravelMe_webapp.Models.Post
+﻿@model TravelMe.ViewModel.PostViewModel
 
 @using TravelMe.Utils;
 @using Microsoft.AspNet.Identity;
@@ -11,78 +11,87 @@
 
 <script src="~/Scripts/google-map.js"></script>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script>setCoordinates("@Model.Place.Latitude","@Model.Place.Longtitude")</script>
+<script>setCoordinates("@Model.Post.Place.Latitude","@Model.Post.Place.Longtitude")</script>
 <div> </div>
 <div class="row">
     <div class="col-sm-3 col-xs-4 image-post">
-        <img class="thumbnail-img" src="@Model.ImageUrl" alt="" style="width:100%;height:auto;padding:10px;" />
+        <img class="thumbnail-img" src="@Model.Post.ImageUrl" alt="" style="width:100%;height:auto;padding:10px;" />
     </div>
 
 
     <div class="col-sm-6 col-xs-8 content-post-main">
         <div class="content-post-title-author">
-            <h2><b>@Model.Title </b></h2>
-            <h5>@Model.Place.Address</h5>
+            <h2><b>@Model.Post.Title </b></h2>
+            <h4><b>Category: </b>@Model.Post.CategoryName</h4>
+            <h5>@Model.Post.Place.Address</h5>
             <h5 id="tempurature"></h5>
             <script>setTemperatures()</script>
-            <h6>By: @Model.UserID</h6>
-            @if (Model.UserID.Equals(User.Identity.GetUserName()) || User.IsInRole(SD.AdminUserRole))
+            <h6>By: @Model.Post.UserID</h6>
+            @if (Model.Post.UserID.Equals(User.Identity.GetUserName()) || User.IsInRole(SD.AdminUserRole))
             {
-                <span><a type="button" href="@string.Format("https://localhost:44393/Posts/Edit/{0}", @Model.ID)" class="btn btn-sm btn-primary" style="margin-bottom:10px;">Edit Post</a></span>
-                <span><a type="button" href="@string.Format("https://localhost:44393/Posts/Delete/{0}", @Model.ID)" class="btn btn-sm btn-danger" style="margin-bottom:10px;">Delete Post</a></span>
+                <span><a type="button" href="@string.Format("https://localhost:44393/Posts/Edit/{0}", @Model.Post.ID)" class="btn btn-sm btn-primary" style="margin-bottom:10px;">Edit Post</a></span>
+                <span><a type="button" href="@string.Format("https://localhost:44393/Posts/Delete/{0}", @Model.Post.ID)" class="btn btn-sm btn-danger" style="margin-bottom:10px;">Delete Post</a></span>
             }
         </div>
         <div>
             <br />
-            <span>@Html.Raw(Model.Body)</span>
+            <span>@Html.Raw(Model.Post.Body)</span>
         </div><br />
     </div>
 
 
     <div class="col-sm-3 col-xs-12 content-post-product-details">
-        <dl>
-            <dt>
-                @Html.DisplayNameFor(m => m.DateAdded)
-            </dt>
-            <dd>
-                &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.DateAdded)
-            </dd>
-        </dl>
-        <dl>
-            <dt>
-                @Html.DisplayNameFor(m => m.Place.AvgRating)
-            </dt>
-            <dd>
-                &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Place.AvgRating)
-            </dd>
-        </dl>
-        <dl>
-            <dt>
-                @Html.DisplayNameFor(m => m.Place.NumOfPosts)
-            </dt>
-            <dd>
-                &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Place.NumOfPosts)
-            </dd>
-        </dl>
-        <dl>
-            <dt>
-                @Html.DisplayNameFor(m => m.Rating)
-            </dt>
-            <dd>
-                &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Rating)
-            </dd>
-        </dl>
-        <dl>
-            <dt>Follow our page on Facebook</dt>
-            <dd>
-                <div class="fb-like" data-href="https://www.facebook.com/TravelMe-108028913949644" data-width="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-            </dd>
-        </dl>
+      <dl>
+        <dt>
+          @Html.DisplayNameFor(m => m.Post.DateAdded)
+        </dt>
+        <dd>
+          &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.DateAdded)
+        </dd>
+      </dl>
+      <dl>
+        <dt>
+          @Html.DisplayNameFor(m => m.Post.NumOfViews)
+        </dt>
+        <dd>
+          &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.NumOfViews)
+        </dd>
+      </dl>
+      <dl>
+        <dt>
+          @Html.DisplayNameFor(m => m.Post.Place.AvgRating)
+        </dt>
+        <dd>
+          &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.Place.AvgRating)
+        </dd>
+      </dl>
+      <dl>
+        <dt>
+          @Html.DisplayNameFor(m => m.Post.Place.NumOfPosts)
+        </dt>
+        <dd>
+          &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.Place.NumOfPosts)
+        </dd>
+      </dl>
+      <dl>
+        <dt>
+          @Html.DisplayNameFor(m => m.Post.Rating)
+        </dt>
+        <dd>
+          &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.Rating)
+        </dd>
+      </dl>
+      <dl>
+        <dt>Follow our page on Facebook</dt>
+        <dd>
+          <div class="fb-like" data-href="https://www.facebook.com/TravelMe-108028913949644" data-width="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+        </dd>
+      </dl>
 
-        @Html.HiddenFor(m => m.PlaceID)
+      @Html.HiddenFor(m => m.Post.PlaceID)
     </div>
 </div>
-<div class="fb-comments" data-href="@string.Format("https://localhost:44393/PostDetails/Index/{0}", @Model.ID)" data-width="" data-numposts="5"></div>
+<div class="fb-comments" data-href="@string.Format("https://localhost:44393/PostDetails/Index/{0}", @Model.Post.ID)" data-width="" data-numposts="5"></div>
 
 <div class="row post-buttom">
     <div id="map" class="google-map col-md-9">

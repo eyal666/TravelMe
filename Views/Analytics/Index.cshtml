@@ -1,17 +1,14 @@
 ﻿@using TravelMe.Models
+@using TravelMe.ViewModel
+@using System.Linq;
+
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "TravelMe - Analytics";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ApplicationDbContext db = new ApplicationDbContext();
 }
-<header>
-    <h3>Ratings Chart</h3>
-</header>
 <hr />
 <head>
-    <title>TravelMe - Analytics</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
     <style>
         body {
             /width:1060px;
@@ -60,16 +57,32 @@
         }
     </style>
 </head>
-<div class="row d-flex justify-content-center">
-    <div id='dashboard' class="col-auto"></div>
-</div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Ratings per post</h3>
+
+            <div id="ratings" class="col-auto"></div>
+        </div>
+        <div class="col-md-6">
+            <h3>Unique posts per place</h3>
+            <div id="posts" class="col-auto"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Posts per Category</h3>
+            <div id="categories" class="col-auto"></div>
+        </div>
+    </div>
+</div>
 <hr />
 
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script>
     function dashboard(id, fData) {
-        var barColor = '#6d7cf3';
+        var barColor = '#18BB9C';
         // compute total for each state.
         fData.forEach(function (d) { d.total = d.freq.low + d.freq.mid + d.freq.high; });
         // function to handle histogram.
@@ -212,5 +225,69 @@
       , { State: '4', freq: { low: 0, mid: 0, high: JSAvailabilityArr[3]}}
       , { State: '5', freq: { low: 0, mid: 0, high: JSAvailabilityArr[4]}}
 ];
-dashboard('#dashboard',freqData);
+    dashboard('#ratings', freqData);
+</script>
+<script>
+    @{
+        int[] postsData =
+        {
+            db.Posts.Count(t => t.Place.NumOfPosts == 1),
+            db.Posts.Count(t => t.Place.NumOfPosts == 2),
+            db.Posts.Count(t => t.Place.NumOfPosts == 3),
+            db.Posts.Count(t => t.Place.NumOfPosts == 4),
+            db.Posts.Count(t => t.Place.NumOfPosts >= 5),
+        };
+    }
+        var JSAvailabilityArr = [
+        @postsData[0],
+        @postsData[1],
+        @postsData[2],
+        @postsData[3],
+        @postsData[4]
+    ];
+  var freqData=[
+        { State: '1', freq: { low: 0, mid: 0, high: JSAvailabilityArr[0]}}
+      , { State: '2', freq: { low: 0, mid: 0, high: JSAvailabilityArr[1]}}
+      , { State: '3', freq: { low: 0, mid: 0, high: JSAvailabilityArr[2]}}
+      , { State: '4', freq: { low: 0, mid: 0, high: JSAvailabilityArr[3]}}
+      , { State: '5', freq: { low: 0, mid: 0, high: JSAvailabilityArr[4]}}
+];
+    dashboard('#posts', freqData);
+</script>
+<script>
+    @{
+        var postVMs = from post in db.Posts
+                      join category in db.Categories on post.CategoryName equals category.CategoryName
+                      where post.CategoryName == category.CategoryName
+                      select new PostViewModel
+                      {
+                          Post = post,
+                      };
+        int[] data =
+    {
+            postVMs.Count(p => p.Post.CategoryName == "nature"),
+            postVMs.Count(p => p.Post.CategoryName == "sport"),
+            postVMs.Count(p => p.Post.CategoryName == "shopping"),
+            postVMs.Count(p => p.Post.CategoryName == "culture"),
+            postVMs.Count(p => p.Post.CategoryName == "restaurants"),
+            postVMs.Count(p => p.Post.CategoryName == "religion"),
+        };
+    }
+        var JSAvailabilityArr = [
+        @data[0],
+        @data[1],
+        @data[2],
+        @data[3],
+        @data[4],
+        @data[5]
+    ];
+  var freqData=[
+        { State: 'Nature', freq: { low: 0, mid: 0, high: JSAvailabilityArr[0]}}
+      , { State: 'Sport', freq: { low: 0, mid: 0, high: JSAvailabilityArr[1]}}
+      , { State: 'Shopping', freq: { low: 0, mid: 0, high: JSAvailabilityArr[2]}}
+      , { State: 'Culture', freq: { low: 0, mid: 0, high: JSAvailabilityArr[3]}}
+      , { State: 'Restaurants', freq: { low: 0, mid: 0, high: JSAvailabilityArr[4]}}
+      , { State: 'Religion', freq: { low: 0, mid: 0, high: JSAvailabilityArr[5]}}
+];
+    dashboard('#categories', freqData);
 </script>

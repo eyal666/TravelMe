@@ -1,7 +1,7 @@
 ﻿@model TravelMe.ViewModel.PostViewModel
-
+@using TravelMe.Utils;
 @{
-  ViewBag.Title = "Create";
+    ViewBag.Title = "Create";
 }
 <script src="~/Scripts/place-search.js"></script>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -9,67 +9,79 @@
         async defer></script>
 @using (Html.BeginForm())
 {
-  @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h3>Add a New Post</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-border col-md-12">
 
-  <div class="form-horizontal">
-    <h3>Add a New Post</h3>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-  <div class="form-border col-md-12">
-    <div class="form-group">
-      @Html.LabelFor(model => model.Post.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-      <div class="col-md-10">
-        @Html.EditorFor(model => model.Post.Title, new { htmlAttributes = new { @class = "form-control col-md-6"} })
-        @Html.ValidationMessageFor(model => model.Post.Title, "", new { @class = "text-danger" })
-      </div>
-    </div>
-
-    <div class="form-group">
-      @Html.LabelFor(model => model.Post.Place.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-      <div class="col-md-10">
-        @Html.EditorFor(model => model.Post.Place.Address, new { htmlAttributes = new { @class = "form-control", id = "place-search", type = "text", placeholder = "Search for a place..." } })
-        @Html.ValidationMessageFor(model => model.Post.Place.Address, "", new { @class = "text-danger" })
-        @Html.EditorFor(model => model.Post.Place.Latitude, new { htmlAttributes = new { id = "latitude", type = "hidden" } })
-        @Html.EditorFor(model => model.Post.Place.Longtitude, new { htmlAttributes = new { id = "longtitude", type = "hidden" } })
-      </div>
-    </div>
-
-    <div class="form-group">
-      <img id="img-box" class="img-post col-md-10" src="~/Content/Photos/default-pic.jpg" />
-    </div>
-
-      <div class="form-group">
-        @Html.LabelFor(model => model.Post.Body, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-          @Html.TextAreaFor(model => model.Post.Body, new { @class = "form-control", style = "height:500px;" })
-          @Html.ValidationMessageFor(model => model.Post.Body, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Post.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Post.Title, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                @Html.ValidationMessageFor(model => model.Post.Title, "", new { @class = "text-danger" })
+            </div>
         </div>
-      </div>
 
-      <div>
-        @Html.EditorFor(model => model.Post.ImageUrl, new { htmlAttributes = new { id = "image-url", type = "hidden" } })
-        @Html.ValidationMessageFor(model => model.Post.ImageUrl, "", new { @class = "text-danger" })
-      </div>
-
-
-      <div class="form-group">
-        @Html.LabelFor(model => model.Post.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-          @Html.RadioButtonFor(m => m.Post.Rating, "1", htmlAttributes: new { @class = "control-label" }) @*TODO: change radio buttons to a real favorite bar*@
-          @Html.RadioButtonFor(m => m.Post.Rating, "2")
-          @Html.RadioButtonFor(m => m.Post.Rating, "3")
-          @Html.RadioButtonFor(m => m.Post.Rating, "4")
-          @Html.RadioButtonFor(m => m.Post.Rating, "5")
-          @Html.ValidationMessageFor(model => model.Post.Rating, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Post.CategoryName, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Post.CategoryName, new SelectList(Model.Categories, "CategoryName", "CategoryName"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Post.CategoryName, "", new { @class = "text-danger" })
+            </div>
         </div>
-      </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Post.Place.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Post.Place.Address, new { htmlAttributes = new { @class = "form-control", id = "place-search", type = "text", placeholder = "Search for a place..." } })
+                @Html.ValidationMessageFor(model => model.Post.Place.Address, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Post.Place.Latitude, new { htmlAttributes = new { id = "latitude", type = "hidden" } })
+                @Html.EditorFor(model => model.Post.Place.Longtitude, new { htmlAttributes = new { id = "longtitude", type = "hidden" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <img id="img-box" class="img-post col-md-10" src="~/Content/Photos/default-pic.jpg" />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Post.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Post.Body, new { @class = "form-control", style = "height:500px;" })
+                @Html.ValidationMessageFor(model => model.Post.Body, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>
+            @Html.EditorFor(model => model.Post.ImageUrl, new { htmlAttributes = new { id = "image-url", type = "hidden" } })
+            @Html.ValidationMessageFor(model => model.Post.ImageUrl, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Post.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.RadioButtonFor(m => m.Post.Rating, "1", htmlAttributes: new { @class = "control-label" })
+                @Html.RadioButtonFor(m => m.Post.Rating, "2")
+                @Html.RadioButtonFor(m => m.Post.Rating, "3")
+                @Html.RadioButtonFor(m => m.Post.Rating, "4")
+                @Html.RadioButtonFor(m => m.Post.Rating, "5")
+                @Html.ValidationMessageFor(model => model.Post.Rating, "", new { @class = "text-danger" })
+            </div>
+            <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 &nbsp; 2 &nbsp; 3 &nbsp;4&nbsp; 5</span>
+        </div>
 
     </div>
-    <div class="form-group">
-      <div class="col-md-10">
-        @Html.Partial("_BackToListButtonPartial")
-        <input type="submit" value="Create" class="btn btn-success btn-sm" />
-      </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @if (User.IsInRole(SD.AdminUserRole))
+                {
+                    @Html.Partial("_BackToListButtonPartial")
+                }
+                <input type="submit" value="Create" class="btn btn-success btn-sm" />
+            </div>
+        </div>
     </div>
-  </div>
 }

@@ -27,10 +27,16 @@ namespace TravelMe_webapp.Models
         [DisplayName("View Count")]
         public int NumOfViews { get; set; }
         [Required]
-        [DisplayFormat(DataFormatString = "{0: dd/mm/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy}")]
         [DisplayName("Date Added")]
         public DateTime DateAdded { get; set; }
         [Required]
         public Place Place { get; set; }
+
+        [Required]
+        public string CategoryName { get; set; }
+
+        public Category Category { get; set; }
+
     }
 }

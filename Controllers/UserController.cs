@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace TravelMe.Controllers
 {
-    //[Authorize(Roles = SD.AdminUserRole)]
+    [Authorize(Roles = SD.AdminUserRole)]
     public class UserController : Controller
     {
         private ApplicationDbContext db;

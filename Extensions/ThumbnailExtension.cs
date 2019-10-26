@@ -41,79 +41,50 @@ namespace TravelMe.Extensions
                               }
                               ).ToList();
                 List<ThumbnailModel> helper = new List<ThumbnailModel>();
+                if (r1) AddToHelper(1, helper, thumbnails);
+                if (r2) AddToHelper(2, helper, thumbnails);
+                if (r3) AddToHelper(3, helper, thumbnails);
+                if (r4) AddToHelper(4, helper, thumbnails);
+                if (r5) AddToHelper(5, helper, thumbnails);
 
-                //if (!String.IsNullOrEmpty(search))
-                //{
-                //    return thumbnails.Where(t => t.Title.ToLower().Contains(search.ToLower())).OrderBy(t => t.Title);
-                //}
                 if (!String.IsNullOrEmpty(search) && searchOpt != null)
                 {
+                    if (helper.Count() == 0)
+                    {
+                        helper = thumbnails;
+                    }
                     if (searchOpt.Equals(SD.byPlaceName))
                     {
-                        return thumbnails.Where(t => t.Place.Address.ToLower().Contains(search.ToLower()));
+                        return helper.Where(t => t.Place.Address.ToLower().Contains(search.ToLower()));
                     }
                     else if (searchOpt.Equals(SD.byTitle))
                     {
-                        return thumbnails.Where(t => t.Title.ToLower().Contains(search.ToLower()));
+                        return helper.Where(t => t.Title.ToLower().Contains(search.ToLower()));
                     }
                     else if (searchOpt.Equals(SD.byBody))
                     {
-                        return thumbnails.Where(t => t.Body.ToLower().Contains(search.ToLower()));
-                    }
-                }
-
-                if (r1)
-                {
-                    var filteredThumbs = thumbnails.FindAll(t => t.Post.Rating == 1);
-                    foreach (var t in filteredThumbs)
-                    {
-                        helper.Add(t);
-                    }
-                }
-                if (r2)
-                {
-                    var filteredThumbs = thumbnails.FindAll(t => t.Post.Rating == 2);
-                    foreach (var t in filteredThumbs)
-                    {
-                        helper.Add(t);
-                    }
-                }
-                if (r3)
-                {
-                    var filteredThumbs = thumbnails.FindAll(t => t.Post.Rating == 3);
-                    foreach (var t in filteredThumbs)
-                    {
-                        helper.Add(t);
-                    }
-                }
-                if (r4)
-                {
-                    var filteredThumbs = thumbnails.FindAll(t => t.Post.Rating == 4);
-                    foreach (var t in filteredThumbs)
-                    {
-                        helper.Add(t);
-                    }
-                }
-                if (r5)
-                {
-                    var filteredThumbs = thumbnails.FindAll(t => t.Post.Rating == 5);
-                    foreach (var t in filteredThumbs)
-                    {
-                        helper.Add(t);
+                        return helper.Where(t => t.Body.ToLower().Contains(search.ToLower()));
                     }
                 }
                 if (r1 || r2 || r3 || r4 || r5)
                 {
                     thumbnails = helper;
                     return thumbnails.OrderByDescending(t => t.Post.Rating).ThenByDescending(t => t.Post.DateAdded);
-
                 }
 
             }
             catch (Exception) { }
-
             return thumbnails.OrderByDescending(t => t.Post.DateAdded);
 
+        }
+
+        public static void AddToHelper(int r, List<ThumbnailModel> helper, List<ThumbnailModel> thumbnails)
+        {
+            var filteredThumbs = thumbnails.FindAll(t => t.Post.Rating == r);
+            foreach (var t in filteredThumbs)
+            {
+                helper.Add(t);
+            }
         }
     }
 }

@@ -24,7 +24,7 @@ namespace TravelMe.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -36,9 +36,9 @@ namespace TravelMe.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -122,7 +122,7 @@ namespace TravelMe.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -145,10 +145,12 @@ namespace TravelMe.Controllers
             {
                 RegisterViewModel newUser = new RegisterViewModel
                 {
-                    MembershipTypes = db.MembershipTypes.Where(m => !m.Name.ToLower().Equals(SD.AdminUserRole.ToLower())).ToList(),
+                    // MembershipTypes = db.MembershipTypes.Where(m => !m.Name.ToLower().Equals(SD.AdminUserRole.ToLower())).ToList(),
+                    MembershipTypes = db.MembershipTypes.ToList(),
                     BirthDate = DateTime.Now
-               
+
                 };
+                ViewBag.NumOfAdmins = db.Users.Where(u => u.MembershipTypeId.Equals(2)).Count();
                 return View(newUser);
             }
         }
@@ -170,7 +172,7 @@ namespace TravelMe.Controllers
                     LastName = model.LastName,
                     FirstName = model.FirstName,
                     Phone = model.Phone,
-                    MembershipTypeId = model.MembershipTypeId,
+                    MembershipTypeId = model.MembershipTypeId == 0 ? 1 : model.MembershipTypeId,
                     Disable = false
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -181,9 +183,9 @@ namespace TravelMe.Controllers
                         model.MembershipTypes = db.MembershipTypes.ToList();
                         var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                         var roleManager = new RoleManager<IdentityRole>(roleStore);
-                        var memebership = model.MembershipTypes.SingleOrDefault(m => m.Id == model.MembershipTypeId).Name.ToString();
+                        var membership = model.MembershipTypes.SingleOrDefault(m => m.Id == user.MembershipTypeId).Name.ToString();
 
-                        if (memebership.ToLower().Contains("admin"))
+                        if (membership.ToLower().Contains("admin"))
                         {
                             //For Super Admin
                             await roleManager.CreateAsync(new IdentityRole(SD.AdminUserRole));
@@ -197,8 +199,8 @@ namespace TravelMe.Controllers
                         }
                     }
 
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -389,7 +391,15 @@ namespace TravelMe.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    using (var db = ApplicationDbContext.Create())
+                    {
+                        return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel
+                        {
+                            Email = loginInfo.Email,
+                            BirthDate = DateTime.Now,
+                            MembershipTypes = db.MembershipTypes.Where(m => !m.Name.ToLower().Equals(SD.AdminUserRole.ToLower())).ToList()
+                        });
+                    }
             }
         }
 
@@ -413,7 +423,21 @@ namespace TravelMe.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var name = info.ExternalIdentity.Name.Split(' ');
+                var firstName = name[0].ToString();
+                var lastName = name[1].ToString();
+
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    BirthDate = model.BirthDate,
+                    Phone = model.Phone,
+                    MembershipTypeId = model.MembershipTypeId,
+                    Disable = false
+                };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

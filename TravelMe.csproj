@@ -17,7 +17,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
     <IISExpressSSLPort>44393</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -192,13 +193,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
-    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\CooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembershipTypeController.cs" />
-    <Compile Include="Controllers\PlaceCatagoriesController.cs" />
     <Compile Include="Controllers\PlacesController.cs" />
     <Compile Include="Controllers\PostDetailsController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
@@ -208,61 +208,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910141206305_change_altitude_to_longtitude.cs" />
-    <Compile Include="Migrations\201910141206305_change_altitude_to_longtitude.Designer.cs">
-      <DependentUpon>201910141206305_change_altitude_to_longtitude.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910141247520_AddedThumbnailModel.cs" />
-    <Compile Include="Migrations\201910141247520_AddedThumbnailModel.Designer.cs">
-      <DependentUpon>201910141247520_AddedThumbnailModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910151114592_test1.cs" />
-    <Compile Include="Migrations\201910151114592_test1.Designer.cs">
-      <DependentUpon>201910151114592_test1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910151600250_Altitude_Longtitude_PostsController.cs" />
-    <Compile Include="Migrations\201910151600250_Altitude_Longtitude_PostsController.Designer.cs">
-      <DependentUpon>201910151600250_Altitude_Longtitude_PostsController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910170848218_addMemberShipTypeToDatabase.cs" />
-    <Compile Include="Migrations\201910170848218_addMemberShipTypeToDatabase.Designer.cs">
-      <DependentUpon>201910170848218_addMemberShipTypeToDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910171056330_Change_Post_Name_Arttibute_to_Address.cs" />
-    <Compile Include="Migrations\201910171056330_Change_Post_Name_Arttibute_to_Address.Designer.cs">
-      <DependentUpon>201910171056330_Change_Post_Name_Arttibute_to_Address.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910170856105_seedMemberShipTypeDatabase.cs" />
-    <Compile Include="Migrations\201910170856105_seedMemberShipTypeDatabase.Designer.cs">
-      <DependentUpon>201910170856105_seedMemberShipTypeDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910171133508_addFiledsToMemberShipTable.cs" />
-    <Compile Include="Migrations\201910171133508_addFiledsToMemberShipTable.Designer.cs">
-      <DependentUpon>201910171133508_addFiledsToMemberShipTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910171247456_addedNewRegister.cs" />
-    <Compile Include="Migrations\201910171247456_addedNewRegister.Designer.cs">
-      <DependentUpon>201910171247456_addedNewRegister.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910181358153_merge1.cs" />
-    <Compile Include="Migrations\201910181358153_merge1.Designer.cs">
-      <DependentUpon>201910181358153_merge1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910181217349_addedUser.cs" />
-    <Compile Include="Migrations\201910181217349_addedUser.Designer.cs">
-      <DependentUpon>201910181217349_addedUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910181325223_changeMemberShi.cs" />
-    <Compile Include="Migrations\201910181325223_changeMemberShi.Designer.cs">
-      <DependentUpon>201910181325223_changeMemberShi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910191210406_cookie.cs" />
-    <Compile Include="Migrations\201910191210406_cookie.Designer.cs">
-      <DependentUpon>201910191210406_cookie.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201910201330542_added_postsID.cs" />
     <Compile Include="Migrations\201910201330542_added_postsID.Designer.cs">
       <DependentUpon>201910201330542_added_postsID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910250813408_changeModels.cs" />
+    <Compile Include="Migrations\201910250813408_changeModels.Designer.cs">
+      <DependentUpon>201910250813408_changeModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910250921370_changeModels1.cs" />
+    <Compile Include="Migrations\201910250921370_changeModels1.Designer.cs">
+      <DependentUpon>201910250921370_changeModels1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -291,16 +247,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Media\video.mp4" />
-    <Content Include="Content\Photos\america.jpg" />
     <Content Include="Content\Photos\arrows.jpg" />
     <Content Include="Content\Photos\default-pic.jpg" />
-    <Content Include="Content\Photos\jaffa.jpg" />
     <Content Include="Content\Photos\markercluster1.png" />
-    <Content Include="Content\Photos\maldives.jpg" />
-    <Content Include="Content\Photos\morroco.jpg" />
-    <Content Include="Content\Photos\paris.jpg" />
-    <Content Include="Content\Photos\peru.jpg" />
-    <Content Include="Content\Photos\russia.jpg" />
     <Content Include="Content\postDetails.css" />
     <Content Include="Content\social.css" />
     <Content Include="Content\thumbnail.css" />
@@ -402,9 +351,11 @@
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\Analytics\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Photos\Posts\" />
     <Folder Include="Views\Cooks\" />
   </ItemGroup>
   <ItemGroup>
@@ -421,47 +372,14 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910141206305_change_altitude_to_longtitude.resx">
-      <DependentUpon>201910141206305_change_altitude_to_longtitude.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910141247520_AddedThumbnailModel.resx">
-      <DependentUpon>201910141247520_AddedThumbnailModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910151114592_test1.resx">
-      <DependentUpon>201910151114592_test1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910151600250_Altitude_Longtitude_PostsController.resx">
-      <DependentUpon>201910151600250_Altitude_Longtitude_PostsController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910171056330_Change_Post_Name_Arttibute_to_Address.resx">
-      <DependentUpon>201910171056330_Change_Post_Name_Arttibute_to_Address.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910170848218_addMemberShipTypeToDatabase.resx">
-      <DependentUpon>201910170848218_addMemberShipTypeToDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910170856105_seedMemberShipTypeDatabase.resx">
-      <DependentUpon>201910170856105_seedMemberShipTypeDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910171133508_addFiledsToMemberShipTable.resx">
-      <DependentUpon>201910171133508_addFiledsToMemberShipTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910171247456_addedNewRegister.resx">
-      <DependentUpon>201910171247456_addedNewRegister.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910181358153_merge1.resx">
-      <DependentUpon>201910181358153_merge1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910181217349_addedUser.resx">
-      <DependentUpon>201910181217349_addedUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910181325223_changeMemberShi.resx">
-      <DependentUpon>201910181325223_changeMemberShi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910191210406_cookie.resx">
-      <DependentUpon>201910191210406_cookie.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910201330542_added_postsID.resx">
       <DependentUpon>201910201330542_added_postsID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910250813408_changeModels.resx">
+      <DependentUpon>201910250813408_changeModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910250921370_changeModels1.resx">
+      <DependentUpon>201910250921370_changeModels1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -483,10 +401,11 @@
           <DevelopmentServerPort>61717</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>https://localhost:44393/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>https://localhost:44393/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl>https://localhost:44393/</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

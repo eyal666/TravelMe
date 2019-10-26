@@ -13,7 +13,7 @@
 <table class="table table-condensed table-hover">
     <tr class="table-header">
         <th>
-            @Html.DisplayNameFor(m => m.Name)
+            @Html.DisplayNameFor(m => m.CategoryName)
         </th>
         <th></th>
         <th></th>
@@ -23,7 +23,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(m => item.Name)
+                @Html.DisplayFor(m => item.CategoryName)
             </td>
             <td>
                 @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { CategoriesId = item.ID })
