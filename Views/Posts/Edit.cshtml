@@ -20,61 +20,63 @@
         @Html.HiddenFor(model => model.Post.ID)
 
         <div class="row form-border">
-            <div class="col-sm-9">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Post.CategoryName, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.Post.CategoryName, new SelectList(Model.Categories, "CategoryName", "CategoryName"), new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Post.CategoryName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Post.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Post.Title, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Post.Title, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Post.Body, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Post.Body, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Post.Body, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Post.Place.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Post.Place.Address, new { htmlAttributes = new { @class = "form-control", id = "place-search", type = "text", placeholder = "Search for a place..." } })
-                        @Html.ValidationMessageFor(model => model.Post.Place.Address, "", new { @class = "text-danger" })
-                        @Html.EditorFor(model => model.Post.Place.Latitude, new { htmlAttributes = new { id = "latitude", type = "hidden" } })
-                        @Html.EditorFor(model => model.Post.Place.Longtitude, new { htmlAttributes = new { id = "longtitude", type = "hidden" } })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <img id="img-box" class="img-post col-md-10" src="~/Content/Photos/default-pic.jpg" />
-                </div>
-
-                <div>
-                    @Html.EditorFor(model => model.Post.ImageUrl, new { htmlAttributes = new { id = "image-url", type = "hidden" } })
-                    @Html.ValidationMessageFor(model => model.Post.ImageUrl, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Post.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.RadioButtonFor(m => m.Post.Rating, "1", htmlAttributes: new { @class = "control-label" })
-                        @Html.RadioButtonFor(m => m.Post.Rating, "2")
-                        @Html.RadioButtonFor(m => m.Post.Rating, "3")
-                        @Html.RadioButtonFor(m => m.Post.Rating, "4")
-                        @Html.RadioButtonFor(m => m.Post.Rating, "5")
-                        @Html.ValidationMessageFor(model => model.Post.Rating, "", new { @class = "text-danger" })
-                    </div>
-                    <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 &nbsp; 2 &nbsp; 3 &nbsp;4&nbsp; 5</span>
-                </div>
+          <div class="col-sm-9">
+            <div class="form-group">
+              @Html.LabelFor(model => model.Post.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+              <div class="col-md-10">
+                @Html.EditorFor(model => model.Post.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Post.Title, "", new { @class = "text-danger" })
+              </div>
             </div>
+            <div class="form-group">
+              @Html.LabelFor(model => model.Post.CategoryName, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
+              <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Post.CategoryName, new SelectList(Model.Categories, "CategoryName", "CategoryName"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Post.CategoryName, "", new { @class = "text-danger" })
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              @Html.LabelFor(model => model.Post.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+              <div class="col-md-10">
+                @Html.EditorFor(model => model.Post.Body, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Post.Body, "", new { @class = "text-danger" })
+              </div>
+            </div>
+            <div class="form-group">
+              @Html.LabelFor(model => model.Post.Place.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+              <div class="col-md-10">
+                @Html.EditorFor(model => model.Post.Place.Address, new { htmlAttributes = new { @class = "form-control", id = "place-search", type = "text", placeholder = "Search for a place...", value = Model.Post.Place.Address} })
+                @Html.ValidationMessageFor(model => model.Post.Place.Address, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Post.Place.Latitude, new { htmlAttributes = new { id = "latitude", type = "hidden"} })
+                @Html.EditorFor(model => model.Post.Place.Longtitude, new { htmlAttributes = new { id = "longtitude", type = "hidden"} })
+                
+              </div>
+            </div>
+
+            <div class="form-group">
+              <img id="img-box" class="img-post col-md-10" src=@Model.Post.ImageUrl />
+            </div>
+
+            <div>
+              @Html.EditorFor(model => model.Post.ImageUrl, new { htmlAttributes = new { id = "image-url", type = "hidden" } })
+              @Html.ValidationMessageFor(model => model.Post.ImageUrl, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+              @Html.LabelFor(model => model.Post.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+              <div class="col-md-10">
+                @Html.RadioButtonFor(m => m.Post.Rating, "1", htmlAttributes: new { @class = "control-label" })
+                @Html.RadioButtonFor(m => m.Post.Rating, "2")
+                @Html.RadioButtonFor(m => m.Post.Rating, "3")
+                @Html.RadioButtonFor(m => m.Post.Rating, "4")
+                @Html.RadioButtonFor(m => m.Post.Rating, "5")
+                @Html.ValidationMessageFor(model => model.Post.Rating, "", new { @class = "text-danger" })
+              </div>
+              <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 &nbsp; 2 &nbsp; 3 &nbsp;4&nbsp; 5</span>
+            </div>
+          </div>
         </div>
         <div class="form-group">
             <div class="col-md-10">

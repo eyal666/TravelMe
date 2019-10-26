@@ -198,6 +198,7 @@ namespace TravelMe.Controllers
       {
         return HttpNotFound();
       }
+      post.Place = db.Places.Find(post.PlaceID);
       var model = new PostViewModel
       {
         Post = post,
@@ -215,8 +216,16 @@ namespace TravelMe.Controllers
     [Authorize()]
     public ActionResult Edit(Post post)
     {
-      Post oldPost = post;
-      int newID = CreateEdit(oldPost);
+      //TODO: add verification
+      int newID;
+      try
+      {
+        newID = CreateEdit(post);
+      }
+      catch (Exception e)
+      {
+        return Redirect("/Posts/Edit/" + post.ID);
+      }
       DeleteConfirmed(post.ID);
       return Redirect("/PostDetails/Index/" + newID);
 
