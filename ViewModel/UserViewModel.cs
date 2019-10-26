@@ -37,7 +37,7 @@ namespace TravelMe.ViewModel
         public string Phone { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0: MM dd yyyy}")]
+        [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
 
         public bool Disabled { get; set; }
