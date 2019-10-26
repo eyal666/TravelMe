@@ -166,7 +166,7 @@ namespace TravelMe.Controllers
         PlaceID = place.ID,
         Rating = newPost.Rating,
         NumOfViews = newPost.NumOfViews,
-        DateAdded = DateTime.Parse(newPost.DateAdded.ToString()),
+        DateAdded = DateTime.Now,
         Place = place,
         CategoryName = newPost.CategoryName
 
@@ -216,8 +216,8 @@ namespace TravelMe.Controllers
     public ActionResult Edit(Post post)
     {
       Post oldPost = post;
-      DeleteConfirmed(post.ID);
       int newID = CreateEdit(oldPost);
+      DeleteConfirmed(post.ID);
       return Redirect("/PostDetails/Index/" + newID);
 
     }
