@@ -63,7 +63,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Post.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.RadioButtonFor(m => m.Post.Rating, "1", htmlAttributes: new { @class = "control-label" }) @*TODO: change radio buttons to a real favorite bar*@
+                @Html.RadioButtonFor(m => m.Post.Rating, "1", htmlAttributes: new { @class = "control-label" })
                 @Html.RadioButtonFor(m => m.Post.Rating, "2")
                 @Html.RadioButtonFor(m => m.Post.Rating, "3")
                 @Html.RadioButtonFor(m => m.Post.Rating, "4")
