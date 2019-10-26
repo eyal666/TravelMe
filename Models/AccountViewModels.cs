@@ -10,9 +10,17 @@ namespace TravelMe.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
-        public DateTime BirthDate { get; internal set; }
-        public List<MembershipType> MembershipTypes { get; internal set; }
-        public string Phone { get; internal set; }
+        public string Phone { get; set; }
+        [Required]
+        [Display(Name = "Birth Date")]
+        [DataType(DataType.Date)]
+        [DateRange("01/01/1900")]
+        public DateTime BirthDate { get; set; }
+        public bool? Disable { get; set; }
+
+        public ICollection<MembershipType> MembershipTypes { get; set; }
+        [Required]
+        public int MembershipTypeId { get; set; }
     }
 
     public class ExternalLoginListViewModel
