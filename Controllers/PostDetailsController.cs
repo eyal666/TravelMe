@@ -9,6 +9,7 @@ using TravelMe.Utils;
 using TravelMe.ViewModel;
 using TravelMe.Models;
 using TravelMe_webapp.Models;
+using System.Net;
 
 namespace TravelMe.Controllers
 {
@@ -22,8 +23,17 @@ namespace TravelMe.Controllers
             db = ApplicationDbContext.Create();
         }
         
-        public ActionResult Index(int id)
+        public ActionResult Index(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Post post = db.Posts.Find(id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
             var userid = User.Identity.GetUserId();
             var user = db.Users.FirstOrDefault(u => u.Id == userid);
             var postModel = db.Posts.Include(p => p.Place).SingleOrDefault(p => p.ID == id);
