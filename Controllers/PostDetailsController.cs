@@ -10,6 +10,7 @@ using TravelMe.ViewModel;
 using TravelMe.Models;
 using TravelMe_webapp.Models;
 using System.Net;
+using TravelMeML.Model;
 
 namespace TravelMe.Controllers
 {
@@ -68,6 +69,18 @@ namespace TravelMe.Controllers
             temp.Cat = model.Post.CategoryName;
             db.Cooks.Add(temp);
             db.SaveChanges();
+
+            // Add input data
+            var input = new ModelInput();
+            input.Address = country;
+            input.Cat = model.Post.CategoryName;
+
+            // Load model and predict output of sample data
+            ModelOutput result = ConsumeModel.Predict(input);
+            var i = result.Prediction;
+            model.Post.Rec = i;
+
+
 
             return View(model);
         }
