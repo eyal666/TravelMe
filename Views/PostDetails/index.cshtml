@@ -41,56 +41,63 @@
 
 
     <div class="col-sm-3 col-xs-12 content-post-product-details">
-      <dl>
-        <dt>
-          @Html.DisplayNameFor(m => m.Post.DateAdded)
-        </dt>
-        <dd>
-          &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.DateAdded)
-        </dd>
-      </dl>
-      <dl>
-        <dt>
-          @Html.DisplayNameFor(m => m.Post.NumOfViews)
-        </dt>
-        <dd>
-          &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.NumOfViews)
-        </dd>
-      </dl>
-      <dl>
-        <dt>
-          @Html.DisplayNameFor(m => m.Post.Place.AvgRating)
-        </dt>
-        <dd>
-          &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.Place.AvgRating)
-        </dd>
-      </dl>
-      <dl>
-        <dt>
-          @Html.DisplayNameFor(m => m.Post.Place.NumOfPosts)
-        </dt>
-        <dd>
-          &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.Place.NumOfPosts)
-        </dd>
-      </dl>
-      <dl>
-        <dt>
-          @Html.DisplayNameFor(m => m.Post.Rating)
-        </dt>
-        <dd>
-          &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.Rating)
-        </dd>
-      </dl>
-      <dl>
-        <dt>Follow our page on Facebook</dt>
-        <dd>
-          <div class="fb-like" data-href="https://www.facebook.com/TravelMe-108028913949644" data-width="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-        </dd>
-      </dl>
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(m => m.Post.DateAdded)
+            </dt>
+            <dd>
+                &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.DateAdded)
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(m => m.Post.NumOfViews)
+            </dt>
+            <dd>
+                &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.NumOfViews)
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(m => m.Post.Place.AvgRating)
+            </dt>
+            <dd>
+                &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.Place.AvgRating)
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(m => m.Post.Place.NumOfPosts)
+            </dt>
+            <dd>
+                &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.Place.NumOfPosts)
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(m => m.Post.Rating)
+            </dt>
+            <dd>
+                &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.Rating)
+            </dd>
+        </dl>
+        <dl>
+            <dt>Follow our page on Facebook</dt>
+            <dd>
+                <div class="fb-like" data-href="https://www.facebook.com/TravelMe-108028913949644" data-width="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+            </dd>
+        </dl>
 
-      @Html.HiddenFor(m => m.Post.PlaceID)
+        @Html.HiddenFor(m => m.Post.PlaceID)
     </div>
 </div>
+@if (Model.Post.ID != Model.Post.Rec)
+{
+    <div>
+        <h6>@Html.DisplayFor(m => m.Post.Rec)</h6>
+    </div>
+}
+
 <div class="fb-comments" data-href="@string.Format("https://localhost:44393/PostDetails/Index/{0}", @Model.Post.ID)" data-width="" data-numposts="5"></div>
 
 <div class="row post-buttom">

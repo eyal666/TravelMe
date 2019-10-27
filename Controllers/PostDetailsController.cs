@@ -13,7 +13,7 @@ using System.Net;
 
 namespace TravelMe.Controllers
 {
-    //  [Authorize]
+      [Authorize]
     public class PostDetailsController : Controller
     {
         private ApplicationDbContext db;
@@ -58,26 +58,17 @@ namespace TravelMe.Controllers
                 }
             };
 
-            //To Write Cookie to local computer
-            HttpCookie cookie = new HttpCookie("Visited");
-            cookie["pid"] = model.Post.ID.ToString();
-            cookie["uid"] = model.Post.UserID.ToString();
-            Response.Cookies.Add(cookie);
-            //HttpContext.CurrentHandler.Response.Cookies.Add(cookie);
-
-
-
-            //to read cookie from local computer
+            var addarray = model.Post.Place.Address.Split(',');
+            var country = addarray[addarray.Length - 1];
             Cook temp = new Cook();
-            var cookie1 = Request.Cookies["Visited"];
-            // 
-            var t = cookie1["pid"];
-            temp.UID = cookie1["uid"];
-            temp.PID = t;
+            temp.PID = model.Post.ID.ToString();
+            temp.UID = this.User.Identity.GetUserId();
+            temp.Rating = model.Post.Rating.ToString();
+            temp.Address = country;
+            temp.Cat = model.Post.CategoryName;
             db.Cooks.Add(temp);
             db.SaveChanges();
 
-            //cookie1["pid"]
             return View(model);
         }
 
