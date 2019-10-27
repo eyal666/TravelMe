@@ -38,5 +38,7 @@ namespace TravelMe_webapp.Models
 
         public Category Category { get; set; }
 
+        public float Rec { get; set; }
+
     }
 }
