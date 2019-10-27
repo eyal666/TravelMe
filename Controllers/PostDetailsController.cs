@@ -11,6 +11,7 @@ using TravelMe.Models;
 using TravelMe_webapp.Models;
 using TravelMeML.Model;
 
+
 namespace TravelMe.Controllers
 {
      [Authorize]
@@ -81,14 +82,14 @@ namespace TravelMe.Controllers
             db.Cooks.Add(temp);
             db.SaveChanges();
 
-            // Add input data
-          var input = new ModelInput();
+            //  // Add input data
+            var input = new ModelInput();
             input.Address = country;
             input.Cat = model.Post.CategoryName;
 
-           // // Load model and predict output of sample data
-           ModelOutput result = ConsumeModel.Predict(input);
-           var i = result.Prediction;
+            // // Load model and predict output of sample data
+            ModelOutput result = ConsumeModel.Predict(input);
+            var i = result.Prediction;
             model.Post.Rec = i;
 
             return View(model);

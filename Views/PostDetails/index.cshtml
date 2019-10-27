@@ -81,7 +81,7 @@
           &nbsp;&nbsp;&nbsp;&nbsp; @Html.DisplayFor(m => m.Post.Rating)
         </dd>
       </dl>
-      <h6>@Html.DisplayFor(m => m.Post.Rec)</h6>
+      @*<h6>@Html.DisplayFor(m => m.Post.Rec)</h6>*@
       <dl>
         <dt>Follow our page on Facebook</dt>
         <dd>
@@ -92,6 +92,13 @@
       @Html.HiddenFor(m => m.Post.PlaceID)
     </div>
 </div>
+@if (Model.Post.ID != Model.Post.Rec)
+{
+    <div>
+    <h6>@Html.DisplayFor(m => m.Post.Rec)</h6>
+    </div>
+}
+
 <div class="fb-comments" data-href="@string.Format("https://localhost:44393/PostDetails/Index/{0}", @Model.Post.ID)" data-width="" data-numposts="5"></div>
 
 <div class="row post-buttom">
