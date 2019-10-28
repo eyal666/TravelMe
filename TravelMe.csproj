@@ -19,8 +19,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>
-    </Use64BitIISExpress>
+    <Use64BitIISExpress>true</Use64BitIISExpress>
     <IISExpressSSLPort>44393</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -37,6 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -268,14 +268,6 @@
     <Compile Include="Migrations\201910250921370_changeModels1.Designer.cs">
       <DependentUpon>201910250921370_changeModels1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910272133064_test.cs" />
-    <Compile Include="Migrations\201910272133064_test.Designer.cs">
-      <DependentUpon>201910272133064_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910272135535_reco.cs" />
-    <Compile Include="Migrations\201910272135535_reco.Designer.cs">
-      <DependentUpon>201910272135535_reco.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -436,12 +428,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910250921370_changeModels1.resx">
       <DependentUpon>201910250921370_changeModels1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910272133064_test.resx">
-      <DependentUpon>201910272133064_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910272135535_reco.resx">
-      <DependentUpon>201910272135535_reco.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

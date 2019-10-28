@@ -14,7 +14,7 @@ using TravelMeML.Model;
 
 namespace TravelMe.Controllers
 {
-      [Authorize]
+    [Authorize]
     public class PostDetailsController : Controller
     {
         private ApplicationDbContext db;
@@ -23,7 +23,7 @@ namespace TravelMe.Controllers
         {
             db = ApplicationDbContext.Create();
         }
-        
+
         public ActionResult Index(int? id)
         {
             if (id == null)
@@ -79,9 +79,39 @@ namespace TravelMe.Controllers
             ModelOutput result = ConsumeModel.Predict(input);
             var i = result.Prediction;
             model.Post.Rec = i;
+            if (i == model.Post.ID)
+            {
+                var newAddr = db.Posts
+                    .Where(p => (p.CategoryName == model.Post.CategoryName) && (p.ID != i)).ToList();
+                foreach (Post p in newAddr)
+                {
+                    p.Place = db.Places.Where(place => place.ID == p.PlaceID).FirstOrDefault();
+                    string Address = p.Place.Address;
 
+                    if (Address.ToLower().Contains(country.ToLower()))
+                    {
+                        ViewBag.NextPostTitle = p.Title;
+                        ViewBag.ImgUrl = p.ImageUrl;
+                        model.Post.Rec = p.ID;
+                        return View(model);
+                    }
+                }
+                ViewBag.NextPostTitle = newAddr.FirstOrDefault().Title;
+                ViewBag.ImgUrl = newAddr.FirstOrDefault().ImageUrl;
+                model.Post.Rec = newAddr.FirstOrDefault().ID;
+            }
+            else
+            {
+                var nextPost = from p in db.Posts
+                               where p.ID == model.Post.Rec
+                               select new PostViewModel
+                               {
+                                   Post = p
+                               };
 
-
+                ViewBag.NextPostTitle = nextPost.FirstOrDefault().Post.Title;
+                ViewBag.ImgUrl = nextPost.FirstOrDefault().Post.ImageUrl;
+            }
             return View(model);
         }
 

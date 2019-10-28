@@ -87,16 +87,30 @@
                 <div class="fb-like" data-href="https://www.facebook.com/TravelMe-108028913949644" data-width="" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
             </dd>
         </dl>
+        <dl>
+            <dt>Next Recommended Post:</dt>
+
+            <div class="container">
+                <div class="RecPost">
+                    <div class="row">
+                        <div class="RecTitle col-md-12">
+                            <dt>@ViewBag.NextPostTitle</dt>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 RecTitle">
+                            <a href="@string.Format("https://localhost:44393/PostDetails/Index/{0}", @Model.Post.Rec)">
+                                <img class="RecImg" src="@ViewBag.ImgUrl" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </dl>
 
         @Html.HiddenFor(m => m.Post.PlaceID)
     </div>
 </div>
-@if (Model.Post.ID != Model.Post.Rec)
-{
-    <div>
-        <h6>@Html.DisplayFor(m => m.Post.Rec)</h6>
-    </div>
-}
 
 <div class="fb-comments" data-href="@string.Format("https://localhost:44393/PostDetails/Index/{0}", @Model.Post.ID)" data-width="" data-numposts="5"></div>
 
