@@ -1,102 +1,102 @@
-﻿@model IPagedList<TravelMe_webapp.Models.Post>
+﻿@model IEnumerable<TravelMe_webapp.Models.Post>
 @using TravelMe.Models
 @using TravelMe.Utils
-@using PagedList
-@using PagedList.Mvc
+
 
 @{
     ViewBag.Title = "Index";
 }
 
-<br />
-<div class="row">
-    <div class="col-sm-4">
-        <h3>Manage Posts</h3>
-        @if (User.IsInRole(SD.AdminUserRole))
-        {
-            <p>
-                @Html.Partial("_CreateButtonPartial")
-            </p>
-        }
-    </div>
-    <div class="col-sm-8 pull-right">
-        <div class="row">
-            <div class="col-sm-12 text-right">
-                @if (User.IsInRole(SD.AdminUserRole))
-                {
+@using (Html.BeginForm("Index", "Posts", FormMethod.Get))
+{
+    <br />
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Manage Posts</h3>
+            @if (User.IsInRole(SD.AdminUserRole))
+            {
+                <p>
+                    @Html.Partial("_CreateButtonPartial")
+                </p>
+            }
+        </div>
+        <div class="col-sm-8 pull-right">
+            <div class="row">
+                <div class="col-sm-12 text-right">
+
                     <label class="radio-inline">
                         @Html.RadioButton("option", "Title") Title
                     </label>
                     <label class="radio-inline">
                         @Html.RadioButton("option", "Rating") Rating
                     </label>
-                }
-                <label class="radio-inline">
-                    @Html.RadioButton("option", "Category") Category
-                </label>
+                    <label class="radio-inline">
+                        @Html.RadioButton("option", "Category") Category
+                    </label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="pull-right">
-                <button type="submit" name="submit" value="Search" class="btn btn-sm btn-primary">
-                    <span class="glyphicon glyphicon-search"></span> &nbsp; Search
-                </button>
-            </div>
-            <div class="pull-right">
-                @Html.Editor("search", new { htmlAttributes = new { @class = "form-control input-sm" } })
+            <div class="row">
+                <div class="pull-right">
+                    <button type="submit" name="submit" value="Search" class="btn btn-sm btn-primary">
+                        <span class="glyphicon glyphicon-search"></span> &nbsp; Search
+                    </button>
+                </div>
+                <div class="pull-right">
+                    @Html.Editor("search", new { htmlAttributes = new { @class = "form-control input-sm" } })
+                </div>
             </div>
         </div>
     </div>
-</div>
-<br />
-<table class="table table-condensed table-hover">
-    <tr class="table-header">
-        <th></th>
-        <th></th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rating)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </th>
-        <th></th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Body)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @{
-                    string imgUrlSub = item.ImageUrl.Length < 40 ? item.ImageUrl : item.ImageUrl.Substring(0, 40) + "...";
-                }
-                @Html.DisplayFor(modelItem => imgUrlSub)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryName)
-            </td>
-            <td>
-                @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { PostId = item.ID })
-            </td>
+    <br />
+    <table class="table table-condensed table-hover">
+        <tr class="table-header">
+            <th></th>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Body)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </th>
+            <th></th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Body)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @{
+                        string imgUrlSub = item.ImageUrl.Length < 40 ? item.ImageUrl : item.ImageUrl.Substring(0, 40) + "...";
+                    }
+                    @Html.DisplayFor(modelItem => imgUrlSub)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { PostId = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
