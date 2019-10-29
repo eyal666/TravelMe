@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using TravelMe.Models;
@@ -31,7 +32,7 @@ namespace TravelMe.Controllers
                 {
                     posts = posts.Where(p => p.Title.ToLower().Contains(search)).ToList();
                 }
-                if (option.Equals(SD.byRating))
+                if (option.Equals(SD.byRating) && search.All(char.IsDigit))
                 {
                     posts = posts.Where(p => p.Rating == float.Parse(search)).ToList();
                 }

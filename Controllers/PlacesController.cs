@@ -30,11 +30,11 @@ namespace TravelMe.Controllers
                 {
                     places = places.Where(p => p.Address.ToLower().Contains(search)).ToList();
                 }
-                if (option.Equals(SD.byAvgRating))
+                if (option.Equals(SD.byAvgRating) && search.All(char.IsDigit))
                 {
                     places = places.Where(p => p.AvgRating == float.Parse(search)).ToList();
                 }
-                if (option.Equals(SD.byNumOfPosts))
+                if (option.Equals(SD.byNumOfPosts) && search.All(char.IsDigit))
                 {
                     places = places.Where(p => p.NumOfPosts == int.Parse(search)).ToList();
                 }
