@@ -25,13 +25,13 @@
                 <div class="col-sm-12 text-right">
 
                     <label class="radio-inline">
-                        @Html.RadioButton("option", "Title") Title
+                        @Html.RadioButton("option", SD.byTitle, new { @checked = true }) Title
                     </label>
                     <label class="radio-inline">
-                        @Html.RadioButton("option", "Rating") Rating
+                        @Html.RadioButton("option", SD.byRating) Rating
                     </label>
                     <label class="radio-inline">
-                        @Html.RadioButton("option", "Category") Category
+                        @Html.RadioButton("option", SD.byCategory) Category
                     </label>
                 </div>
             </div>

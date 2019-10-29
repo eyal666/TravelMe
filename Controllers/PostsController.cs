@@ -24,37 +24,32 @@ namespace TravelMe.Controllers
         {
             if (search != null)
             {
-                var posts = (from p in db.Posts
-                            select new PostViewModel
-                            {
-                                Post = p
-                            }).ToList();
+                List<Post> posts;
                 search = search.ToLower();
-                foreach (var p in posts)
+                posts = (from p in db.Posts select p).ToList();
+                if (option.Equals(SD.byTitle))
                 {
-                    if (option == "Title" && p.Post.Title.ToLower().Contains(search))
-                    {
-                        break;
-                    }
-                    if (option == "Rating" && p.Post.Rating.Equals(int.Parse(search)))
-                    {
-                        break;
-                    }
-                    if (option == "Category" && p.Post.CategoryName.ToLower().Contains(search))
-                    {
-                        break;
-                    }
-                    posts.Remove(p);
+                    posts = posts.Where(p => p.Title.ToLower().Contains(search)).ToList();
                 }
-                return View(posts.ToList());
+                if (option.Equals(SD.byRating))
+                {
+                    posts = posts.Where(p => p.Rating == float.Parse(search)).ToList();
+                }
+                if (option.Equals(SD.byCategory))
+                {
+                    posts = posts.Where(p => p.CategoryName.ToLower().Contains(search)).ToList();
+                }
+                ViewBag.CategoryNames = db.Categories.ToList();
+
+                return View(posts);
             }
             else
             {
-                var posts = db.Posts.Include(p => p.Category);
+                var posts = db.Posts.Include(p => p.Category).ToList();
 
                 ViewBag.CategoryNames = db.Categories.ToList();
 
-                return View(posts.ToList());
+                return View(posts);
             }
         }
 
