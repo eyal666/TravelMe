@@ -1,60 +1,74 @@
 ﻿@model IEnumerable<TravelMe_webapp.Models.Post>
+
 @using TravelMe.Models
 @{
-    ViewBag.Title = "Index";
+  ViewBag.Title = "Index";
 }
 
+
 <h3>Manage Posts</h3>
-
-<p>
+<div class="container">
+  <div class="row">
     @Html.Partial("_CreateButtonPartial")
-</p>
-<table class="table table-condensed table-hover">
-    <tr class="table-header">
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rating)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </th>
-        <th></th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+    @using (Html.BeginForm("Index", "Place", FormMethod.Get))
     {
-<tr>
-    <td>
+      @Html.Partial("_SearchButtonPartial")
+    }
+  </div>
+</div>
+<table class="table table-condensed table-hover">
+  <tr class="table-header">
+    <th>
+      @Html.DisplayNameFor(model => model.Title)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Body)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.PlaceID)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Rating)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.ImageUrl)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Category.CategoryName)
+    </th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+    <tr>
+      <td>
         @Html.DisplayFor(modelItem => item.Title)
-    </td>
-    <td>
+      </td>
+      <td>
         @Html.DisplayFor(modelItem => item.Body)
-    </td>
-    <td>
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.PlaceID)
+      </td>
+
+      <td>
         @Html.DisplayFor(modelItem => item.Rating)
-    </td>
-    <td>
+      </td>
+      <td>
         @{
-            string imgUrlSub = item.ImageUrl.Length < 40 ? item.ImageUrl : item.ImageUrl.Substring(0, 40) + "...";
+          string imgUrlSub = item.ImageUrl.Length < 40 ? item.ImageUrl : item.ImageUrl.Substring(0, 40) + "...";
         }
         @Html.DisplayFor(modelItem => imgUrlSub)
-    </td>
-    <td>
+      </td>
+      <td>
         @Html.DisplayFor(modelItem => item.CategoryName)
-    </td>
-    <td>
+      </td>
+      <td>
         @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { PostId = item.ID })
-    </td>
-</tr>
-    }
+      </td>
+    </tr>
+  }
 
 </table>
