@@ -256,15 +256,15 @@
 </script>
 <script>
     @{
-        var postVMs = from post in db.Posts
-                      join category in db.Categories on post.CategoryName equals category.CategoryName
-                      where post.CategoryName == category.CategoryName
+        var postVMs = from p in db.Posts
+                      join c in db.Categories on p.CategoryName equals c.CategoryName
                       select new PostViewModel
                       {
-                          Post = post,
+                          Post = p,
                       };
+
         int[] data =
-    {
+        {
             postVMs.Count(p => p.Post.CategoryName == "nature"),
             postVMs.Count(p => p.Post.CategoryName == "sport"),
             postVMs.Count(p => p.Post.CategoryName == "shopping"),
@@ -290,4 +290,14 @@
       , { State: 'Religion', freq: { low: 0, mid: 0, high: JSAvailabilityArr[5]}}
 ];
     dashboard('#categories', freqData);
+</script>
+<script>
+    @{
+        var CatPerCountry = postVMs.GroupBy(
+            p => p.Post.Place.Address,
+            p => p.Post.CategoryName,
+            (key, g) => new { PlaceId = key, Categories = g.ToList() }).ToList();
+
+        
+    }
 </script>
