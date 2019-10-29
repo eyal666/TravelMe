@@ -15,5 +15,10 @@ namespace TravelMe.Utils
         public const string byTitle = "byTitle";
         public const string byRating = "byRating";
         public const string byCategory = "byCategory";
+        public const string byAvgRating = "byAvgRating";
+        public const string byNumOfPosts = "byNumOfPosts";
+        public const string byEmail = "byEmail";
+        public const string byName = "byName";
+        public const string byPhone = "byPhone";
     }
 }

@@ -1,57 +1,95 @@
 ﻿@model IEnumerable<TravelMe_webapp.Models.Place>
 @using TravelMe.Models
+@using TravelMe.Utils
 @{
     ViewBag.Title = "Index";
 }
 
-<h3>Manage Places</h3>
+@using (Html.BeginForm("Index", "Places", FormMethod.Get))
+{
+    <br />
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Manage Places</h3>
+            @if (User.IsInRole(SD.AdminUserRole))
+            {
+                <p>
+                    @Html.Partial("_CreateButtonPartial")
+                </p>
+            }
+        </div>
+        <div class="col-sm-8 pull-right">
+            <div class="row">
+                <div class="col-sm-12 text-right">
 
-<p>
-    @Html.Partial("_CreateButtonPartial")
-</p>
-<table class="table table-condensed table-hover">
-    <tr class="table-header">
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Longtitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AvgRating)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumOfPosts)
-        </th>
-        <th></th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Longtitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Latitude)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AvgRating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumOfPosts)
-            </td>
-            <td>
-                @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { PlaceId = item.ID })
-            </td>
+                    <label class="radio-inline">
+                        @Html.RadioButton("option", SD.byPlaceName, new { @checked = true }) Address
+                    </label>
+                    <label class="radio-inline">
+                        @Html.RadioButton("option", SD.byAvgRating) AvgRating
+                    </label>
+                    <label class="radio-inline">
+                        @Html.RadioButton("option", SD.byNumOfPosts) NumOfPosts
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="pull-right">
+                    <button type="submit" name="submit" value="Search" class="btn btn-sm btn-primary">
+                        <span class="glyphicon glyphicon-search"></span> &nbsp; Search
+                    </button>
+                </div>
+                <div class="pull-right">
+                    @Html.Editor("search", new { htmlAttributes = new { @class = "form-control input-sm" } })
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <table class="table table-condensed table-hover">
+        <tr class="table-header">
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Longtitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvgRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumOfPosts)
+            </th>
+            <th></th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Longtitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Latitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AvgRating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumOfPosts)
+                </td>
+                <td>
+                    @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { PlaceId = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+}

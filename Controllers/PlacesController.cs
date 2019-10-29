@@ -19,9 +19,34 @@ namespace TravelMe.Controllers
 
         // GET: Places
         [Authorize(Roles = SD.AdminUserRole)]
-        public ActionResult Index()
+        public ActionResult Index(string search = null, string option = null)
         {
-            return View(db.Places.ToList());
+            if (search != null)
+            {
+                List<Place> places;
+                search = search.ToLower();
+                places = (from p in db.Places select p).ToList();
+                if (option.Equals(SD.byPlaceName))
+                {
+                    places = places.Where(p => p.Address.ToLower().Contains(search)).ToList();
+                }
+                if (option.Equals(SD.byAvgRating))
+                {
+                    places = places.Where(p => p.AvgRating == float.Parse(search)).ToList();
+                }
+                if (option.Equals(SD.byNumOfPosts))
+                {
+                    places = places.Where(p => p.NumOfPosts == int.Parse(search)).ToList();
+                }
+               
+
+                return View(places);
+            }
+            else
+            {
+                return View(db.Places.ToList());
+            }
+            
         }
 
         // GET: Places/Details/5

@@ -22,7 +22,7 @@ namespace TravelMe.Controllers
         }
 
         // GET: User
-        public ActionResult Index()
+        public ActionResult Index(string search = null, string option = null)
         {
             var user = from u in db.Users
                        join m in db.MembershipTypes on u.MembershipTypeId equals m.Id
@@ -39,9 +39,37 @@ namespace TravelMe.Controllers
                            Disabled = u.Disable
                        };
 
-            var usersList = user.ToList();
+            if (search != null)
+            {
+                
+                if (option.Equals(SD.byName))
+                {
+                    user = user.Where(p => p.FirstName.ToLower().Contains(search));
+                }
+                if (option.Equals(SD.byEmail))
+                {
+                    user = user.Where(p => p.Email.ToLower().Contains(search));
+                }
+                if (option.Equals(SD.byName))
+                {
+                    user = user.Where(p => p.LastName.ToLower().Contains(search));
+                }
+                if (option.Equals(SD.byPhone))
+                {
+                    user = user.Where(p => p.Phone.ToLower().Contains(search));
+                }
 
-            return View(usersList);
+
+                return View(user);
+            }
+            else
+            {
+                var usersList = user.ToList();
+
+                return View(usersList);
+            }
+
+           
         }
 
         //GET Edit
