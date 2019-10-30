@@ -1,33 +1,49 @@
 ﻿@model IEnumerable<TravelMe_webapp.Models.Category>
+@using TravelMe.Utils
 @using TravelMe.Models
 @{
-    ViewBag.Title = "Index";
+  ViewBag.Title = "Index";
 }
 
-<h2>Categories</h2>
-
-@Html.Partial("_CreateButtonPartial")
-
-<br />
-<br />
-<table class="table table-condensed table-hover">
+@using (Html.BeginForm("Index", "Categories", FormMethod.Get))
+{
+  <br />
+  <h3>Manage Categories</h3>
+  <div>
+    @if (User.IsInRole(SD.AdminUserRole))
+    {
+      @Html.Partial("_CreateButtonPartial")
+    }
+    <div class="pull-right">
+      <button type="submit" name="submit" value="Search" class="btn btn-sm btn-primary">
+        <span class="glyphicon glyphicon-search"></span> &nbsp; Search
+      </button>
+    </div>
+    <div class="pull-right">
+      @Html.Editor("search", new { htmlAttributes = new { @class = "form-control input-sm" } })
+    </div>
+  </div>
+  @Html.RadioButton("option", SD.byCategory, new { @checked = true, type = "hidden" })
+  <br />
+  <table class="table table-condensed table-hover">
     <tr class="table-header">
-        <th>
-            @Html.DisplayNameFor(m => m.CategoryName)
-        </th>
-        <th></th>
-        <th></th>
+      <th>
+        @Html.DisplayNameFor(m => m.CategoryName)
+      </th>
+      <th></th>
+      <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(m => item.CategoryName)
-            </td>
-            <td>
-                @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { CategoriesId = item.ID })
-            </td>
-        </tr>
+      <tr>
+        <td>
+          @Html.DisplayFor(m => item.CategoryName)
+        </td>
+        <td>
+          @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { CategoriesId = item.ID })
+        </td>
+      </tr>
     }
-</table>
+  </table>
+}

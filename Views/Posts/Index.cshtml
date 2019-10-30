@@ -4,93 +4,86 @@
 
 
 @{
-    ViewBag.Title = "Index";
+  ViewBag.Title = "Index";
 }
 
 @using (Html.BeginForm("Index", "Posts", FormMethod.Get))
 {
-    <br />
+  <br />
+  <h3>Manage Posts</h3>
+  <div>
+    @if (User.IsInRole(SD.AdminUserRole))
+    {
+      @Html.Partial("_CreateButtonPartial")
+    }
+    <div class="pull-right">
+      <button type="submit" name="submit" value="Search" class="btn btn-sm btn-primary">
+        <span class="glyphicon glyphicon-search"></span> &nbsp; Search
+      </button>
+    </div>
+    <div class="pull-right">
+      @Html.Editor("search", new { htmlAttributes = new { @class = "form-control input-sm" } })
+    </div>
+  </div>
+  <div class="col-sm-12 text-right">
+    <label class="radio-inline">
+      @Html.RadioButton("option", SD.byTitle, new { @checked = true }) Title
+    </label>
+    <label class="radio-inline">
+      @Html.RadioButton("option", SD.byRating) Rating
+    </label>
+    <label class="radio-inline">
+      @Html.RadioButton("option", SD.byCategory) Category
+    </label>
+  </div>
+  <br />
+  <table class="table table-condensed table-hover">
+    <tr class="table-header">
+      <th>
+        @Html.DisplayNameFor(model => model.Title)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Body)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Rating)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.ImageUrl)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Category.CategoryName)
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
 
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Body)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+          @{
+            string imgUrlSub = item.ImageUrl.Length < 40 ? item.ImageUrl : item.ImageUrl.Substring(0, 40) + "...";
+          }
+          @Html.DisplayFor(modelItem => imgUrlSub)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+          @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { PostId = item.ID })
+        </td>
+      </tr>
+    }
 
-
-        <div class="BoxRow">
-          <div class="mt-0">
-            @if (User.IsInRole(SD.AdminUserRole))
-            {
-                @Html.Partial("_CreateButtonPartial")
-            }
-          </div>
-            <div class="col-sm-12 text-right">
-              <label class="radio-inline">
-                @Html.RadioButton("option", SD.byTitle, new { @checked = true }) Title
-              </label>
-              <label class="radio-inline">
-                @Html.RadioButton("option", SD.byRating) Rating
-              </label>
-              <label class="radio-inline">
-                @Html.RadioButton("option", SD.byCategory) Category
-              </label>
-            </div>
-
-            <div class="pull-right">
-              <button type="submit" name="submit" value="Search" class="btn btn-sm btn-primary">
-                <span class="glyphicon glyphicon-search"></span> &nbsp; Search
-              </button>
-            </div>
-            <div class="pull-right">
-              @Html.Editor("search", new { htmlAttributes = new { @class = "form-control input-sm" } })
-            </div>
-        </div>
-
-
-    <br />
-    <table class="table table-condensed table-hover">
-        <tr class="table-header">
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Body)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category.CategoryName)
-            </th>
-            <th></th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Body)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rating)
-                </td>
-                <td>
-                    @{
-                        string imgUrlSub = item.ImageUrl.Length < 40 ? item.ImageUrl : item.ImageUrl.Substring(0, 40) + "...";
-                    }
-                    @Html.DisplayFor(modelItem => imgUrlSub)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryName)
-                </td>
-                <td>
-                    @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { PostId = item.ID })
-                </td>
-            </tr>
-        }
-
-    </table>
+  </table>
 }

@@ -2,99 +2,88 @@
 @using TravelMe.Models
 @using TravelMe.Utils
 @{
-    ViewBag.Title = "Index";
+  ViewBag.Title = "Index";
 }
 
 @using (Html.BeginForm("Index", "User", FormMethod.Get))
 {
-    <br />
-    <div class="row">
-        <div class="col-sm-4">
-            <h3>Manage Members</h3>
-            @if (User.IsInRole(SD.AdminUserRole))
-            {
-                <p>
-                    @Html.Partial("_CreateButtonPartial")
-                </p>
-            }
-        </div>
-        <div class="col-sm-8 pull-right">
-            <div class="row">
-                <div class="col-sm-12 text-right">
-
-                    <label class="radio-inline">
-                        @Html.RadioButton("option", SD.byName, new { @checked = true }) Name
-                    </label>
-                    <label class="radio-inline">
-                        @Html.RadioButton("option", SD.byEmail) Email
-                    </label>
-                    <label class="radio-inline">
-                        @Html.RadioButton("option", SD.byPhone) Phone
-                    </label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="pull-right">
-                    <button type="submit" name="submit" value="Search" class="btn btn-sm btn-primary">
-                        <span class="glyphicon glyphicon-search"></span> &nbsp; Search
-                    </button>
-                </div>
-                <div class="pull-right">
-                    @Html.Editor("search", new { htmlAttributes = new { @class = "form-control input-sm" } })
-                </div>
-            </div>
-        </div>
+  <br />
+  <h3>Manage Members</h3>
+  <div>
+    @if (User.IsInRole(SD.AdminUserRole))
+    {
+      @Html.Partial("_CreateButtonPartial")
+    }
+    <div class="pull-right">
+      <button type="submit" name="submit" value="Search" class="btn btn-sm btn-primary">
+        <span class="glyphicon glyphicon-search"></span> &nbsp; Search
+      </button>
     </div>
-    <br />
-    <table class="table table-condensed table-hover">
-        <tr class="table-header">
-            <th>
-                @Html.DisplayNameFor(m => m.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(m => m.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(m => m.BirthDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(m => m.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(m => m.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(m => m.Disabled)
-            </th>
-            <th></th>
-            <th></th>
-        </tr>
+    <div class="pull-right">
+      @Html.Editor("search", new { htmlAttributes = new { @class = "form-control input-sm" } })
+    </div>
+  </div>
+  <div class="col-sm-12 text-right">
+    <label class="radio-inline">
+      @Html.RadioButton("option", SD.byName, new { @checked = true }) Name
+    </label>
+    <label class="radio-inline">
+      @Html.RadioButton("option", SD.byEmail) Email
+    </label>
+    <label class="radio-inline">
+      @Html.RadioButton("option", SD.byPhone) Phone
+    </label>
+  </div>
+  <br />
+  <table class="table table-condensed table-hover">
+    <tr class="table-header">
+      <th>
+        @Html.DisplayNameFor(m => m.FirstName)
+      </th>
+      <th>
+        @Html.DisplayNameFor(m => m.LastName)
+      </th>
+      <th>
+        @Html.DisplayNameFor(m => m.BirthDate)
+      </th>
+      <th>
+        @Html.DisplayNameFor(m => m.Phone)
+      </th>
+      <th>
+        @Html.DisplayNameFor(m => m.Email)
+      </th>
+      <th>
+        @Html.DisplayNameFor(m => m.Disabled)
+      </th>
+      <th></th>
+      <th></th>
+    </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(m => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.BirthDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => item.Email)
-                </td>
-                <td>
-                    @Html.CheckBoxFor(m => item.Disabled, new { @class = "disabled" })
-                </td>
-                <td>
-                    @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { userId = item.Id })
-                </td>
-            </tr>
-        }
-    </table>
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(m => item.FirstName)
+        </td>
+        <td>
+          @Html.DisplayFor(m => item.LastName)
+        </td>
+        <td>
+          @Html.DisplayFor(m => item.BirthDate)
+        </td>
+        <td>
+          @Html.DisplayFor(m => item.Phone)
+        </td>
+        <td>
+          @Html.DisplayFor(m => item.Email)
+        </td>
+        <td>
+          @Html.CheckBoxFor(m => item.Disabled, new { @class = "disabled" })
+        </td>
+        <td>
+          @Html.Partial("_TableButtonPartial", new IndividualButtonPartial { userId = item.Id })
+        </td>
+      </tr>
+    }
+  </table>
 }
