@@ -21,7 +21,7 @@ namespace TravelMe.Controllers
         [Authorize(Roles = SD.AdminUserRole)]
         public ActionResult Index(string search = null, string option = null)
         {
-            if (search != null)
+            if (!String.IsNullOrEmpty(search) && option != null)
             {
                 List<Place> places;
                 search = search.ToLower();

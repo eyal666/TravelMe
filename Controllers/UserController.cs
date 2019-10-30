@@ -39,9 +39,8 @@ namespace TravelMe.Controllers
                            Disabled = u.Disable
                        };
 
-            if (search != null)
+            if (!String.IsNullOrEmpty(search) && option != null)
             {
-                
                 if (option.Equals(SD.byName))
                 {
                     user = user.Where(p => p.FirstName.ToLower().Contains(search));
