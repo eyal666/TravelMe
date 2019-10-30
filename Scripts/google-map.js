@@ -37,10 +37,11 @@ function initMultiMarkerMap() {
       marker.addListener('click', () => window.location.href = marker.url);
       markers.push(marker);
     });
-    const markerCluster = new MarkerClusterer(map, markers, {
-      styles: [{ height: 65, width: 66, url: 'Content/Photos/markercluster1.png' }]
-    });
-    
+    $(document).ready(() => {
+      const markerCluster = new MarkerClusterer(map, markers, {
+        styles: [{ height: 65, width: 66, url: 'Content/Photos/markercluster1.png' }]
+      });
+    });    
   });
 }
 
