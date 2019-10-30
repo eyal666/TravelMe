@@ -10,10 +10,7 @@
   <br />
   <h3>Manage Members</h3>
   <div>
-    @if (User.IsInRole(SD.AdminUserRole))
-    {
-      @Html.Partial("_CreateButtonPartial")
-    }
+  
     <div class="pull-right">
       <button type="submit" name="submit" value="Search" class="btn btn-sm btn-primary">
         <span class="glyphicon glyphicon-search"></span> &nbsp; Search

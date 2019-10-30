@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Owin.Security;
 
 namespace TravelMe.Controllers
 {
@@ -19,6 +20,14 @@ namespace TravelMe.Controllers
         public UserController()
         {
             db = ApplicationDbContext.Create();
+        }
+
+        private IAuthenticationManager AuthManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
         }
 
         // GET: User
@@ -197,6 +206,13 @@ namespace TravelMe.Controllers
             }
 
             userInDb.Disable = true;
+          
+            db.Users.Remove(userInDb);
+            if(userInDb.MembershipTypeId == 2  )
+            {
+                AuthManager.SignOut();
+            }
+            
             db.SaveChanges();
             return RedirectToAction("Index");
         }
