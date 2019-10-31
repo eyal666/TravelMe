@@ -22,7 +22,7 @@ namespace TravelMe_webapp.Models
     [DisplayName("Avarage Rating")]
     public float? AvgRating { get; set; }
     [Required]
-    [DisplayName("Posts Count")]
+    [DisplayName("Posts Written on the Same Place")]
     public int NumOfPosts { get; set; }
     public string PostsIdList { get; set; }
     public void AddPostID(int id)
