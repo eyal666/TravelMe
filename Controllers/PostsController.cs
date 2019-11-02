@@ -20,7 +20,6 @@ namespace TravelMe.Controllers
     private ApplicationDbContext db = new ApplicationDbContext();
 
     // GET: Posts
-    [Authorize(Roles = SD.AdminUserRole)]
     public ActionResult Index(string search = null, string option = null)
     {
       if (!String.IsNullOrEmpty(search) && option != null)

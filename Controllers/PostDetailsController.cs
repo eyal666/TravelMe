@@ -14,7 +14,6 @@ using TravelMeML.Model;
 
 namespace TravelMe.Controllers
 {
-  [Authorize]
   public class PostDetailsController : Controller
   {
     private ApplicationDbContext db;
